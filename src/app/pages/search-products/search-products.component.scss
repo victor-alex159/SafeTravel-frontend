@@ -1,0 +1,34 @@
+::ng-deep body > app-root > app-main > div > div.main-container > div.container > app-search-products {
+    width: 90% !important;
+}
+dx-button {
+    background-color: #108083 !important;
+}
+dx-button:hover {
+    background-color: #0d595c !important;
+}
+.dx-field {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.products {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    .title {
+        width: 100%;
+    }
+}
+
+.container-product img {
+    display: flex;
+    flex-direction: row;
+    border: 3px solid #0d595c;
+    margin: 4px;
+    
+}

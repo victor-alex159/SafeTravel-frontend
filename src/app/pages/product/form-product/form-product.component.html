@@ -1,0 +1,60 @@
+<div id="form">
+    <form novalidate (submit)="saveProduct($event)">
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <div class="dx-field-label">Tipo de producto: </div>
+                <div class="dx-field-value">
+                    <dx-text-box [(value)]="product.type" placeholder="Tipo de producto" width="50%"></dx-text-box>
+                </div>
+            </div>
+
+            <div class="dx-field">
+                <div class="dx-field-label">Nombre: </div>
+                <div class="dx-field-value">
+                    <dx-text-box [(value)]="product.name" placeholder="Nombre de producto" width="50%"></dx-text-box>
+                </div>
+            </div>
+
+            <div class="dx-field">
+                <div class="dx-field-label">Dirección: </div>
+                <div class="dx-field-value">
+                    <dx-text-box [(value)]="product.ubication" placeholder="Dirección" width="50%"></dx-text-box>
+                </div>
+            </div>
+            
+            <!--<div class="dx-field">
+                <div class="dx-field-label">Organización: </div>
+                    <div class="dx-field-value">
+                        <dx-text-box [(value)]="product.organization.id" placeholder="Organización" width="50%"></dx-text-box>
+                    </div>
+            </div>-->
+            <div class="dx-field">
+                <div class="dx-field-label">Correo del administrador: </div>
+                <div class="dx-field-value">
+                    <dx-text-box [(value)]="product.emailAdmin" placeholder="Correo administrador" width="50%"></dx-text-box>
+                </div>
+            </div>
+        
+            <div class="dx-field">
+                <div class="dx-field-label">Imagen: </div>
+                <div id="fileuploader-container">
+                    <dx-file-uploader
+                        selectButtonText="Selecciona una imagen"
+                        [multiple]="false"
+                        [allowedFileExtensions]="['.jpg','.jpeg', '.png']" labelText="" accept="*"
+                        [maxFileSize]="1024 * 2048" uploadMode="useForm" readyToUploadMessage="" [(value)]="uploadFile">
+                    </dx-file-uploader>
+                    <!--<input (change)="selectImage($event)" type="file">-->
+                </div>
+            </div>
+            <!--<div class="dx-field">
+                <img class="imgInfo" style="max-height: 220px;"
+                  [src]="url+'/gf/'+8">
+            </div>-->
+            
+            <div class="dx-field">
+                <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="20%"></dx-button>
+            </div>
+        </div>
+    </form>
+</div>

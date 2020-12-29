@@ -1,0 +1,56 @@
+::ng-deep .dx-theme-generic-typography {
+    margin: 0;
+    padding: 0;
+}
+.main-body {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+    //background-color: #FFFFFF;
+    background-image: url("../../../assets/image/paven.png");
+}
+ 
+.header {
+    line-height: 5;
+    //border: 3px solid #D9E2E8;
+    text-align: center;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 200px;
+    margin-right: 200px;
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        flex-direction: row;
+    }
+    //background-image: url("../../../assets/image/paven.png");
+}
+.sideBar, .container {
+    display: flex;
+    flex-grow: 1;
+    //justify-content: center;
+    //align-items: center;
+    //border: 1px solid #D9E2E8;
+}
+.sideBar {
+    width: auto;
+    //background-color: cornflowerblue;
+}
+.container {
+    width: 80%;
+    margin-left: 15px;
+    //background-color: coral;
+}
+.footer {
+    line-height: 5;
+    margin-top: auto;
+    text-align: center;
+    background-color: #212A30;
+    color: white;
+}
+
+

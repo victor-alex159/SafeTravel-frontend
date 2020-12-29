@@ -1,0 +1,21 @@
+::ng-deep body > app-root > app-main > div > div.main-container > div.sideBar > app-side-bar {
+    width: 100% !important;
+}
+.bodySideBar {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-flow: column;
+    
+}
+
+dx-button {
+    text-align: start !important;
+    background-color: #108083 !important;
+}
+dx-button:hover {
+    background-color: #0d595c !important;
+}
+dx-button:focus {
+    background-color: #0d595c !important;
+}

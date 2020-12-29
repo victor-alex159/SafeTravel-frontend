@@ -1,0 +1,30 @@
+<div class="bodyHeader">
+    <div class="logo">
+        <img src="../../../assets/image/logo.PNG" alt="">
+    </div>
+    <div class="navBar">
+        <dx-menu
+            [items]="menuItems"
+            itemTemplate="items" orientation="horizontal">
+            <div *dxTemplate="let item of 'items'">
+                <i>{{item.text}}</i>
+            </div>
+        </dx-menu>
+    </div>
+    <div class="user">
+        <dx-button
+            stylingMode="contained"
+            text="INICIAR SESIÓN"
+            type="default"
+            [routerLink]="['/fl']"
+             style="background-color: #108083; margin-right: 3px;">
+        </dx-button>
+        <dx-button
+            stylingMode="contained"
+            text="CREAR USUARIO"
+            type="default"
+            [routerLink]="['/uf']"
+            style="background-color: #108083;">
+        </dx-button>
+    </div>
+</div>

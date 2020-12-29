@@ -1,0 +1,46 @@
+<div class="dx-fieldset" style="width: 100%;">
+    <form novalidate>
+        <div class="dx-field">
+            <div class="dx-field-value">
+                <dx-text-box
+                    placeholder="Buscar..." width="100%">
+                </dx-text-box>
+            </div>
+        </div>
+        <div class="dx-field">
+            <dx-button
+                stylingMode="contained"
+                text="Buscar"
+                type="default"
+                width="20%">
+            </dx-button>
+        </div>
+    </form>
+</div>
+
+<div class="products">
+    <div class="title">
+        <h2>Hoteles</h2>
+    </div>
+    <div class="container-product" *ngFor="let products of productList">
+        <div class="dx-field" *ngIf="products.type == 'Hotel'">
+            <div class="dx-field">
+                <h3>{{products.name}}</h3>
+            </div>
+            <img class="imgInfo" style="height: 250px; width: 300px;"
+              [src]="url+'/gf/'+products.id">
+        </div>
+    </div>
+    <div class="title">
+        <h2>Restaurantes</h2>
+    </div>
+    <div class="container-product" *ngFor="let products of productList">
+        <div class="dx-field" *ngIf="products.type == 'Restaurante'">
+            <div class="dx-field">
+                <h3>{{products.name}}</h3>
+            </div>
+            <img class="imgInfo" style="height: 250px; width: 300px;"
+              [src]="url+'/gf/'+products.id">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<dx-data-grid id="gridContainer"
+    [dataSource]="productList"
+    [columnAutoWidth]="true"
+    [showBorders]="true"
+    rowTemplate="rowTemplateName">
+
+    <dxi-column dataField="image" caption="Imagen"> </dxi-column>
+    <dxi-column dataField="name" caption="Organización"> </dxi-column>
+    <dxi-column dataField="emailAdmin" caption="Corro administrador"> </dxi-column>
+    <dxi-column dataField="ubication" caption="Responsable de pago"> </dxi-column>
+    <dxi-column dataField="createDate" caption="Fecha de creación" dataType="date"> </dxi-column>
+
+    <tbody class="employee dx-row" [ngClass]="{'dx-row-alt': productList.rowIndex % 2}" *dxTemplate="let productList of 'rowTemplateName'" >
+        <tr class="main-row">
+            <td rowspan="2"><img [width]="300" [src]="url+'/gf/'+productList.data.id"/></td>
+            <td>{{productList.data.name}}</td>
+            <td>{{productList.data.emailAdmin}}</td>
+            <td>{{productList.data.type}}</td>
+            <td>{{productList.data.ubication}}</td>
+            <td>{{productList.data.createDate | date: "M/d/yyyy"}}</td>
+        </tr>
+    </tbody>
+</dx-data-grid>

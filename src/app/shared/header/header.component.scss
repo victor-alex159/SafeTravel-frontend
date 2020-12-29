@@ -1,0 +1,22 @@
+.bodyHeader {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    background-color: #96BDBE;
+    //color: white;
+}
+
+.logo, .navBar, .user {
+    display: flex;
+}
+.logo {
+    
+}
+.user {
+    align-items: center;
+}
+dx-button:hover {
+    background-color: #0d595c !important;
+}
