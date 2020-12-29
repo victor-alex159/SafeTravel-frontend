@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from 'src/app/services/auth.service';
+import { UserBean } from '../../Beans/UserBean';
+import swal from 'sweetalert2'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -27,10 +30,24 @@ export class HeaderComponent implements OnInit {
       text: 'NOSOTROS'
     },
   ];
+  userBean: UserBean;
+  usuario: string;
 
-  constructor() { }
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.userBean = new UserBean();
+    this.usuario = `${this.authService.user.username }` + ' - ' + `${this.authService.user.position }`;
+    console.log(this.authService.user);
+  }
+  
+  public logout() {
+    this.authService.logout();
+    swal.fire('Ha cerrado sesión', 'Correctamente', 'success');
+    this.router.navigate(['/sps']);
   }
 
 }

@@ -10,6 +10,9 @@ import { ProductService } from 'src/app/services/product.service';
 export class SearchProductsComponent implements OnInit {
 
   url: string = 'http://localhost:8085/pc';
+  date_format:string = 'dd/MM/yyyy';
+  START_DATE = new Date(1900, 0, 1);
+  END_DATE = new Date(2060, 12, 31);
   productList: Array<any> = [];
   product: ProductBean;
   dataSource: any;

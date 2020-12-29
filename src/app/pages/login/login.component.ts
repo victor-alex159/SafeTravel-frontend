@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = new UserBean();
+    this.isAtuhenticated();
   }
   
   public login(e: any) {
@@ -35,18 +36,27 @@ export class LoginComponent implements OnInit {
       this.authService.saveUser(resp.access_token);
       this.authService.saveToken(resp.access_token);
 
-      this.router.navigate(['/so']);
+      this.router.navigate(['/sps']);
       
       if(this.user.username != null || this.user.password != null) {
         swal.fire(
-          'Se ha iniciado sesión correctamente!',
-          'Con éxito!',
-          'success'
-        )
+          'Se ha iniciado sesión correctamente!', 'Con éxito!', 'success');
       }
 
+    }, error => {
+      if(error.status == 400) {
+        swal.fire(
+          'Usuario o constraseña incorrecta!','Error!','error');
+      }
     });
     e.preventDefault();
+  }
+
+  public isAtuhenticated() {
+    if(this.authService.isAthenticated()) {
+      swal.fire('Ya has iniciado sesión', '','info');
+      this.router.navigate(['/sps']);
+    }
   }
 
 }

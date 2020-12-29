@@ -2,18 +2,34 @@
         <h2>Categorias</h2>
 </div>
 <div class="bodySideBar">
-    <dx-button
-            stylingMode="contained"
-            text="Producto"
-            type="default"
-            width="100%" [routerLink]="['/sp']">
-    </dx-button>
-    <dx-button
-            stylingMode="contained"
-            text="Productos"
-            type="default"
-            width="100%" [routerLink]="['/gap']">
-    </dx-button>
+        <dx-button
+                *ngIf="this.authService.hasRole('Administrador')"
+                stylingMode="contained"
+                text="Producto"
+                type="default"
+                width="100%" [routerLink]="['/sp']">
+        </dx-button>
+        <dx-button
+                *ngIf="this.authService.user.position == 'Administrador'"
+                stylingMode="contained"
+                text="Productos"
+                type="default"
+                width="100%" [routerLink]="['/gap']">
+        </dx-button>
+        <dx-button
+                *ngIf="this.authService.user.position == 'Administrador'"
+                stylingMode="contained"
+                text="Organizacion"
+                type="default"
+                width="100%" [routerLink]="['/so']">
+        </dx-button>
+        <dx-button
+                *ngIf="this.authService.user.position == 'Administrador'"
+                stylingMode="contained"
+                text="Organizaciones"
+                type="default"
+                width="100%" [routerLink]="['/gao']">
+        </dx-button>
     <dx-button
             stylingMode="contained"
             text="Principal"
@@ -22,14 +38,32 @@
     </dx-button>
     <dx-button
             stylingMode="contained"
-            text="Organizacion"
+            text="Hoteles"
             type="default"
-            width="100%" [routerLink]="['/so']">
+            width="100%" >
     </dx-button>
     <dx-button
             stylingMode="contained"
-            text="Organizaciones"
+            text="Restaurantes"
             type="default"
-            width="100%" [routerLink]="['/gao']">
+            width="100%" >
+    </dx-button>
+    <dx-button
+            stylingMode="contained"
+            text="Museos"
+            type="default"
+            width="100%" >
+    </dx-button>
+    <dx-button
+            stylingMode="contained"
+            text="Aventura"
+            type="default"
+            width="100%" >
+    </dx-button>
+    <dx-button
+            stylingMode="contained"
+            text="Extremo"
+            type="default"
+            width="100%" >
     </dx-button>
 </div>

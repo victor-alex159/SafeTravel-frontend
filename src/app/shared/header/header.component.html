@@ -12,19 +12,32 @@
         </dx-menu>
     </div>
     <div class="user">
-        <dx-button
+        <dx-button *ngIf="!this.authService.isAthenticated()"
             stylingMode="contained"
             text="INICIAR SESIÓN"
             type="default"
             [routerLink]="['/fl']"
              style="background-color: #108083; margin-right: 3px;">
         </dx-button>
-        <dx-button
+        <dx-button *ngIf="!this.authService.isAthenticated()"
             stylingMode="contained"
-            text="CREAR USUARIO"
+            text="REGISTRARSE"
             type="default"
             [routerLink]="['/uf']"
             style="background-color: #108083;">
+        </dx-button>
+        <dx-button *ngIf="this.authService.isAthenticated()"
+            stylingMode="contained"
+            text={{this.usuario}}
+            type="default"
+            style="background-color: #108083; margin-right: 3px;">
+        </dx-button>
+        <dx-button *ngIf="this.authService.isAthenticated()"
+            stylingMode="contained"
+            text='CERRAR SESIÓN'
+            type="default"
+            (click)="logout()"
+            style="background-color: #108083; ">
         </dx-button>
     </div>
 </div>

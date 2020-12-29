@@ -32,6 +32,14 @@ export class AuthService {
     
   }
 
+  public logout() {
+    this._token = null;
+    this._user = null;
+    sessionStorage.clear();
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+  }
+
   public saveUser(accessToken: string): void {
     let payload = this.getDateToken(accessToken);
     this._user = new UserBean();
@@ -52,6 +60,16 @@ export class AuthService {
     return null;
   }
 
+  public get user() {
+    if(this._user != null) {
+      return this._user;
+    } else if(this._user == null && sessionStorage.getItem('user') != null) {
+      this._user = JSON.parse(sessionStorage.getItem('user')) as UserBean;
+      return this._user;
+    }
+    return new UserBean();
+  }
+
   public get token() {
     if(this._token != null) {
       return this._token;
@@ -60,6 +78,21 @@ export class AuthService {
       return this._token;
     }
     return null;
+  }
+
+  public isAthenticated(): boolean {
+    let getToken = this.getDateToken(this.token);
+    if(getToken != null && getToken.user_name && getToken.user_name.length > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  public hasRole(position: string): boolean {
+    if(this.user.position == position && this.user.position != '') {
+      return true;
+    }
+    return false;
   }
   
 }

@@ -7,6 +7,13 @@
                 </dx-text-box>
             </div>
         </div>
+        <!--<div>
+            <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120">
+            </dx-date-box>
+            <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120">
+            </dx-date-box>
+
+        </div>-->
         <div class="dx-field">
             <dx-button
                 stylingMode="contained"
@@ -23,24 +30,30 @@
         <h2>Hoteles</h2>
     </div>
     <div class="container-product" *ngFor="let products of productList">
-        <div class="dx-field" *ngIf="products.type == 'Hotel'">
-            <div class="dx-field">
-                <h3>{{products.name}}</h3>
+        <div class="dx-field product" *ngIf="products.type == 'Hotel'">
+            <div class="caja">
+                <img class="imgInfo" style="height: 150px; width: 200px;"
+                  [src]="url+'/gf/'+products.id">
+                  <div class="description">
+                      <h3>{{products.name}}</h3>
+                      <p>Varlor 5 STARS</p>
+                  </div>
             </div>
-            <img class="imgInfo" style="height: 250px; width: 300px;"
-              [src]="url+'/gf/'+products.id">
         </div>
     </div>
     <div class="title">
         <h2>Restaurantes</h2>
     </div>
     <div class="container-product" *ngFor="let products of productList">
-        <div class="dx-field" *ngIf="products.type == 'Restaurante'">
-            <div class="dx-field">
-                <h3>{{products.name}}</h3>
+        <div class="dx-field product" *ngIf="products.type == 'Restaurante'">
+            <div class="caja">
+                <img class="imgInfo" style="height: 150px; width: 200px;"
+                  [src]="url+'/gf/'+products.id">
+                  <div class="description">
+                      <h3>{{products.name}}</h3>
+                      <p>Varlor 5 STARS</p>
+                  </div>
             </div>
-            <img class="imgInfo" style="height: 250px; width: 300px;"
-              [src]="url+'/gf/'+products.id">
         </div>
     </div>
 </div>

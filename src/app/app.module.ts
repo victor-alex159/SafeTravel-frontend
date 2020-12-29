@@ -27,6 +27,7 @@ import { FormProductComponent } from './pages/product/form-product/form-product.
 import { FormUserComponent } from './pages/user/form-user/form-user.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ListProductsComponent } from './pages/product/list-products/list-products.component';
+import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ListProductsComponent } from './pages/product/list-products/list-produc
     OrganizationListComponent,
     FormProductComponent,
     FormUserComponent,
-    ListProductsComponent
+    ListProductsComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

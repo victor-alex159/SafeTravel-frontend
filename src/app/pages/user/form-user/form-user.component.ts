@@ -29,7 +29,7 @@ export class FormUserComponent implements OnInit {
     //const swal = require('sweetalert2');
     let profile = new ProfileBean();
     this.user.profile = profile;
-    this.user.profile.id = 1;
+    this.user.profile.id = 2;
     this.user.documentType="01";
     if(this.user.genderTypeId == 'Masculino' || this.user.genderTypeId == 'Femenino') {
       this.user.genderTypeId = "1";

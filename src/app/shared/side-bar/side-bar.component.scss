@@ -6,12 +6,14 @@
     display: -ms-flexbox;
     display: flex;
     flex-flow: column;
-    
+    border: 3px solid #0d595c;
 }
 
 dx-button {
     text-align: start !important;
     background-color: #108083 !important;
+    border-radius: 0px;
+    border-width: 0px;
 }
 dx-button:hover {
     background-color: #0d595c !important;

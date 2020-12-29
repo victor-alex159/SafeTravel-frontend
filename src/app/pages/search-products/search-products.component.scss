@@ -30,5 +30,15 @@ dx-button:hover {
     flex-direction: row;
     border: 3px solid #0d595c;
     margin: 4px;
-    
+}
+.caja {
+    display: flex;
+    flex-direction: row;
+    border: 3px solid #0d595c;
+    width: 400px;
+    margin: 5px;
+    .description {
+        display: flex;
+        flex-direction: column;
+    }
 }
