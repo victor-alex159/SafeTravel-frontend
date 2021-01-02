@@ -7,17 +7,20 @@ import { OrganizationListComponent } from './pages/organization/organization-lis
 import { FormProductComponent } from './pages/product/form-product/form-product.component';
 import { FormUserComponent } from './pages/user/form-user/form-user.component';
 import { ListProductsComponent } from './pages/product/list-products/list-products.component';
+import { AuthGuard } from './services/auth-guard.guard';
+import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
 
 
 const routes: Routes = [
   { path: 'fl', component: LoginComponent },
   { path: 'uf', component: FormUserComponent },
   { path: 'sp', component: FormProductComponent },
-  { path: 'gap', component: ListProductsComponent },
+  { path: 'gpd', component: ProductDetailComponent },
   { path: 'sps', component: SearchProductsComponent },
-  { path: 'so', component: FormOrganizationComponent },
-  { path: 'gao', component: OrganizationListComponent },
-  { path: '**', redirectTo: 'fl' }
+  { path: 'gap', component: ListProductsComponent, canActivate:[AuthGuard] },
+  { path: 'so', component: FormOrganizationComponent, canActivate:[AuthGuard]},
+  { path: 'gao', component: OrganizationListComponent, canActivate:[AuthGuard] },
+  { path: '**', redirectTo: 'sps' }
 ];
 
 @NgModule({

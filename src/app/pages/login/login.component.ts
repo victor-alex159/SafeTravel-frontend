@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserBean } from '../../Beans/UserBean';
 import swal from 'sweetalert2'
 import { SharedService } from 'src/app/services/shared.service';
+import { ClientBean } from 'src/app/Beans/Client';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { SharedService } from 'src/app/services/shared.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  user: UserBean;
+  user: any;
   isLogin: boolean = false;
     constructor(
       private authService: AuthService,
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user = new UserBean();
+    this.user = new ClientBean();
     this.isAtuhenticated();
   }
   
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
       this.authService.saveUser(resp.access_token);
       this.authService.saveToken(resp.access_token);
 
-      this.router.navigate(['/sps']);
+      //this.router.navigate(['/sps']);
+      window.location.href='/sps';
       
       if(this.user.username != null || this.user.password != null) {
         swal.fire(

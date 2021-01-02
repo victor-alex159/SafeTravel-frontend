@@ -3,28 +3,28 @@
 </div>
 <div class="bodySideBar">
         <dx-button
-                *ngIf="this.authService.hasRole('Administrador')"
+                *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
                 stylingMode="contained"
                 text="Producto"
                 type="default"
                 width="100%" [routerLink]="['/sp']">
         </dx-button>
         <dx-button
-                *ngIf="this.authService.user.position == 'Administrador'"
+        *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
                 stylingMode="contained"
                 text="Productos"
                 type="default"
                 width="100%" [routerLink]="['/gap']">
         </dx-button>
         <dx-button
-                *ngIf="this.authService.user.position == 'Administrador'"
+        *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
                 stylingMode="contained"
                 text="Organizacion"
                 type="default"
                 width="100%" [routerLink]="['/so']">
         </dx-button>
         <dx-button
-                *ngIf="this.authService.user.position == 'Administrador'"
+        *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
                 stylingMode="contained"
                 text="Organizaciones"
                 type="default"

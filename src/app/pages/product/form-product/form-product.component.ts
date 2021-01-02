@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
+import { OrganizationServiceService } from 'src/app/services/organization-service.service';
 import { ProductService } from 'src/app/services/product.service';
 import swal from 'sweetalert2'
 
@@ -12,16 +13,19 @@ import swal from 'sweetalert2'
 export class FormProductComponent implements OnInit {
 
   product: ProductBean;
+  organizationList: Array<OrganizationBean> = [];
   uploadFile: any[] = [];
   showPreview: boolean = false;
   url: string = 'http://localhost:8085/pc';
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private organizationService: OrganizationServiceService
   ) { }
 
   ngOnInit(): void {
     this.product = new ProductBean();
+    this.product.organization = new OrganizationBean();
     this.showPreview = false;
   }
 
@@ -30,10 +34,7 @@ export class FormProductComponent implements OnInit {
   }
 
   public saveProduct(e: any) {
-    let organization = new OrganizationBean();
     let productId: number;
-    this.product.organization = organization;
-    this.product.organization.id = 1;
     this.productService.saveProduct({data: this.product})
     .subscribe(resp => {
       productId = resp.data.id;

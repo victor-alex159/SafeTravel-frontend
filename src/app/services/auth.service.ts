@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ClientBean } from '../Beans/Client';
 import { UserBean } from '../Beans/UserBean';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _user: UserBean;
+  private _user: any;
   private _token: string;
 
   credentials = btoa('tallerProject' + ':' + 'taller');
@@ -19,10 +21,11 @@ export class AuthService {
   });
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
-  public login(user: UserBean): Observable<any> {
+  public login(user: any): Observable<any> {
     let params = new URLSearchParams();
     params.set('grant_type', 'password');
     params.set('username', user.username);
@@ -42,7 +45,7 @@ export class AuthService {
 
   public saveUser(accessToken: string): void {
     let payload = this.getDateToken(accessToken);
-    this._user = new UserBean();
+    this._user = new ClientBean();
     this._user.username = payload.user_name;
     this._user.position = payload.authorities[0];
     sessionStorage.setItem('user', JSON.stringify(this._user));
@@ -64,10 +67,10 @@ export class AuthService {
     if(this._user != null) {
       return this._user;
     } else if(this._user == null && sessionStorage.getItem('user') != null) {
-      this._user = JSON.parse(sessionStorage.getItem('user')) as UserBean;
+      this._user = JSON.parse(sessionStorage.getItem('user')) as ClientBean;
       return this._user;
     }
-    return new UserBean();
+    return new ClientBean();
   }
 
   public get token() {
@@ -83,6 +86,14 @@ export class AuthService {
   public isAthenticated(): boolean {
     let getToken = this.getDateToken(this.token);
     if(getToken != null && getToken.user_name && getToken.user_name.length > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  private isNoAuthorized(e): boolean {
+    if(e.status == 401 || e.status == 403) {
+      this.router.navigate(['/sps']);
       return true;
     }
     return false;

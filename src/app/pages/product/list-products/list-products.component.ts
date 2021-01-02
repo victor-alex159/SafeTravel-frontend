@@ -19,7 +19,7 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = new ProductBean();
-    this.getAllProducts();
+    this.getProductsByUserPrincipal();
   }
 
   public getAllProducts() {
@@ -28,6 +28,13 @@ export class ListProductsComponent implements OnInit {
         this.productList = resp.datalist;
       });
 
+  }
+
+  public getProductsByUserPrincipal() {
+    this.productService.getProductsByUserPrincipal({})
+      .subscribe((resp: any) => {
+        this.productList = resp.datalist;
+      })
   }
 
 }

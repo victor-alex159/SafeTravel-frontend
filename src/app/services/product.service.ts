@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 })
 export class ProductService {
   url: string = 'http://localhost:8085/pc';
-  private httpHeaders = new HttpHeaders( { 'Content-Type': 'multipart/form-data'
+  private httpHeaders = new HttpHeaders( { 'Content-Type': 'application/json'
   } );
 
   constructor(
@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   public saveProduct(product: any) {
-    return this.http.post<any>(`${this.url + '/sp'}`, product); 
+    return this.http.post<any>(`${this.url + '/sp'}`, product, {headers: this.addAtuhorizationHeader()}); 
   }
 
   public loadFile(file: any, productId: number) {
@@ -33,6 +33,10 @@ export class ProductService {
 
   public getAllProducts(product: any) {
     return this.http.post<any>(`${this.url + '/gap'}`, product); 
+  }
+
+  public getProductsByUserPrincipal(product: any) {
+    return this.http.post<any>(`${this.url + '/gpbup'}`, product, {headers: this.addAtuhorizationHeader()});
   }
 
 }
