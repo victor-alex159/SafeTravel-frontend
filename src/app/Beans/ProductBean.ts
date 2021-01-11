@@ -10,4 +10,8 @@ export class ProductBean extends BaseBean {
     public imagePath: string;
     public type: string;
     public ubication: string;
+    public startDate: Date;
+    public endDate: Date;
+    public startDateRequest: Date;
+    public endDateRequest: Date;
 }

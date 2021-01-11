@@ -1,13 +1,13 @@
-<div class="dx-field">
+<div *ngIf="this.authService.isAthenticated()" class="dx-field">
         <h2>Categorias</h2>
 </div>
-<div class="bodySideBar">
+<div *ngIf="this.authService.isAthenticated()" class="bodySideBar">
         <dx-button
                 *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
                 stylingMode="contained"
-                text="Producto"
+                text="Buscar Producto"
                 type="default"
-                width="100%" [routerLink]="['/sp']">
+                width="100%" [routerLink]="['/gpd']">
         </dx-button>
         <dx-button
         *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
@@ -17,14 +17,14 @@
                 width="100%" [routerLink]="['/gap']">
         </dx-button>
         <dx-button
-        *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
+        *ngIf="this.authService.hasRole('Administrador')"
                 stylingMode="contained"
                 text="Organizacion"
                 type="default"
                 width="100%" [routerLink]="['/so']">
         </dx-button>
         <dx-button
-        *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
+        *ngIf="this.authService.hasRole('Administrador')"
                 stylingMode="contained"
                 text="Organizaciones"
                 type="default"

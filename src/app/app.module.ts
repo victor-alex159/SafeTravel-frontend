@@ -18,7 +18,9 @@ import { DxCheckBoxModule,
          DxFormModule,
          DxTemplateModule,
          DxFileUploaderModule,
-         DxGalleryModule
+         DxGalleryModule,
+         DxPopupModule,
+         DxSpeedDialActionModule
          } from 'devextreme-angular';
 import { SearchProductsComponent } from './pages/search-products/search-products.component';
 import { FormOrganizationComponent } from './pages/organization/form-organization/form-organization.component';
@@ -28,6 +30,9 @@ import { FormUserComponent } from './pages/user/form-user/form-user.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ListProductsComponent } from './pages/product/list-products/list-products.component';
 import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
+import { FormProductDetailComponent } from './pages/product/product-detail/form-product-detail/form-product-detail.component';
+import { ListRestaurantComponent } from './pages/product/type/list-restaurant/list-restaurant.component';
+import { ListHotelComponent } from './pages/product/type/list-hotel/list-hotel.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,10 @@ import { ProductDetailComponent } from './pages/product/product-detail/product-d
     FormProductComponent,
     FormUserComponent,
     ListProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    FormProductDetailComponent,
+    ListRestaurantComponent,
+    ListHotelComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +66,9 @@ import { ProductDetailComponent } from './pages/product/product-detail/product-d
     DxDataGridModule,
     DxTemplateModule,
     DxFileUploaderModule,
-    DxGalleryModule
+    DxGalleryModule,
+    DxPopupModule,
+    DxSpeedDialActionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

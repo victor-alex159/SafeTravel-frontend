@@ -38,11 +38,11 @@ export class LoginComponent implements OnInit {
       this.authService.saveToken(resp.access_token);
 
       //this.router.navigate(['/sps']);
-      window.location.href='/sps';
       
       if(this.user.username != null || this.user.password != null) {
-        swal.fire(
-          'Se ha iniciado sesión correctamente!', 'Con éxito!', 'success');
+        window.location.href='/sps';
+        /*swal.fire(
+          'Se ha iniciado sesión correctamente!', 'Con éxito!', 'success');*/
       }
 
     }, error => {

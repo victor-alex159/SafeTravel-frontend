@@ -24,6 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "devextreme": "^20.2.3",
     "devextreme-angular": "^20.2.3",
+    "gsap": "^3.5.1",
     "rxjs": "~6.5.4",
     "sweetalert2": "^10.12.6",
     "tslib": "^1.10.0",

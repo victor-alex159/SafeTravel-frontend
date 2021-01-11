@@ -9,6 +9,7 @@ import { FormUserComponent } from './pages/user/form-user/form-user.component';
 import { ListProductsComponent } from './pages/product/list-products/list-products.component';
 import { AuthGuard } from './services/auth-guard.guard';
 import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
+import { ListRestaurantComponent } from './pages/product/type/list-restaurant/list-restaurant.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'sp', component: FormProductComponent },
   { path: 'gpd', component: ProductDetailComponent },
   { path: 'sps', component: SearchProductsComponent },
+  { path: 'gpbr', component: ListRestaurantComponent },
   { path: 'gap', component: ListProductsComponent, canActivate:[AuthGuard] },
   { path: 'so', component: FormOrganizationComponent, canActivate:[AuthGuard]},
   { path: 'gao', component: OrganizationListComponent, canActivate:[AuthGuard] },

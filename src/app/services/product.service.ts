@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 })
 export class ProductService {
   url: string = 'http://localhost:8085/pc';
+  urlProDetail: string = 'http://localhost:8085/pdc';
   private httpHeaders = new HttpHeaders( { 'Content-Type': 'application/json'
   } );
 
@@ -37,6 +38,30 @@ export class ProductService {
 
   public getProductsByUserPrincipal(product: any) {
     return this.http.post<any>(`${this.url + '/gpbup'}`, product, {headers: this.addAtuhorizationHeader()});
+  }
+
+  public saveProductDetail(productDetail: any) {
+    return this.http.post<any>(`${this.urlProDetail + '/spd'}`, productDetail, {headers: this.addAtuhorizationHeader()}); 
+  }
+
+  public loadFileByProductDetail(file: any, productDetailId: number) {
+    return this.http.post<any>(`${this.urlProDetail + '/lf/' + productDetailId}`, file); 
+  }
+
+  public getProductDetail(productDetail: any) {
+    return this.http.post<any>(`${this.urlProDetail + '/gpdbi'}`, productDetail, {headers: this.addAtuhorizationHeader()});
+  }
+
+  public getProductsDetail(productDetail: any) {
+    return this.http.post<any>(`${this.urlProDetail + '/gpd'}`, productDetail, {headers: this.addAtuhorizationHeader()});
+  }
+  
+  public getProductById(product: any) {
+    return this.http.post<any>(`${this.url + '/gpbi'}`, product, {headers: this.addAtuhorizationHeader()});
+  }
+
+  public getProductByType(product: any) {
+    return this.http.post<any>(`${this.url + '/gpbt'}`, product);
   }
 
 }

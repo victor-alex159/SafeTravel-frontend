@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="title">
+        <h2>Restaurantes</h2>
+    </div>
+    <div class="container-product" *ngFor="let restaurants of listRestaurant">
+        <div class="dx-field product">
+            <div class="caja">
+                <img class="imgInfo" style="height: 150px; width: 200px;"
+                  [src]="url+'/gf/'+restaurants.id">
+                  <div class="description">
+                      <h3>{{restaurants.name}}</h3>
+                      <p>Varlor 5 STARS</p>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

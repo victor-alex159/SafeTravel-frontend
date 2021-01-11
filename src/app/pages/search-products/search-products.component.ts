@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductService } from 'src/app/services/product.service';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-search-products',
@@ -15,7 +16,17 @@ export class SearchProductsComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   productList: Array<any> = [];
   product: ProductBean;
-  dataSource: any;
+  images: any[] = [
+    {
+      src : '../../../assets/image/hotel1.jpg'
+    },
+    {
+      src : '../../../assets/image/hotel2.jpg'
+    },
+    {
+      src : '../../../assets/image/museo1.jpg'
+    }
+  ];
 
   constructor(
     private productService: ProductService
@@ -24,11 +35,7 @@ export class SearchProductsComponent implements OnInit {
   ngOnInit(): void {
     this.product = new ProductBean();
     this.getAllProducts();
-    this.dataSource = [
-      `${this.url + '/gf/1'}`,
-      `${this.url + '/gf/2'}`,
-      `${this.url + '/gf/3'}`,
-    ];
+    //this.tween();
   }
 
   screen(width) {
@@ -50,6 +57,10 @@ export class SearchProductsComponent implements OnInit {
         this.productList = resp.datalist;
       });
 
+  }
+
+  public tween() {
+    gsap.from(".products", {duration: 2, x: 300});
   }
 
 }

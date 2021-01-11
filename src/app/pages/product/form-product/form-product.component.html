@@ -4,7 +4,7 @@
             <div class="dx-field">
                 <div class="dx-field-label">Tipo de producto: </div>
                 <div class="dx-field-value">
-                    <dx-text-box [(value)]="product.type" placeholder="Tipo de producto" width="50%"></dx-text-box>
+                    <dx-text-box [(value)]="product.type" placeholder="Tipo de producto" width="100%"></dx-text-box>
                 </div>
             </div>
             <!--<div class="dx-field">
@@ -25,24 +25,36 @@
             <div class="dx-field">
                 <div class="dx-field-label">Nombre: </div>
                 <div class="dx-field-value">
-                    <dx-text-box [(value)]="product.name" placeholder="Nombre de producto" width="50%"></dx-text-box>
+                    <dx-text-box [(value)]="product.name" placeholder="Nombre de producto" width="100%"></dx-text-box>
                 </div>
             </div>
 
             <div class="dx-field">
                 <div class="dx-field-label">Dirección: </div>
                 <div class="dx-field-value">
-                    <dx-text-box [(value)]="product.ubication" placeholder="Dirección" width="50%"></dx-text-box>
+                    <dx-text-box [(value)]="product.ubication" placeholder="Dirección" width="100%"></dx-text-box>
                 </div>
             </div>
             
             <div class="dx-field">
-                <div class="dx-field-label">Correo del administrador: </div>
+                <div class="dx-field-label">Correo administrador: </div>
                 <div class="dx-field-value">
-                    <dx-text-box [(value)]="product.emailAdmin" placeholder="Correo administrador" width="50%"></dx-text-box>
+                    <dx-text-box [(value)]="product.emailAdmin" placeholder="Correo administrador" width="100%"></dx-text-box>
                 </div>
             </div>
-        
+
+            <div class="dx-field">
+                <label >Fecha de inicio: </label>
+                <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.startDate">
+                </dx-date-box>
+            </div>
+
+            <div class="dx-field">
+                <label >Fecha de caducidad: </label>
+                <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.endDate">
+                </dx-date-box>
+            </div>
+
             <div class="dx-field">
                 <div class="dx-field-label">Imagen: </div>
                 <div id="fileuploader-container">
@@ -61,7 +73,7 @@
             </div>-->
             
             <div class="dx-field">
-                <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="20%"></dx-button>
+                <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="40%"></dx-button>
             </div>
         </div>
     </form>

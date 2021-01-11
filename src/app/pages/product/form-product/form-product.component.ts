@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
@@ -17,6 +18,11 @@ export class FormProductComponent implements OnInit {
   uploadFile: any[] = [];
   showPreview: boolean = false;
   url: string = 'http://localhost:8085/pc';
+  date_format:string = 'dd/MM/yyyy';
+  START_DATE = new Date(1900, 0, 1);
+  END_DATE = new Date(2060, 12, 31);
+  @Input() productId: number;
+  @Output() closePopup = new EventEmitter();
 
   constructor(
     private productService: ProductService,
@@ -27,6 +33,9 @@ export class FormProductComponent implements OnInit {
     this.product = new ProductBean();
     this.product.organization = new OrganizationBean();
     this.showPreview = false;
+    if(this.productId) {
+      this.getProduct(this.productId);
+    }
   }
 
   public hidePreview(event: any): void {
@@ -35,23 +44,37 @@ export class FormProductComponent implements OnInit {
 
   public saveProduct(e: any) {
     let productId: number;
-    this.productService.saveProduct({data: this.product})
-    .subscribe(resp => {
-      productId = resp.data.id;
-      console.log(resp);
-      const formData = new FormData();
-      this.uploadFile.forEach((file, idx) => {
-        formData.append('file', file);
+    if(this.product != null || this.product != undefined) {
+      this.productService.saveProduct({data: this.product})
+      .subscribe(resp => {
+        productId = resp.data.id;
+        const formData = new FormData();
+        this.uploadFile.forEach((file, idx) => {
+          formData.append('file', file);
+        });
+        this.productService.loadFile(formData, productId).subscribe();
+        this.showPreview = true;
+        swal.fire(
+          'Registrado correctamente!',
+          'Con éxito!',
+          'success'
+        )
       });
-      this.productService.loadFile(formData, productId).subscribe();
-      this.showPreview = true;
-      swal.fire(
-        'Registrado correctamente!',
-        'Con éxito!',
-        'success'
-      )
-    });
+    }
     e.preventDefault();
   }
 
+  public getProduct(productId: number) {
+    let productBean = new ProductBean();
+    productBean.id = productId;
+    this.productService.getProductById({data: productBean})
+    .subscribe(resp => {
+      console.log(resp.data);
+      this.product = resp.data;
+      this.product.imagePath = resp.data.imagePath;
+      //this.product = resp.data.id;
+      console.log(this.product);
+    });
+  }
+  
 }

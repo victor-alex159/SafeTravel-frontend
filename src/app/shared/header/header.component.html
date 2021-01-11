@@ -1,15 +1,26 @@
 <div class="bodyHeader">
-    <div class="logo">
-        <img src="../../../assets/image/logo.PNG" alt="">
-    </div>
+    
     <div class="navBar">
-        <dx-menu
-            [items]="menuItems"
-            itemTemplate="items" orientation="horizontal">
-            <div *dxTemplate="let item of 'items'">
-                <i>{{item.text}}</i>
-            </div>
-        </dx-menu>
+        <ul style="list-style: none;">
+            <li>
+                <dx-button stylingMode="text" type="normal" text="INICIO" [routerLink]="['/sps']"></dx-button>
+            </li>
+            <li>
+                <dx-button stylingMode="text" type="normal" text="HOTELES"></dx-button>
+            </li>
+            <li>
+                <dx-button stylingMode="text" type="normal" text="RESTAURANTES" [routerLink]="['/gpbr']"></dx-button>
+            </li>
+            <li>
+                <dx-button stylingMode="text" type="normal" text="SERVICIO"></dx-button>
+            </li>
+            <li>
+                <dx-button stylingMode="text" type="normal" text="CONTATO"></dx-button>
+            </li>
+            <li>
+                <dx-button stylingMode="text" type="normal" text="NOSOTROS"></dx-button>
+            </li>
+        </ul>
     </div>
     <div class="user">
         <dx-button *ngIf="!this.authService.isAthenticated()"
@@ -40,4 +51,8 @@
             style="background-color: #108083; ">
         </dx-button>
     </div>
+</div>
+<div class="logo">
+    <!--<img src="../../../assets/image/logo.PNG" alt="">-->
+    <h2>SafeTravel.pe</h2>
 </div>

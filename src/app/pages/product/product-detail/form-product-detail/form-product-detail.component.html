@@ -1,0 +1,52 @@
+<div id="form">
+    <form novalidate (submit)="saveProductDetail($event)">
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <div class="dx-field-label">Dirección: </div>
+                <div class="dx-field-value">
+                    <dx-text-box [(value)]="productDetail.address" placeholder="Dirección" width="100%"></dx-text-box>
+                </div>
+            </div>
+
+            <div class="dx-field">
+                <label for="">Descripción:</label>
+                <dx-text-area [height]="100" [(value)]="productDetail.description"></dx-text-area>
+            </div>
+
+            <div class="dx-field">
+                <div class="dx-field-label">Precio: </div>
+                <div class="dx-field-value">
+                    <dx-text-box [(value)]="productDetail.price" placeholder="Precio" width="100%"></dx-text-box>
+                </div>
+            </div>
+            
+            <div class="dx-field">
+                <div class="dx-field-label">Icono: </div>
+                <div class="dx-field-value">
+                    <dx-text-box [(value)]="productDetail.icon" placeholder="Icono" width="100%"></dx-text-box>
+                </div>
+            </div>
+        
+            <div class="dx-field">
+                <div class="dx-field-label">Imagen: </div>
+                <div id="fileuploader-container">
+                    <dx-file-uploader
+                        selectButtonText="Selecciona una imagen"
+                        [multiple]="false"
+                        [allowedFileExtensions]="['.jpg','.jpeg', '.png']" labelText="" accept="*"
+                        [maxFileSize]="1024 * 2048" uploadMode="useForm" readyToUploadMessage="" [(value)]="uploadFile">
+                    </dx-file-uploader>
+                    <!--<input (change)="selectImage($event)" type="file">-->
+                </div>
+            </div>
+            <!--<div class="dx-field">
+                <img class="imgInfo" style="max-height: 220px;"
+                  [src]="url+'/gf/'+8">
+            </div>-->
+            
+            <div class="dx-field">
+                <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="40%"></dx-button>
+            </div>
+        </div>
+    </form>
+</div>

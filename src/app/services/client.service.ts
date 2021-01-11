@@ -24,7 +24,7 @@ export class ClientService {
   }
 
   public saveClient(client: any) {
-    return this.http.post<any>(`${this.url + '/sc'}`, client, { headers: this.addAtuhorizationHeader() });
+    return this.http.post<any>(`${this.url + '/sc'}`, client);
   }
 
 }

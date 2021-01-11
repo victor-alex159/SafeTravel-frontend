@@ -33,5 +33,13 @@ export class OrganizationServiceService {
     return this.http.post<any>(`${this.url + '/gao'}`, organization, { headers: this.addAtuhorizationHeader() });
   }
 
+  public getOrganizationByUserPrincipal(organization: any) {
+    return this.http.post<any>(`${this.url + '/gobup'}`, organization, { headers: this.addAtuhorizationHeader() });
+  }
+
+  public getOrganizationById(organization: any) {
+    return this.http.post<any>(`${this.url + '/gobi'}`, organization, { headers: this.addAtuhorizationHeader() });
+  }
+
 
 }

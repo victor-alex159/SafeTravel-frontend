@@ -8,8 +8,8 @@
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-    //background-color: #FFFFFF;
-    background-image: url("../../../assets/image/paven.png");
+    background-color: #FFFFFF;
+    //background-image: url("../../../assets/image/paven.png");
 }
  
 .header {
@@ -26,6 +26,8 @@
     @media screen and (min-width: 1024px) {
         display: flex;
         flex-direction: row;
+        margin-left: 200px;
+        margin-right: 68px;
     }
     //background-image: url("../../../assets/image/paven.png");
 }

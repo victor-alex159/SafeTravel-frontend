@@ -1,3 +1,22 @@
+<div class="slider-container">
+    <div class="box-slider">
+        <img *ngFor="let image of images" class="image" [src]="image.src" alt="">
+    </div>
+</div>
+<!--<div class="controls">
+    <div id="prev">
+        <p  class="arrow-slider center_y">
+            <i class="fas fa-angle-left"></i>
+        </p>
+    </div>
+    <div id="next">
+        <p  class="arrow-slider center_x">
+            <i class="fas fa-angle-right"></i>
+        </p>
+    </div>
+</div>-->
+
+
 <div class="dx-fieldset" style="width: 100%;">
     <form novalidate>
         <div class="dx-field">
