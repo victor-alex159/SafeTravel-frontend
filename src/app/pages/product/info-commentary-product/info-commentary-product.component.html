@@ -1,0 +1,50 @@
+<div class="animated fadeIn">
+    <div class="row1">
+        <div class="container-photos">
+            <div class="image" *ngIf="productDetail.id">
+                <img class="imgInfo animated fadeIn" style="height: 240px; width: 242px;"
+                [src]="url+'/gf/'+productDetail.id">
+            </div>
+        </div>
+        <div class="description">
+            description
+        </div>
+    </div>
+    
+    <div class="row2">
+        <div class="descripcion-product">
+            description-product
+        </div>
+        <div class="info-covid">
+            <div class="title-info-covid" style="text-align: center;">
+                <h3>Información de Bioseguridad</h3>
+            </div>
+            <div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row3">
+        <div class="container-opinion">
+            <div class="tittle-opinion" style="text-align: center;">
+                <h3>OPINIONES</h3>
+            </div>
+            <div class="dx-field commentary">
+                <dx-text-area placeholder="Escriba un comentario" [height]="100" [width]="630" [(value)]="commentary.description"></dx-text-area>
+                <dx-button style="height: 38%; margin: auto;"
+                    stylingMode="contained"
+                    text="Enviar comentario"
+                    type="default"
+                    width="20%"
+                    [useSubmitBehavior]="true">
+                </dx-button>
+            </div>
+            <label for="">Comentarios</label>
+            <div class="dx-field list-commnetaries" *ngFor="let comment of listCommentaries">
+                <dx-text-area [height]="100" [width]="630" [(value)]="comment.description"></dx-text-area>
+            </div>
+        </div>
+    </div>
+    
+</div>

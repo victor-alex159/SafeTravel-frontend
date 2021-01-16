@@ -16,17 +16,6 @@ export class SearchProductsComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   productList: Array<any> = [];
   product: ProductBean;
-  images: any[] = [
-    {
-      src : '../../../assets/image/hotel1.jpg'
-    },
-    {
-      src : '../../../assets/image/hotel2.jpg'
-    },
-    {
-      src : '../../../assets/image/museo1.jpg'
-    }
-  ];
 
   constructor(
     private productService: ProductService

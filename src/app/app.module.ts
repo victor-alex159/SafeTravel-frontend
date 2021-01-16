@@ -33,6 +33,7 @@ import { ProductDetailComponent } from './pages/product/product-detail/product-d
 import { FormProductDetailComponent } from './pages/product/product-detail/form-product-detail/form-product-detail.component';
 import { ListRestaurantComponent } from './pages/product/type/list-restaurant/list-restaurant.component';
 import { ListHotelComponent } from './pages/product/type/list-hotel/list-hotel.component';
+import { InfoCommentaryProductComponent } from './pages/product/info-commentary-product/info-commentary-product.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ListHotelComponent } from './pages/product/type/list-hotel/list-hotel.c
     ProductDetailComponent,
     FormProductDetailComponent,
     ListRestaurantComponent,
-    ListHotelComponent
+    ListHotelComponent,
+    InfoCommentaryProductComponent
   ],
   imports: [
     BrowserModule,

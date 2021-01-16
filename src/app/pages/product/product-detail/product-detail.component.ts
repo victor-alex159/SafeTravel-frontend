@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
 import { ProductService } from 'src/app/services/product.service';
@@ -16,7 +17,8 @@ export class ProductDetailComponent implements OnInit {
   product: ProductBean;
   productList: Array<any> = [];
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,12 +26,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public search(e: any) {
-    this.productService.getProductsDetail({data: this.product})
+    this.productService.getListProductsDetail({data: this.product})
       .subscribe(resp => {
         this.productList = resp.data;
         console.log(this.productList);
       });
     e.preventDefault();
+  }
+
+  public getProductId(productId: any) {
+    console.log(productId);
+    this.router.navigate(['/icp', productId]);
   }
 
 

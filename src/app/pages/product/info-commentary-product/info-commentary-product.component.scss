@@ -1,0 +1,78 @@
+::ng-deep body > app-root > app-main > div > div.main-container > div.container > app-info-commentary-product {
+    width: 100%;
+}
+dx-button {
+    background-color: #108083 !important;
+}
+dx-button:hover {
+    background-color: #0d595c !important;
+}
+dx-text-area:hover {
+    box-shadow: 0px 2px 6px #0d595c;
+}
+dx-text-area:focus {
+    box-shadow: 0px 2px 6px #0d595c;
+}
+.body-info {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; 
+}
+.row1, .row2, .row3 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.container-photos, .description, .descripcion-product, 
+.info-covid, .container-opinion {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 6px #0d595c;
+    padding: 15px;
+}
+.container-photos {
+    width: 50%;
+    height: 290px;
+    margin: auto;
+    margin-left: 10px;
+    .image {
+        margin: auto
+    }
+    img {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid #ccc;
+        box-shadow: 0px 2px 6px #0d595c;
+        //margin: 4px;
+    }
+}
+.description {
+    width: 43%;
+    height: 315px;
+    margin: 10px;
+}
+.descripcion-product {
+    width: 45%;
+    height: 315px;
+    margin: auto;
+    margin-left: 10px;
+}
+.info-covid {
+    width: 45%;
+    height: 315px;
+    margin: auto;
+    margin-right: 0px;
+}
+.container-opinion {
+    width: 70%;
+    margin: 10px;
+    .commentary {
+        display: flex;
+        flex-direction: row;
+    }
+    .button-enviar {
+        display: flex;
+        flex-direction: row;
+    }
+}

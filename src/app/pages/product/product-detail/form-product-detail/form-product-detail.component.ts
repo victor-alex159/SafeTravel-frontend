@@ -13,6 +13,7 @@ import swal from 'sweetalert2'
 export class FormProductDetailComponent implements OnInit {
   @Input() productId: number;
   @Output() closePopup = new EventEmitter();
+  url: string = 'http://localhost:8085/pc';
   productDetail: ProductDetailBean;
   uploadFile: any[] = [];
 
@@ -23,7 +24,7 @@ export class FormProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.productDetail = new ProductDetailBean();
     if(this.productId) {
-      this.getProductDetail(this.productId);
+      this.getProductDetailByProductId(this.productId);
     }
   }
 
@@ -50,10 +51,11 @@ export class FormProductDetailComponent implements OnInit {
     e.preventDefault();
   }
 
-  public getProductDetail(produtId: number) {
+  public getProductDetailByProductId(productId: number) {
     let productDetail = new ProductDetailBean();
-    productDetail.id = produtId;
-    this.productService.getProductDetail({data: productDetail})
+    productDetail.product = new ProductBean();
+    productDetail.product.id = productId;
+    this.productService.getProductDetailByProductId({data: productDetail})
       .subscribe(resp => {
         this.productDetail = resp.data;
         console.log(this.productDetail);

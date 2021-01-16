@@ -10,6 +10,7 @@ import { ListProductsComponent } from './pages/product/list-products/list-produc
 import { AuthGuard } from './services/auth-guard.guard';
 import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
 import { ListRestaurantComponent } from './pages/product/type/list-restaurant/list-restaurant.component';
+import { InfoCommentaryProductComponent } from './pages/product/info-commentary-product/info-commentary-product.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'sp', component: FormProductComponent },
   { path: 'gpd', component: ProductDetailComponent },
   { path: 'sps', component: SearchProductsComponent },
+  { path: 'icp/:id', component: InfoCommentaryProductComponent },
   { path: 'gpbr', component: ListRestaurantComponent },
   { path: 'gap', component: ListProductsComponent, canActivate:[AuthGuard] },
   { path: 'so', component: FormOrganizationComponent, canActivate:[AuthGuard]},
