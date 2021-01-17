@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductService } from 'src/app/services/product.service';
 import { gsap } from 'gsap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-products',
@@ -16,9 +17,11 @@ export class SearchProductsComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   productList: Array<any> = [];
   product: ProductBean;
+  public nameProduct: any;
 
   constructor(
-    private productService: ProductService
+    public productService: ProductService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,8 +51,9 @@ export class SearchProductsComponent implements OnInit {
 
   }
 
-  public tween() {
-    gsap.from(".products", {duration: 2, x: 300});
+  public sendNameProduct() {
+    console.log(typeof this.nameProduct);
+    this.router.navigate(['/gpd', this.nameProduct]);
   }
 
 }

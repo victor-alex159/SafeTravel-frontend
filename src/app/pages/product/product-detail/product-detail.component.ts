@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
 import { ProductService } from 'src/app/services/product.service';
+import { SearchProductsComponent } from '../../search-products/search-products.component';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -16,13 +18,20 @@ export class ProductDetailComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   product: ProductBean;
   productList: Array<any> = [];
+  nameProduct: string = '';
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
+
   ) { }
 
   ngOnInit(): void {
     this.product = new ProductBean();
+    this.nameProduct = this.route.snapshot.paramMap.get('name');
+    if(this.nameProduct != '') {
+      this.searchProductDetailByName(this.nameProduct);
+    }
   }
 
   public search(e: any) {
@@ -34,8 +43,19 @@ export class ProductDetailComponent implements OnInit {
     e.preventDefault();
   }
 
+  public searchProductDetailByName(name: string) {
+    let product = new ProductBean();
+    console.log(name);
+    product.name = name;
+    this.productService.getListProductsDetail({data: product})
+      .subscribe(resp => {
+        this.productList = resp.data;
+        console.log(this.productList);
+      });
+      this.nameProduct = '';
+  }
+
   public getProductId(productId: any) {
-    console.log(productId);
     this.router.navigate(['/icp', productId]);
   }
 

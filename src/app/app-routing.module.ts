@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'uf', component: FormUserComponent },
   { path: 'sp', component: FormProductComponent },
   { path: 'gpd', component: ProductDetailComponent },
+  { path: 'gpd/:name', component: ProductDetailComponent },
   { path: 'sps', component: SearchProductsComponent },
   { path: 'icp/:id', component: InfoCommentaryProductComponent },
   { path: 'gpbr', component: ListRestaurantComponent },
