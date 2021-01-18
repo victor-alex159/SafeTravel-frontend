@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user = new ClientBean();
+    this.user = new UserBean();
     this.isAtuhenticated();
   }
   

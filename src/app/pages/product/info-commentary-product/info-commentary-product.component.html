@@ -36,13 +36,19 @@
                     stylingMode="contained"
                     text="Enviar comentario"
                     type="default"
-                    width="20%"
+                    width="25%"
+                    (onClick)="saveCommentary()"
                     [useSubmitBehavior]="true">
                 </dx-button>
             </div>
-            <label for="">Comentarios</label>
-            <div class="dx-field list-commnetaries" *ngFor="let comment of listCommentaries">
-                <dx-text-area [height]="100" [width]="630" [(value)]="comment.description"></dx-text-area>
+            <h4>Comentarios</h4>
+            <div class="dx-field list-commentaries" *ngFor="let comment of listCommentaries">
+                <div class="icon" style="line-height: 5; margin-right: 15px;">
+                    <label for="">Username</label>
+                </div>
+                <div>
+                    <dx-text-area [readOnly]="true" [height]="100" [width]="630" [(value)]="comment.description"></dx-text-area>
+                </div>
             </div>
         </div>
     </div>

@@ -1,10 +1,9 @@
 import {BaseBean} from './BaseBean';
-import { ProfileBean } from 'src/app/Beans/ProfileBean';
 import { UserBean } from 'src/app/Beans/UserBean';
+import { ProductBean } from './ProductBean';
 
 export class CommentaryBean extends BaseBean {
     public id: number;
-	public  product: ProfileBean;
-	public user: UserBean;
+	public product: ProductBean;
 	public description: string;
 }

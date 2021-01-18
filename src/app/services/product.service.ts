@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 export class ProductService {
   url: string = 'http://localhost:8085/pc';
   urlProDetail: string = 'http://localhost:8085/pdc';
+  urlCommentary: string = 'http://localhost:8085/cmc';
   private httpHeaders = new HttpHeaders( { 'Content-Type': 'application/json'
   } );
 
@@ -62,6 +63,14 @@ export class ProductService {
 
   public getProductByType(product: any) {
     return this.http.post<any>(`${this.url + '/gpbt'}`, product);
+  }
+
+  public saveCommentary(commentary: any) {
+    return this.http.post<any>(`${this.urlCommentary + '/sc'}`, commentary, {headers: this.addAtuhorizationHeader()}); 
+  }
+
+  public getCommentaryByProductId(commentary: any) {
+    return this.http.post<any>(`${this.urlCommentary + '/gcbpi'}`, commentary, {headers: this.addAtuhorizationHeader()}); 
   }
 
 }

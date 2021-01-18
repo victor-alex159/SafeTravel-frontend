@@ -1,8 +1,10 @@
 import { BaseBean } from './BaseBean';
+import { OrganizationBean } from './OrganizationBean';
 import { ProfileBean } from './ProfileBean';
 
 export class UserBean extends BaseBean {
     public id: number;
+    public organizationId: string;
     public documentType: string;
     public documentNumber: string;
     public genderTypeId: string;

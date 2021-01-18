@@ -7,12 +7,6 @@ dx-button {
 dx-button:hover {
     background-color: #0d595c !important;
 }
-dx-text-area:hover {
-    box-shadow: 0px 2px 6px #0d595c;
-}
-dx-text-area:focus {
-    box-shadow: 0px 2px 6px #0d595c;
-}
 .body-info {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -28,7 +22,7 @@ dx-text-area:focus {
     display: flex;
     flex-direction: column;
     border: 1px solid #ccc;
-    box-shadow: 0px 2px 6px #0d595c;
+    box-shadow: 0px 1px 3px #0d595c;
     padding: 15px;
 }
 .container-photos {
@@ -65,14 +59,27 @@ dx-text-area:focus {
     margin-right: 0px;
 }
 .container-opinion {
-    width: 70%;
+    width: 75%;
     margin: 10px;
     .commentary {
         display: flex;
         flex-direction: row;
+        dx-text-area:hover {
+            box-shadow: 0px 2px 6px #0d595c;
+        }
+        dx-text-area:focus {
+            box-shadow: 0px 2px 6px #0d595c;
+        }
     }
     .button-enviar {
         display: flex;
         flex-direction: row;
+    }
+}
+.list-commentaries {
+    display: flex;
+    flex-direction: row;
+    dx-text-area {
+        box-shadow: 0px 2px 6px #0d595c;
     }
 }

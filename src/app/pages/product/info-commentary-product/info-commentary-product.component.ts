@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommentaryBean } from 'src/app/Beans/CommentaryBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class InfoCommentaryProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -31,14 +33,15 @@ export class InfoCommentaryProductComponent implements OnInit {
     this.commentary = new CommentaryBean();
     this.productId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.getProductDetailById(this.productId);
-    this.listCommentaries = [
+    this.getListCommentaries();
+    /*this.listCommentaries = [
       {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
       {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
       {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
       {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
       {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
       {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'}
-    ];
+    ];*/
   }
 
   public getProductDetailById(productId: number) {
@@ -52,5 +55,28 @@ export class InfoCommentaryProductComponent implements OnInit {
       });
   }
 
+  public saveCommentary() {
+    let productFromCommentary = new ProductBean();
+    productFromCommentary.id = this.productId;
+    let data = {
+      description: this.commentary.description,
+      product: productFromCommentary
+    }
+    this.productService.saveCommentary({data})
+      .subscribe(resp => {
+        this.getListCommentaries();
+      });
+  }
+
+  public getListCommentaries() {
+    let commentaryData = new CommentaryBean();
+    commentaryData.product = new ProductBean();
+    commentaryData.product.id = this.productId; 
+    this.productService.getCommentaryByProductId({data: commentaryData})
+      .subscribe(resp => {
+        console.log(resp);
+        this.listCommentaries = resp.datalist;
+      });
+  }
 
 }

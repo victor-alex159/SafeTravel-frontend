@@ -45,7 +45,7 @@ export class AuthService {
 
   public saveUser(accessToken: string): void {
     let payload = this.getDateToken(accessToken);
-    this._user = new ClientBean();
+    this._user = new UserBean();
     this._user.username = payload.user_name;
     this._user.position = payload.authorities[0];
     sessionStorage.setItem('user', JSON.stringify(this._user));
@@ -67,10 +67,10 @@ export class AuthService {
     if(this._user != null) {
       return this._user;
     } else if(this._user == null && sessionStorage.getItem('user') != null) {
-      this._user = JSON.parse(sessionStorage.getItem('user')) as ClientBean;
+      this._user = JSON.parse(sessionStorage.getItem('user')) as UserBean;
       return this._user;
     }
-    return new ClientBean();
+    return new UserBean();
   }
 
   public get token() {

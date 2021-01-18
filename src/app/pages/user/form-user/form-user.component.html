@@ -5,72 +5,85 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Nombre: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.name" placeholder="Nombre" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.name" placeholder="Nombre" width="50%"></dx-text-box>
                         </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Apellido paterno: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.lastname" placeholder="Apellido paterno" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.lastname" placeholder="Apellido paterno" width="50%"></dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Apellido materno: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.surname" placeholder="Apellido materno" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.surname" placeholder="Apellido materno" width="50%"></dx-text-box>
                     </div>
                 </div>
     
                 <div class="dx-field">
                     <div class="dx-field-label">Fecha de nacimiento: </div>
-                    <div class="dx-field-value">
-                        <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" [(value)]="client.birthDate">
-                        </dx-date-box>
-                    </div>
+                    <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" [(value)]="user.birthDate" width="30%" style="float: left;">
+                    </dx-date-box>
                 </div>
     
                 <div class="dx-field">
                     <div class="dx-field-label">DNI: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.documentNumber" placeholder="Número de documento" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.documentNumber" placeholder="Número de documento" width="50%"></dx-text-box>
                     </div>
+                </div>
+
+                <div class="dx-field" *ngIf="this.authService.hasRole('Administrador')">
+                <div class="dx-field-label">Organización *</div>
+                <div class="dx-field-value">
+                    <dx-select-box itemTemplate="item" [items]="organizationList" displayExpr="name" valueExpr="id" [searchEnabled]="true" placeholder="Organización"
+                        [(value)]="user.organizationId" width="60%">
+                        <div *dxTemplate="let data of 'item'">
+                            <div class='custom-item' [title]='data.name'>{{data.name}}</div>
+                        </div>
+                        <!--<dx-validator>
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dx-validator>-->
+                    </dx-select-box>
+                </div>
                 </div>
     
                 <div class="dx-field">
                     <div class="dx-field-label">Posición: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.position" placeholder="Posición" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.position" placeholder="Posición" width="50%"></dx-text-box>
                     </div>
                 </div>
     
                 <div class="dx-field">
                     <div class="dx-field-label">Género: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.genderTypeId" placeholder="Género" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.genderTypeId" placeholder="Género" width="50%"></dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Usuario:  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.username" placeholder="Usuario" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.username" placeholder="Usuario" width="50%"></dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Password:  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.password" placeholder="Password" width="50%" mode="password"></dx-text-box>
+                            <dx-text-box [(value)]="user.password" placeholder="Password" width="50%" mode="password"></dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Email:  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.email" placeholder="Correo elecctrónico" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.email" placeholder="Correo elecctrónico" width="50%"></dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Celular:  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="client.phone" placeholder="Celular" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.phone" placeholder="Celular" width="50%"></dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
