@@ -31,7 +31,8 @@
                 <h3>OPINIONES</h3>
             </div>
             <div class="dx-field commentary">
-                <dx-text-area placeholder="Escriba un comentario" [height]="100" [width]="630" [(value)]="commentary.description"></dx-text-area>
+                <dx-text-area placeholder="Escriba un comentario" [height]="100" [width]="630" [(value)]="commentary.description">
+                </dx-text-area>
                 <dx-button style="height: 38%; margin: auto;"
                     stylingMode="contained"
                     text="Enviar comentario"
@@ -43,8 +44,13 @@
             </div>
             <h4>Comentarios</h4>
             <div class="dx-field list-commentaries" *ngFor="let comment of listCommentaries">
-                <div class="icon" style="line-height: 5; margin-right: 15px;">
-                    <label for="">Username</label>
+                <div class="icon" style="line-height: 2; margin-right: 15px;">
+                    <div>
+                        <label requeried style="width: 10vh;">{{comment.username}}</label>
+                    </div>
+                    <div>
+                        <label type="date">{{comment.createDate | date: 'dd-MM-yyyy hh:mm a'}}</label>
+                    </div>
                 </div>
                 <div>
                     <dx-text-area [readOnly]="true" [height]="100" [width]="630" [(value)]="comment.description"></dx-text-area>

@@ -13,21 +13,28 @@
 }
  
 .header {
-    line-height: 5;
-    //border: 3px solid #D9E2E8;
-    text-align: center;
-}
-.main-container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    line-height: 5;
+    //border: 3px solid #D9E2E8;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+}
+.main-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
     margin-left: 200px;
     margin-right: 68px;
+    margin-top: 130px;
     @media screen and (min-width: 1024px) {
         display: flex;
         flex-direction: row;
         margin-left: 200px;
-        margin-right: 68px;
+        margin-right: 120px;
     }
     //background-image: url("../../../assets/image/paven.png");
 }

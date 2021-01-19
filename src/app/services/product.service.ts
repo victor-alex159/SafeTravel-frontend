@@ -70,7 +70,7 @@ export class ProductService {
   }
 
   public getCommentaryByProductId(commentary: any) {
-    return this.http.post<any>(`${this.urlCommentary + '/gcbpi'}`, commentary, {headers: this.addAtuhorizationHeader()}); 
+    return this.http.post<any>(`${this.urlCommentary + '/gcbpi'}`, commentary); 
   }
 
 }

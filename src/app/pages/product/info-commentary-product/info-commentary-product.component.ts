@@ -3,8 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { CommentaryBean } from 'src/app/Beans/CommentaryBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
+import { UserBean } from 'src/app/Beans/UserBean';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
+import swal from 'sweetalert2'
 
 @Component({
   selector: 'app-info-commentary-product',
@@ -18,30 +21,26 @@ export class InfoCommentaryProductComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   productId: any;
   productDetail: ProductDetailBean;
+  user: UserBean;
   commentary: CommentaryBean;
   listCommentaries: Array<any> = [];
+  commentariesWithUsername: Array<any> = [];
 
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.productDetail = new ProductDetailBean();
     this.commentary = new CommentaryBean();
+    this.user = new UserBean();
     this.productId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.getProductDetailById(this.productId);
     this.getListCommentaries();
-    /*this.listCommentaries = [
-      {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
-      {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
-      {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
-      {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
-      {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'},
-      {description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?'}
-    ];*/
   }
 
   public getProductDetailById(productId: number) {
@@ -62,10 +61,14 @@ export class InfoCommentaryProductComponent implements OnInit {
       description: this.commentary.description,
       product: productFromCommentary
     }
-    this.productService.saveCommentary({data})
-      .subscribe(resp => {
-        this.getListCommentaries();
-      });
+    if(this.authService.isAthenticated() || this.commentary.description != "") {
+      this.productService.saveCommentary({data})
+        .subscribe(resp => {
+          this.getListCommentaries();
+        });
+    } else {
+      swal.fire('Debe registrarse o iniciar sesión para comentar', '','warning');
+    }
   }
 
   public getListCommentaries() {

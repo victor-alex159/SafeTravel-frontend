@@ -29,7 +29,8 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.product = new ProductBean();
     this.nameProduct = this.route.snapshot.paramMap.get('name');
-    if(this.nameProduct != '') {
+    if(this.nameProduct != '' && this.nameProduct != null) {
+      console.log(this.nameProduct);
       this.searchProductDetailByName(this.nameProduct);
     }
   }

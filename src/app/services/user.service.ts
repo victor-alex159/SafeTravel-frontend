@@ -25,8 +25,12 @@ export class UserService {
   }
 
   public saveUser(user: any) {
-    return this.http.post<any>(`${this.url + '/su'}`, user, { headers: this.addAtuhorizationHeader() });
+    return this.http.post<any>(`${this.url + '/su'}`, user);
 
+  }
+
+  public getUserById(user: any) {
+    return this.http.post<any>(`${this.url + '/gubi'}`, user, { headers: this.addAtuhorizationHeader() });
   }
 
 }

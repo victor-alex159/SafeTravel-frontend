@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClientBean } from 'src/app/Beans/Client';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProfileBean } from 'src/app/Beans/ProfileBean';
@@ -28,7 +29,8 @@ export class FormUserComponent implements OnInit {
     private userService: UserService,
     public authService: AuthService,
     private organizationService: OrganizationServiceService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +49,9 @@ export class FormUserComponent implements OnInit {
     //const swal = require('sweetalert2');
     let profile = new ProfileBean();
     this.user.profile = profile;
-    this.user.profile.id = 2;
+    if(!this.authService.hasRole('Administrador')) {
+      this.user.profile.id = 3;
+    }
     this.user.documentType="01";
     //this.user.organization.id = 1;
     if(this.user.genderTypeId == 'Masculino' || this.user.genderTypeId == 'Femenino') {
@@ -62,6 +66,7 @@ export class FormUserComponent implements OnInit {
           'success'
         )
       }
+      this.router.navigate(['/fl']);
     });
 
     e.preventDefault();
