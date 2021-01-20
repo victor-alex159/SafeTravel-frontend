@@ -1,16 +1,42 @@
-<div class="container animated fadeIn">
-    <div class="title">
-        <h2>Restaurantes</h2>
+<div class="body">
+    <div class="dx-fieldset formulario">
+        <form novalidate style="width: 100%">
+            <div class="search-container">
+                <div class="dx-field search">
+                    <div class="dx-field-value">
+                        <dx-text-box
+                        [(value)]="nameProduct"
+                        placeholder="Buscar..." width="98%">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <div class="dx-field search-button">
+                    <dx-button
+                        stylingMode="contained"
+                        text="Buscar"
+                        type="default"
+                        (click)="sendNameProduct()"
+                        width="20%">
+                    </dx-button>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="container-product" *ngFor="let restaurants of listRestaurant">
-        <div class="dx-field product">
-            <div class="caja">
-                <img class="imgInfo animated fadeIn" style="height: 150px; width: 200px;"
-                  [src]="url+'/gf/'+restaurants.id">
-                  <div class="description">
-                      <h3>{{restaurants.name}}</h3>
-                      <p>Varlor 5 STARS</p>
-                  </div>
+    <div class="container-body animated fadeIn">
+        <div class="title">
+            <h2>Restaurantes</h2>
+        </div>
+        <div class="container-product" *ngFor="let restaurants of listRestaurant">
+            <div class="dx-field product">
+                <div class="caja">
+                    <div class="imgInfo">
+                        <img class="animated fadeIn" style="height: 215px; width: 98%;"
+                          [src]="url+'/gf/'+restaurants.id">
+                    </div>
+                      <div class="description">
+                          <h3>{{restaurants.name}}</h3>
+                      </div>
+                </div>
             </div>
         </div>
     </div>

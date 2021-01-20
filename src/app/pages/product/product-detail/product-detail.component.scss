@@ -1,6 +1,5 @@
-::ng-deep body > app-root > app-main > div > div.main-container > div.container > app-product-detail {
+::ng-deep body > app-root > app-main > div > div.main-container > div > app-product-detail {
     width: 100% !important;
-    margin-left: 30px;
 }
 dx-button {
     background-color: #108083 !important;
@@ -8,69 +7,83 @@ dx-button {
 dx-button:hover {
     background-color: #0d595c !important;
 }
-.container-product {
-    margin-bottom: 8px;
-    width: 1432px;
-}
-
-.products {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    .title {
-        width: 100%;
-    }
-}
-
-.product {
+.body {
     display: flex;
     flex-direction: row;
-    .image {
-        margin: auto
+    background-color: #F2F2F2;
+    padding: 15px;
+    .sideBar {
+        display: flex;
+        flex-direction: row;
+        margin-left: 25px;
     }
-    img {
+    .body-products {
+        display: flex;
+        flex-direction: row;
+    }
+    .container-product {
+        margin-bottom: 8px;
+        width: 80%;
+    }
+    .products {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        .title {
+            width: 100%;
+        }
+    }
+    
+    .product {
+        display: flex;
+        flex-direction: row;
+        .image {
+            margin: auto
+        }
+        img {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 6px #0d595c;
+            //margin: 4px;
+        }
+    }
+    
+    .caja {
         display: flex;
         flex-direction: row;
         border: 1px solid #ccc;
+        background-color: white;
         box-shadow: 0px 2px 6px #0d595c;
-        //margin: 4px;
-    }
-}
-
-.caja {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid #ccc;
-    background-color: white;
-    box-shadow: 0px 2px 6px #0d595c;
-    padding: 12px;
-    width: 100%;
-    .description {
-        display: flex;
-        flex-direction: column;
-        width: 60%;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    .logo {
-        margin: auto;
-        border: 1px solid #ccc;
-        box-shadow: 0px 5px 6px #0d595c;
-        height: 150px; width: 200px;
-        line-height: 5;
-        .address {
+        padding: 12px;
+        width: 100%;
+        .description {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            width: 100%;
+            flex-direction: column;
+            width: 60%;
+            padding-left: 15px;
+            padding-right: 15px;
         }
-        .button {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            width: 100%;
+        .logo {
+            margin: auto;
+            border: 1px solid #ccc;
+            box-shadow: 0px 5px 6px #0d595c;
+            height: 150px; width: 200px;
+            line-height: 5;
+            .address {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+            }
+            .button {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+            }
         }
     }
 }
@@ -86,4 +99,20 @@ dx-button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .sideBar {
+        display: flex;
+        flex-direction: row;
+        //justify-content: center;
+        //align-items: center;
+        //border: 1px solid #D9E2E8;
+    }
+    .formulario {
+        display: flex;
+        flex-direction: row;
+    }
 }

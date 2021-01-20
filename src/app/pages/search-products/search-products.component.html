@@ -3,13 +3,13 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner box-slider">
               <div class="carousel-item active">
-                <img src="../../../assets/image/hotel1.jpg" class="d-block w-100 animated fadeIn" alt="...">
+                <img src="../../../assets/image/playa1.jpg" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="../../../assets/image/hotel2.jpg" class="d-block w-100 animated fadeIn" alt="...">
+                <img src="../../../assets/image/lima1.jpg" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="../../../assets/image/museo1.jpg" class="d-block w-100 animated fadeIn" alt="...">
+                <img src="../../../assets/image/museo1.jpg" class="d-block w-100" alt="...">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
@@ -23,13 +23,13 @@
         </div>
     </div>
     
-    <div class="dx-fieldset" style="width: 100%;">
+    <div class="dx-fieldset" style="padding: 8%; background-image: url('../../../assets/image/image-search.PNG'); background-repeat: no-repeat; background-position-x: right;">
         <form novalidate>
             <div class="dx-field">
                 <div class="dx-field-value">
                     <dx-text-box
                     [(value)]="nameProduct"
-                    placeholder="Buscar..." width="100%">
+                    placeholder="Buscar..." width="98%">
                     </dx-text-box>
                 </div>
             </div>
@@ -59,11 +59,12 @@
         <div class="container-product" *ngFor="let products of productList">
             <div class="dx-field product" *ngIf="products.type == 'Hotel'">
                 <div class="caja">
-                    <img class="imgInfo animated fadeIn" style="height: 150px; width: 200px;"
-                      [src]="url+'/gf/'+products.id">
+                    <div class="imgInfo">
+                        <img class="animated fadeIn" style="height: 215px; width: 98%;"
+                          [src]="url+'/gf/'+products.id">
+                    </div>
                       <div class="description">
                           <h3>{{products.name}}</h3>
-                          <p>Varlor 5 STARS</p>
                       </div>
                 </div>
             </div>
@@ -74,11 +75,10 @@
         <div class="container-product" *ngFor="let products of productList">
             <div class="dx-field product" *ngIf="products.type == 'Restaurante'">
                 <div class="caja">
-                    <img class="imgInfo animated fadeIn" style="height: 150px; width: 200px;"
+                    <img class="imgInfo animated fadeIn" style="height: 215px; width: 98%;"
                       [src]="url+'/gf/'+products.id">
                       <div class="description">
                           <h3>{{products.name}}</h3>
-                          <p>Varlor 5 STARS</p>
                       </div>
                 </div>
             </div>

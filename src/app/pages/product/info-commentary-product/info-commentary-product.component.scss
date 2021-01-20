@@ -1,11 +1,16 @@
-::ng-deep body > app-root > app-main > div > div.main-container > div.container > app-info-commentary-product {
+::ng-deep body > app-root > app-main > div > div.main-container > div > app-info-commentary-product {
     width: 100%;
+    
 }
 dx-button {
     background-color: #108083 !important;
 }
 dx-button:hover {
     background-color: #0d595c !important;
+}
+.body {
+    background-color: #F2F2F2;
+    padding: 25px;
 }
 .body-info {
     display: -webkit-flex;
@@ -24,6 +29,7 @@ dx-button:hover {
     border: 1px solid #ccc;
     box-shadow: 0px 1px 3px #0d595c;
     padding: 15px;
+    background-color: #FFFFFF;
 }
 .container-photos {
     width: 50%;

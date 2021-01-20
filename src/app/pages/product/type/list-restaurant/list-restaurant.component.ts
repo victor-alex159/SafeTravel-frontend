@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -12,10 +13,12 @@ export class ListRestaurantComponent implements OnInit {
 
   url: string = 'http://localhost:8085/pc';
   listRestaurant: Array<ProductBean> = [];
+  public nameProduct: any;
 
   constructor(
     private constanService: ConstantsService,
-    private productService: ProductService
+    private productService: ProductService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +32,11 @@ export class ListRestaurantComponent implements OnInit {
       .subscribe(list => {
         this.listRestaurant = list.datalist;
       });
+  }
+
+  public sendNameProduct() {
+    console.log(typeof this.nameProduct);
+    this.router.navigate(['/gpd', this.nameProduct]);
   }
 
 }

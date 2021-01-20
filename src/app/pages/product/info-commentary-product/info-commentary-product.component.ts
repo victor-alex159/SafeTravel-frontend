@@ -61,7 +61,7 @@ export class InfoCommentaryProductComponent implements OnInit {
       description: this.commentary.description,
       product: productFromCommentary
     }
-    if(this.authService.isAthenticated() || this.commentary.description != "") {
+    if(this.authService.isAthenticated()) {
       this.productService.saveCommentary({data})
         .subscribe(resp => {
           this.getListCommentaries();

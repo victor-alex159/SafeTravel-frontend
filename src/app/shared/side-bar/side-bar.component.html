@@ -1,69 +1,129 @@
-<div *ngIf="this.authService.isAthenticated()" class="dx-field">
-        <h2>Categorias</h2>
+<div class="bodySideBar">
+        <h4>BIOSEGURIDAD</h4>
+        <div class="dx-field">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="false"></dx-check-box>
+                                <p>Establecimientos que tomaron<br> medidas de seguridad</p>
+                        </div>
+                </div>
+        </div>
+        <hr/>
+        <h4>Tipos de Establecimientos</h4>
+        <div class="dx-field">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="false"></dx-check-box>
+                                <p>Hoteles</p>
+                        </div>
+                </div>
+        </div>
+        <div class="dx-field">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="false"></dx-check-box>
+                                <p>Restaurantes</p>
+                        </div>
+                </div>
+        </div>
+        <div class="dx-field">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="false"></dx-check-box>
+                                <p>Museos</p>
+                        </div>
+                </div>
+        </div>
+        <hr/>
+        <h4>Tipos de Servicios</h4>
+        <div class="dx-field">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="false"></dx-check-box>
+                                <p>WIFI-gratis</p>
+                        </div>
+                </div>
+        </div>
+        <div class="dx-field">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="false"></dx-check-box>
+                                <p>Piscina</p>
+                        </div>
+                </div>
+        </div>
+        <div class="dx-field">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="false"></dx-check-box>
+                                <p>Acceso a la playa</p>
+                        </div>
+                </div>
+        </div>
+
 </div>
-<div *ngIf="this.authService.isAthenticated()" class="bodySideBar">
-        <dx-button
-                *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
-                stylingMode="contained"
-                text="Buscar Producto"
-                type="default"
-                width="100%" [routerLink]="['/gpd']">
-        </dx-button>
-        <dx-button
+
+<!--<dx-button
         *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
-                stylingMode="contained"
-                text="Productos"
-                type="default"
-                width="100%" [routerLink]="['/gap']">
-        </dx-button>
-        <dx-button
-        *ngIf="this.authService.hasRole('Administrador')"
-                stylingMode="contained"
-                text="Organizacion"
-                type="default"
-                width="100%" [routerLink]="['/so']">
-        </dx-button>
-        <dx-button
-        *ngIf="this.authService.hasRole('Administrador')"
-                stylingMode="contained"
-                text="Organizaciones"
-                type="default"
-                width="100%" [routerLink]="['/gao']">
-        </dx-button>
-    <dx-button
-            stylingMode="contained"
-            text="Principal"
-            type="default"
-            width="100%" [routerLink]="['/sps']">
-    </dx-button>
-    <dx-button
-            stylingMode="contained"
-            text="Hoteles"
-            type="default"
-            width="100%" >
-    </dx-button>
-    <dx-button
-            stylingMode="contained"
-            text="Restaurantes"
-            type="default"
-            width="100%" >
-    </dx-button>
-    <dx-button
-            stylingMode="contained"
-            text="Museos"
-            type="default"
-            width="100%" >
-    </dx-button>
-    <dx-button
-            stylingMode="contained"
-            text="Aventura"
-            type="default"
-            width="100%" >
-    </dx-button>
-    <dx-button
-            stylingMode="contained"
-            text="Extremo"
-            type="default"
-            width="100%" >
-    </dx-button>
-</div>
+        stylingMode="contained"
+        text="Buscar Producto"
+        type="default"
+        width="100%" [routerLink]="['/gpd']">
+</dx-button>
+<dx-button
+*ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
+        stylingMode="contained"
+        text="Productos"
+        type="default"
+        width="100%" [routerLink]="['/gap']">
+</dx-button>
+<dx-button
+*ngIf="this.authService.hasRole('Administrador')"
+        stylingMode="contained"
+        text="Organizacion"
+        type="default"
+        width="100%" [routerLink]="['/so']">
+</dx-button>
+<dx-button
+*ngIf="this.authService.hasRole('Administrador')"
+        stylingMode="contained"
+        text="Organizaciones"
+        type="default"
+        width="100%" [routerLink]="['/gao']">
+</dx-button>
+<dx-button
+        stylingMode="contained"
+        text="Principal"
+        type="default"
+        width="100%" [routerLink]="['/sps']">
+</dx-button>
+<dx-button
+        stylingMode="contained"
+        text="Hoteles"
+        type="default"
+        width="100%" >
+</dx-button>
+<dx-button
+        stylingMode="contained"
+        text="Restaurantes"
+        type="default"
+        width="100%" >
+</dx-button>
+<dx-button
+        stylingMode="contained"
+        text="Museos"
+        type="default"
+        width="100%" >
+</dx-button>
+<dx-button
+        stylingMode="contained"
+        text="Aventura"
+        type="default"
+        width="100%" >
+</dx-button>
+<dx-button
+        stylingMode="contained"
+        text="Extremo"
+        type="default"
+        width="100%" >
+</dx-button>-->

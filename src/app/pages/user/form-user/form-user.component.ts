@@ -21,6 +21,8 @@ export class FormUserComponent implements OnInit {
   client: ClientBean;
   organizationList: Array<OrganizationBean> = [];
   date_format:string = 'dd/MM/yyyy';
+  genderMale: boolean = false;
+  genderFamele: boolean = false;
   START_DATE = new Date(1900, 0, 1);
   END_DATE = new Date(2060, 12, 31);
 
@@ -35,7 +37,9 @@ export class FormUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = new UserBean();
-    this.getAllOrganizations();
+    if(this.authService.hasRole('Administrador')) {
+      this.getAllOrganizations();
+    }
   }
 
   public getAllOrganizations() {
@@ -54,8 +58,10 @@ export class FormUserComponent implements OnInit {
     }
     this.user.documentType="01";
     //this.user.organization.id = 1;
-    if(this.user.genderTypeId == 'Masculino' || this.user.genderTypeId == 'Femenino') {
+    if(this.genderMale) {
       this.user.genderTypeId = "1";
+    } else if(this.genderFamele) {
+      this.user.genderTypeId = "2";
     }
     this.userService.saveUser({data: this.user})
     .subscribe(resp => {
@@ -70,6 +76,15 @@ export class FormUserComponent implements OnInit {
     });
 
     e.preventDefault();
+  }
+
+  public selectGender() {
+    if(this.genderMale) {
+      this.genderFamele = false;
+    } 
+    if(this.genderFamele) {
+      this.genderMale = false;
+    }
   }
 
 }

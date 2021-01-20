@@ -50,11 +50,11 @@ export class ProductService {
   }
 
   public getProductDetailByProductId(productDetail: any) {
-    return this.http.post<any>(`${this.urlProDetail + '/gpdbi'}`, productDetail, {headers: this.addAtuhorizationHeader()});
+    return this.http.post<any>(`${this.urlProDetail + '/gpdbi'}`, productDetail);
   }
 
   public getListProductsDetail(productDetail: any) {
-    return this.http.post<any>(`${this.urlProDetail + '/gpd'}`, productDetail, {headers: this.addAtuhorizationHeader()});
+    return this.http.post<any>(`${this.urlProDetail + '/gpd'}`, productDetail);
   }
   
   public getProductById(product: any) {

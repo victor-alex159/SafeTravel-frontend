@@ -1,69 +1,80 @@
-<div class="dx-fieldset animated fadeIn" style="width: 100%;">
-    <form novalidate (submit)="search($event)">
-        <div class="search-container">
-            <div class="dx-field" style="margin-right: 15vh;">
-                <dx-text-box [(value)]="product.name" placeholder="Buscar..." [width]="500">
-                </dx-text-box>
-            </div>
-            <div class="dx-field dates">
-                <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.startDateRequest">
-                    <!--<dx-validator>
-                        <dxi-validation-rule type="required" message="Campo obligatorio"></dxi-validation-rule>
-                      </dx-validator>-->
-                </dx-date-box>
-                <label for="">Entrada</label>
-            </div>
-            <div class="dx-field dates">
-                <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.endDateRequest">
-                    <!--<dx-validator>
-                        <dxi-validation-rule type="required" message="Campo obligatorio"></dxi-validation-rule>
-                      </dx-validator>-->
-                </dx-date-box>
-                <label for="">Salida</label>
-            </div>
+<div class="dx-fieldset animated fadeIn">
+    <div class="search">
+        <div class="formulario">
+            <form novalidate (submit)="search($event)">
+                <div class="search-container">
+                    <div class="dx-field" style="margin-right: 15vh;">
+                        <dx-text-box [(value)]="product.name" placeholder="Buscar..." [width]="500">
+                        </dx-text-box>
+                    </div>
+                    <div class="dx-field dates">
+                        <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.startDateRequest">
+                            <!--<dx-validator>
+                                <dxi-validation-rule type="required" message="Campo obligatorio"></dxi-validation-rule>
+                              </dx-validator>-->
+                        </dx-date-box>
+                        <label for="">Entrada</label>
+                    </div>
+                    <div class="dx-field dates">
+                        <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.endDateRequest">
+                            <!--<dx-validator>
+                                <dxi-validation-rule type="required" message="Campo obligatorio"></dxi-validation-rule>
+                              </dx-validator>-->
+                        </dx-date-box>
+                        <label for="">Salida</label>
+                    </div>
+                </div>
+                <div class="dx-field search-button">
+                    <dx-button
+                        stylingMode="contained"
+                        text="Buscar"
+                        type="default"
+                        width="20%"
+                        [useSubmitBehavior]="true">
+                    </dx-button>
+                </div>
+            </form>
         </div>
-        <div class="dx-field search-button">
-            <dx-button
-                stylingMode="contained"
-                text="Buscar"
-                type="default"
-                width="20%"
-                [useSubmitBehavior]="true">
-            </dx-button>
-        </div>
-    </form>
+    </div>
 </div>
 
-<div *ngIf="productList.length>0" class="products animated fadeIn">
-    <div class="title">
+<div class="body">
+    <div class="sideBar">
+        <app-side-bar></app-side-bar>
     </div>
-    <div class="container-product" *ngFor="let products of productList">
-        <div class="dx-field product">
-            <div class="caja">
-                <div class="image">
-                    <img class="imgInfo animated fadeIn" style="height: 240px; width: 242px;"
-                    [src]="url+'/gf/'+products.id">
-                </div>
-                <div class="description">
-                    <h3>{{products.name}}</h3>
-                    <p>Entrada: {{products.startDate}} Salida: {{products.endDate}}</p>
-                    <!--<p>{{products.description}}</p>-->
-                    <p>{{products.description}}</p>
-                    <p>Varlor 5 STARS</p>
-                    <p>S/.{{products.price}}</p>
-                </div>
-                <div class="logo">
-                    <div class="address">
-                        <p>{{products.address}}</p>
-                    </div>
-                    <div class="dx-field button">
-                        <dx-button 
-                        stylingMode="contained"
-                        text="Ver oferta"
-                        type="default"
-                        width="70%"
-                        (click)="getProductId(products.productId)"
-                        [useSubmitBehavior]="true" icon="far fa-plus-square"></dx-button>
+    <div class="body-products">
+        <div *ngIf="productList.length>0" class="products animated fadeIn">
+            <div class="title">
+            </div>
+            <div class="container-product" *ngFor="let products of productList">
+                <div class="dx-field product">
+                    <div class="caja">
+                        <div class="image">
+                            <img class="imgInfo animated fadeIn" style="height: 240px; width: 242px;"
+                            [src]="url+'/gf/'+products.id">
+                        </div>
+                        <div class="description">
+                            <h3>{{products.name}}</h3>
+                            <p>Entrada: {{products.startDate}} Salida: {{products.endDate}}</p>
+                            <!--<p>{{products.description}}</p>-->
+                            <p>{{products.description}}</p>
+                            <p>Varlor 5 STARS</p>
+                            <p>S/.{{products.price}}</p>
+                        </div>
+                        <div class="logo">
+                            <div class="address">
+                                <p>{{products.address}}</p>
+                            </div>
+                            <div class="dx-field button">
+                                <dx-button 
+                                stylingMode="contained"
+                                text="Ver oferta"
+                                type="default"
+                                width="70%"
+                                (click)="getProductId(products.productId)"
+                                [useSubmitBehavior]="true" icon="far fa-plus-square"></dx-button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
