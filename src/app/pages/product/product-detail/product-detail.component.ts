@@ -59,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public getProductId(productId: any) {
-    this.router.navigate(['/icp', productId]);
+    this.router.navigate(['/pr/icp', productId]);
   }
 
 

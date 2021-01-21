@@ -9,7 +9,7 @@
                 <dx-button stylingMode="text" type="normal" text="HOTELES"></dx-button>
             </li>
             <li>
-                <dx-button stylingMode="text" type="normal" text="RESTAURANTES" [routerLink]="['/gpbr']"></dx-button>
+                <dx-button stylingMode="text" type="normal" text="RESTAURANTES" [routerLink]="['/pr/gpbr']"></dx-button>
             </li>
             <li>
                 <dx-button stylingMode="text" type="normal" text="SERVICIO"></dx-button>
@@ -26,7 +26,7 @@
                         stylingMode="contained"
                         text="Productos"
                         type="default"
-                        width="100%" [routerLink]="['/gap']" stylingMode="text" type="normal" text="PRODUCTOS"></dx-button>
+                        width="100%" [routerLink]="['/pr/gap']" stylingMode="text" type="normal" text="PRODUCTOS"></dx-button>
             </li>
         </ul>
     </div>
@@ -35,14 +35,14 @@
             stylingMode="contained"
             text="INICIAR SESIÓN"
             type="default"
-            [routerLink]="['/fl']"
+            [routerLink]="['/log/fl']"
              style="background-color: #108083; margin-right: 3px;">
         </dx-button>
         <dx-button *ngIf="!this.authService.isAthenticated()"
             stylingMode="contained"
             text="REGISTRARSE"
             type="default"
-            [routerLink]="['/uf']"
+            [routerLink]="['/us/uf']"
             style="background-color: #108083;">
         </dx-button>
         <dx-button *ngIf="this.authService.isAthenticated()"

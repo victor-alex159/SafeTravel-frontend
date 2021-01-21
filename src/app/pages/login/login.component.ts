@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
   public isAtuhenticated() {
     if(this.authService.isAthenticated()) {
       swal.fire('Ya has iniciado sesión', '','info');
-      this.router.navigate(['/sps']);
+      this.router.navigate(['/pr/sps']);
     }
   }
 

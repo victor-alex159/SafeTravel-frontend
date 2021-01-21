@@ -14,7 +14,7 @@ import { InfoCommentaryProductComponent } from './pages/product/info-commentary-
 
 
 const routes: Routes = [
-  { path: 'fl', component: LoginComponent },
+  /*{ path: 'fl', component: LoginComponent },
   { path: 'uf', component: FormUserComponent },
   { path: 'sp', component: FormProductComponent },
   { path: 'gpd', component: ProductDetailComponent },
@@ -25,7 +25,14 @@ const routes: Routes = [
   { path: 'gap', component: ListProductsComponent, canActivate:[AuthGuard] },
   { path: 'so', component: FormOrganizationComponent, canActivate:[AuthGuard]},
   { path: 'gao', component: OrganizationListComponent, canActivate:[AuthGuard] },
-  { path: '**', redirectTo: 'sps' }
+  { path: '**', redirectTo: 'sps' }*/
+
+  { path: 'log', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+  { path: 'us', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
+  { path: 'pr', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) },
+  { path: 'main', loadChildren: () => import('./pages/search-products/search-products.module').then(m=> m.SearchProductsModule) },
+  { path: 'org', loadChildren: () => import('./pages/organization/organization.module').then(m => m.OrganizationModule) },
+  { path: '**', redirectTo: 'main/sps' }
 ];
 
 @NgModule({

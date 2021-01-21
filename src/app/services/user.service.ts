@@ -1,17 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  url: string = 'http://localhost:8085/uc';
+  url: string = `${this.sharedService.url + '/uc'}`;
   private httpHeaders = new HttpHeaders( { 'Content-Type': 'application/json'
   } );
 
   constructor(
     private http: HttpClient,
+    private sharedService: SharedService,
     private authService: AuthService
   ) { }
 

@@ -36,7 +36,7 @@ export class ListRestaurantComponent implements OnInit {
 
   public sendNameProduct() {
     console.log(typeof this.nameProduct);
-    this.router.navigate(['/gpd', this.nameProduct]);
+    this.router.navigate(['/pr/gpd', this.nameProduct]);
   }
 
 }

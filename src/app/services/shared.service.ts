@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class SharedService {
 
+  public url: string = 'http://localhost:8085';
+  //public url: string = '';
+
   private _loadingVisible: boolean = false;
   constructor() { }
 

@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
   public logout() {
     this.authService.logout();
     swal.fire('Ha cerrado sesión', 'Correctamente', 'success');
-    this.router.navigate(['/sps']);
+    this.router.navigate(['/main/sps']);
   }
 
 }

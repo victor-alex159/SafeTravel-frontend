@@ -1,19 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-
+import { SharedService } from './shared.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  url: string = 'http://localhost:8085/pc';
-  urlProDetail: string = 'http://localhost:8085/pdc';
-  urlCommentary: string = 'http://localhost:8085/cmc';
+  urlProduct: string = `${this.sharedService.url + '/pc'}`;
+  urlProDetail: string = `${this.sharedService.url + '/pdc'}`;
+  urlCommentary: string = `${this.sharedService.url + '/cmc'}`;
   private httpHeaders = new HttpHeaders( { 'Content-Type': 'application/json'
   } );
 
   constructor(
     private http: HttpClient,
+    private sharedService: SharedService,
     private authService: AuthService
   ) { }
 
@@ -26,19 +27,19 @@ export class ProductService {
   }
 
   public saveProduct(product: any) {
-    return this.http.post<any>(`${this.url + '/sp'}`, product, {headers: this.addAtuhorizationHeader()}); 
+    return this.http.post<any>(`${this.urlProduct + '/sp'}`, product, {headers: this.addAtuhorizationHeader()}); 
   }
 
   public loadFile(file: any, productId: number) {
-    return this.http.post<any>(`${this.url + '/lf/' + productId}`, file); 
+    return this.http.post<any>(`${this.urlProduct + '/lf/' + productId}`, file); 
   }
 
   public getAllProducts(product: any) {
-    return this.http.post<any>(`${this.url + '/gap'}`, product); 
+    return this.http.post<any>(`${this.urlProduct + '/gap'}`, product); 
   }
 
   public getProductsByUserPrincipal(product: any) {
-    return this.http.post<any>(`${this.url + '/gpbup'}`, product, {headers: this.addAtuhorizationHeader()});
+    return this.http.post<any>(`${this.urlProduct + '/gpbup'}`, product, {headers: this.addAtuhorizationHeader()});
   }
 
   public saveProductDetail(productDetail: any) {
@@ -58,11 +59,11 @@ export class ProductService {
   }
   
   public getProductById(product: any) {
-    return this.http.post<any>(`${this.url + '/gpbi'}`, product, {headers: this.addAtuhorizationHeader()});
+    return this.http.post<any>(`${this.urlProduct + '/gpbi'}`, product, {headers: this.addAtuhorizationHeader()});
   }
 
   public getProductByType(product: any) {
-    return this.http.post<any>(`${this.url + '/gpbt'}`, product);
+    return this.http.post<any>(`${this.urlProduct + '/gpbt'}`, product);
   }
 
   public saveCommentary(commentary: any) {

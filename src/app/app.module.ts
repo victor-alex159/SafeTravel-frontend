@@ -4,71 +4,54 @@ import { DevExtremeModule } from 'devextreme-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { SideBarComponent } from './shared/side-bar/side-bar.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { MainComponent } from './shared/main/main.component';
-import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-
-import { DxCheckBoxModule,
-         DxSelectBoxModule,
-         DxNumberBoxModule,
-         DxDataGridModule,
-         DxFormModule,
-         DxTemplateModule,
-         DxFileUploaderModule,
-         DxGalleryModule,
-         DxPopupModule,
-         DxSpeedDialActionModule,
-         DxListModule
-         } from 'devextreme-angular';
-import { SearchProductsComponent } from './pages/search-products/search-products.component';
-import { FormOrganizationComponent } from './pages/organization/form-organization/form-organization.component';
-import { OrganizationListComponent } from './pages/organization/organization-list/organization-list.component';
-import { FormProductComponent } from './pages/product/form-product/form-product.component';
-import { FormUserComponent } from './pages/user/form-user/form-user.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ListProductsComponent } from './pages/product/list-products/list-products.component';
-import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
-import { FormProductDetailComponent } from './pages/product/product-detail/form-product-detail/form-product-detail.component';
-import { ListRestaurantComponent } from './pages/product/type/list-restaurant/list-restaurant.component';
-import { ListHotelComponent } from './pages/product/type/list-hotel/list-hotel.component';
-import { InfoCommentaryProductComponent } from './pages/product/info-commentary-product/info-commentary-product.component';
+import { MainComponent } from './shared/main/main.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { DxCheckBoxModule,
+  DxSelectBoxModule,
+  DxNumberBoxModule,
+  DxDataGridModule,
+  DxFormModule,
+  DxTemplateModule,
+  DxFileUploaderModule,
+  DxGalleryModule,
+  DxPopupModule,
+  DxSpeedDialActionModule,
+  DxListModule
+  } from 'devextreme-angular';
+import { UserModule } from './pages/user/user.module';
+import { SearchProductsModule } from './pages/search-products/search-products.module';
+import { ProductModule } from './pages/product/product.module';
+import { OrganizationModule } from './pages/organization/organization.module';
+import { LoginModule } from './pages/login/login.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    SideBarComponent,
-    FooterComponent,
     MainComponent,
-    LoginComponent,
-    SearchProductsComponent,
-    FormOrganizationComponent,
-    OrganizationListComponent,
-    FormProductComponent,
-    FormUserComponent,
-    ListProductsComponent,
-    ProductDetailComponent,
-    FormProductDetailComponent,
-    ListRestaurantComponent,
-    ListHotelComponent,
-    InfoCommentaryProductComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    LoginModule,
+    OrganizationModule,
+    ProductModule,
+    SearchProductsModule,
+    UserModule,
     FontAwesomeModule,
     NgxPaginationModule,
     DevExtremeModule,
     DxCheckBoxModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
-    DxFormModule,
     DxDataGridModule,
+    DxFormModule,
     DxTemplateModule,
     DxFileUploaderModule,
     DxGalleryModule,

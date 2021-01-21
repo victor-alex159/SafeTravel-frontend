@@ -72,7 +72,7 @@ export class FormUserComponent implements OnInit {
           'success'
         )
       }
-      this.router.navigate(['/fl']);
+      this.router.navigate(['/log/fl']);
     });
 
     e.preventDefault();
