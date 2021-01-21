@@ -19,6 +19,7 @@ export class ProductDetailComponent implements OnInit {
   product: ProductBean;
   productList: Array<any> = [];
   nameProduct: string = '';
+  p: number = 1;
   constructor(
     private productService: ProductService,
     private router: Router,
@@ -41,6 +42,7 @@ export class ProductDetailComponent implements OnInit {
         this.productList = resp.data;
         console.log(this.productList);
       });
+      this.p = 1;
     e.preventDefault();
   }
 

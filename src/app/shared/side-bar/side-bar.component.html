@@ -1,4 +1,4 @@
-<div class="bodySideBar">
+<div class="bodySideBar animated fadeIn">
         <h4>BIOSEGURIDAD</h4>
         <div class="dx-field">
                 <div class="dx-field-value">
@@ -9,6 +9,16 @@
                 </div>
         </div>
         <hr/>
+        <h4>Tipos de Servicios</h4>
+        <div class="dx-field" *ngFor="let catalogDetail of listCatalogDetail">
+                <div class="dx-field-value">
+                        <div class="dx-field-label">
+                                <dx-check-box [value]="catalogDetailCheck"></dx-check-box>
+                                <p>{{catalogDetail.shortDescription}}</p>
+                        </div>
+                </div>
+        </div>
+        <!--
         <h4>Tipos de Establecimientos</h4>
         <div class="dx-field">
                 <div class="dx-field-value">
@@ -59,7 +69,7 @@
                                 <p>Acceso a la playa</p>
                         </div>
                 </div>
-        </div>
+        </div>-->
 
 </div>
 

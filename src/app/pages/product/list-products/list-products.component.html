@@ -1,34 +1,40 @@
-<h3>Organización: {{organization.name}}</h3>
-<dx-data-grid style="margin-top: 55px;" *ngIf="productList.length>0" id="gridContainer" [showColumnLines]="true"
-    [dataSource]="productList"
-    [columnAutoWidth]="true"
-    [showBorders]="true">
-
-    <dxo-paging [pageSize]="10"></dxo-paging>
-	<dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
-    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
-
-    <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
-    <dxi-column dataField="name" caption="Empresa"> </dxi-column>
-    <dxi-column dataField="type" caption="Tipo de empresa"> </dxi-column>
-    <dxi-column dataField="emailAdmin" caption="Correo administrador"> </dxi-column>
-    <dxi-column dataField="ubication" caption="Responsable de pago"> </dxi-column>
-    <dxi-column dataField="startDate" caption="Fecha de inicio" dataType="date"> </dxi-column>
-    <dxi-column dataField="endDate" caption="Fecha de caducidad" dataType="date"> </dxi-column>
-    <dxi-column caption="Acciones" cellTemplate="actionCellTempalte">
-        <div *dxTemplate="let cell of 'actionCellTempalte'">
-            <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button>
-            <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
-            <dx-button icon="far fa-trash-alt"></dx-button>
-        </div>
-    </dxi-column>
-    
-</dx-data-grid>
-<dx-button
-icon="add"
-text="Agregar Producto"
-(onClick)="showFormProduct()"
-></dx-button>
+<div class="body">
+    <h3>Organización: {{organization.name}}</h3>
+    <div class="table">
+        <dx-data-grid style="padding: 0;" *ngIf="productList.length>0" id="gridContainer" [showColumnLines]="true"
+            [dataSource]="productList"
+            [columnAutoWidth]="true"
+            [showBorders]="true">
+        
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
+        
+            <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
+            <dxi-column dataField="name" caption="Empresa"> </dxi-column>
+            <dxi-column dataField="type" caption="Tipo de empresa"> </dxi-column>
+            <dxi-column dataField="emailAdmin" caption="Correo administrador"> </dxi-column>
+            <dxi-column dataField="ubication" caption="Responsable de pago"> </dxi-column>
+            <dxi-column dataField="startDate" caption="Fecha de inicio" dataType="date"> </dxi-column>
+            <dxi-column dataField="endDate" caption="Fecha de caducidad" dataType="date"> </dxi-column>
+            <dxi-column caption="Acciones" cellTemplate="actionCellTempalte">
+                <div *dxTemplate="let cell of 'actionCellTempalte'">
+                    <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button>
+                    <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
+                    <dx-button icon="far fa-trash-alt"></dx-button>
+                </div>
+            </dxi-column>
+            
+        </dx-data-grid>
+    </div>
+    <div class="button-add-product">
+        <dx-button
+        icon="add"
+        text="Agregar Producto"
+        (onClick)="showFormProduct()"
+        ></dx-button>
+    </div>
+</div>
 <!--<dx-speed-dial-action
         style="transform: translate(1754px, 781px)"
         icon="add"

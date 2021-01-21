@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductService } from 'src/app/services/product.service';
-import { gsap } from 'gsap';
 import { Router } from '@angular/router';
 
 @Component({

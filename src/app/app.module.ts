@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { MainComponent } from './shared/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { DxCheckBoxModule,
          DxSelectBoxModule,
@@ -20,7 +21,8 @@ import { DxCheckBoxModule,
          DxFileUploaderModule,
          DxGalleryModule,
          DxPopupModule,
-         DxSpeedDialActionModule
+         DxSpeedDialActionModule,
+         DxListModule
          } from 'devextreme-angular';
 import { SearchProductsComponent } from './pages/search-products/search-products.component';
 import { FormOrganizationComponent } from './pages/organization/form-organization/form-organization.component';
@@ -60,6 +62,7 @@ import { InfoCommentaryProductComponent } from './pages/product/info-commentary-
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
+    NgxPaginationModule,
     DevExtremeModule,
     DxCheckBoxModule,
     DxSelectBoxModule,
@@ -70,7 +73,8 @@ import { InfoCommentaryProductComponent } from './pages/product/info-commentary-
     DxFileUploaderModule,
     DxGalleryModule,
     DxPopupModule,
-    DxSpeedDialActionModule
+    DxSpeedDialActionModule,
+    DxListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

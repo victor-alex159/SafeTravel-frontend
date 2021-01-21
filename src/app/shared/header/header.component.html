@@ -20,6 +20,14 @@
             <li>
                 <dx-button stylingMode="text" type="normal" text="NOSOTROS"></dx-button>
             </li>
+            <li>
+                <dx-button 
+                *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
+                        stylingMode="contained"
+                        text="Productos"
+                        type="default"
+                        width="100%" [routerLink]="['/gap']" stylingMode="text" type="normal" text="PRODUCTOS"></dx-button>
+            </li>
         </ul>
     </div>
     <div class="user">

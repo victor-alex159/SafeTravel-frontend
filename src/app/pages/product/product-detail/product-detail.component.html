@@ -44,9 +44,7 @@
     </div>
     <div class="body-products">
         <div *ngIf="productList.length>0" class="products animated fadeIn">
-            <div class="title">
-            </div>
-            <div class="container-product" *ngFor="let products of productList">
+            <div class="container-product" *ngFor="let products of productList | paginate: { itemsPerPage: 5, currentPage: p }">
                 <div class="dx-field product">
                     <div class="caja">
                         <div class="image">
@@ -78,6 +76,8 @@
                     </div>
                 </div>
             </div>
+            <pagination-controls class="pagination" previousLabel="Atras"
+            nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>
 </div>

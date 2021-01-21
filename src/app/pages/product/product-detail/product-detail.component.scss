@@ -19,7 +19,7 @@ dx-button:hover {
     }
     .body-products {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
     }
     .container-product {
         margin-bottom: 8px;
@@ -29,11 +29,8 @@ dx-button:hover {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        .title {
-            width: 100%;
-        }
+        flex-direction: column;
+        align-items: center;
     }
     
     .product {
@@ -115,4 +112,7 @@ dx-button:hover {
         display: flex;
         flex-direction: row;
     }
+}
+::ng-deep .pagination .ngx-pagination .current  {
+    background: #108083;
 }

@@ -1,0 +1,13 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    .table {
+        display: flex;
+        flex-direction: row;
+    }
+    .button-add-product {
+        display: flex;
+        flex-direction: row;
+    }
+}
