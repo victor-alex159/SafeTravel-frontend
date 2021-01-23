@@ -89,8 +89,8 @@
         (onClick)="showFormProduct()"></dx-speed-dial-action>-->
 
 <dx-popup style="overflow: scroll !important;" title="Editar Organizacion" [width]="640" [height]="500" *ngIf="showPopupOrganizationFormEdit" [(visible)]="showPopupOrganizationFormEdit" >
-    <app-form-organization [organizationId]="selectedOrganization.id" ></app-form-organization>
+    <app-form-organization [organizationId]="selectedOrganization.id" (closePopup)=onClosePopupFormEdit($event)></app-form-organization>
 </dx-popup>
 <dx-popup title="Organizacion" [width]="640" [height]="500" *ngIf="showPopupOrganizationForm" [(visible)]="showPopupOrganizationForm">
-    <app-form-organization></app-form-organization>
+    <app-form-organization (closePopup)=onClosePopupForm($event)></app-form-organization>
 </dx-popup>

@@ -46,7 +46,7 @@
             [routerLink]="['/log/fl']"
              style="background-color: #108083; margin-right: 3px;">
         </dx-button>
-        <dx-button *ngIf="!this.authService.isAthenticated()"
+        <dx-button *ngIf="!this.authService.isAthenticated() || this.authService.hasRole('Administrador')"
             stylingMode="contained"
             text="REGISTRARSE"
             type="default"

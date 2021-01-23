@@ -68,13 +68,22 @@ export class ListProductsComponent implements OnInit {
     this.showPopupProductFormEdit = true;
   }
 
-  public onClosePopup(e: any) {
-    if(this.showPopupProductForm) {
-      this.showPopupProductForm=false;
-    } else if(this.showPopupDetailForm) {
-      this.showPopupDetailForm=false;
-    } else if(this.showPopupProductFormEdit){
-      this.showPopupProductFormEdit=false;
+  public onClosePopupForm(e: any) {
+    console.log(e);
+    if(e == 'false') {
+      this.showPopupProductForm = false
+    }
+  }
+  public onClosePopupFormEdit(e: any) {
+    console.log(e);
+    if(e == 'false') {
+      this.showPopupProductFormEdit = false
+    }
+  }
+  public onClosePopupFormEditDetail(e: any) {
+    console.log(e);
+    if(e == 'false') {
+      this.showPopupDetailForm = false
     }
   }
 

@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { EventEmitter } from 'events';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
 import { ProductService } from 'src/app/services/product.service';
@@ -13,7 +12,7 @@ import swal from 'sweetalert2'
 })
 export class FormProductDetailComponent implements OnInit {
   @Input() productId: number;
-  @Output() closePopup = new EventEmitter();
+  @Output() closePopup: EventEmitter<string> = new EventEmitter<string>();
   url: string = 'http://localhost:8085/pc';
   productDetail: ProductDetailBean;
   uploadFile: any[] = [];
@@ -53,6 +52,7 @@ export class FormProductDetailComponent implements OnInit {
         'success'
       )
     });
+    this.closePopup.emit("false");
     e.preventDefault();
   }
 

@@ -42,14 +42,14 @@
         [index]="1"
         (onClick)="showFormProduct()"></dx-speed-dial-action>-->
         
-<dx-popup title="Agregar detalle" [width]="500" [height]="600" *ngIf="showPopupDetailForm" [(visible)]="showPopupDetailForm">
+<dx-popup title="Agregar detalle" [width]="500" [height]="640" *ngIf="showPopupDetailForm" [(visible)]="showPopupDetailForm" >
     <h3>{{productName}}</h3>
-    <app-form-product-detail [productId]="selectedProduct.id"></app-form-product-detail>
+    <app-form-product-detail [productId]="selectedProduct.id" (closePopup)=onClosePopupFormEditDetail($event)></app-form-product-detail>
 </dx-popup>
 
-<dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="500" [height]="600" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
-    <app-form-product [productId]="selectedProduct.id" ></app-form-product>
+<dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="500" [height]="640" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
+    <app-form-product (closePopup)=onClosePopupFormEdit($event) [productId]="selectedProduct.id" ></app-form-product>
 </dx-popup>
-<dx-popup title="Producto" [width]="500" [height]="750" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
-    <app-form-product></app-form-product>
+<dx-popup title="Producto" [width]="500" [height]="640" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
+    <app-form-product (closePopup)=onClosePopupForm($event)></app-form-product>
 </dx-popup>

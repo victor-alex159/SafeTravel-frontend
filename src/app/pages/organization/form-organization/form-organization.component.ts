@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { OrganizationBean } from '../../../Beans/OrganizationBean';
 import { OrganizationServiceService } from '../../../services/organization-service.service';
@@ -14,6 +14,7 @@ export class FormOrganizationComponent implements OnInit {
 
   organizationBean: OrganizationBean;
   @Input() organizationId: number;
+  @Output() closePopup: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private organizationService: OrganizationServiceService
@@ -43,6 +44,7 @@ export class FormOrganizationComponent implements OnInit {
         )
       }
     });
+    this.closePopup.emit("false");
     e.preventDefault();
   }
 

@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { EventEmitter } from 'events';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
@@ -23,7 +22,7 @@ export class FormProductComponent implements OnInit {
   START_DATE = new Date(1900, 0, 1);
   END_DATE = new Date(2060, 12, 31);
   @Input() productId: number;
-  @Output() closePopup = new EventEmitter();
+  @Output() closePopup: EventEmitter<string> = new EventEmitter<string>();
   image: string;
   imagenData: any;
   imagenEstado: boolean = false;
@@ -93,6 +92,7 @@ export class FormProductComponent implements OnInit {
           'success'
         )
       });
+      this.closePopup.emit("false");
     }
     e.preventDefault();
   }

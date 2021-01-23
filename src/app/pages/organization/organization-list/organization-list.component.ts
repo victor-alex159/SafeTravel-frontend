@@ -50,4 +50,19 @@ export class OrganizationListComponent implements OnInit {
   }
 
 
+  public onClosePopupForm(e: any) {
+    console.log(e);
+    if(e == 'false') {
+      this.showPopupOrganizationForm = false
+    }
+  }
+
+  public onClosePopupFormEdit(e: any) {
+    console.log(e);
+    if(e == 'false') {
+      this.showPopupOrganizationFormEdit = false
+    }
+  }
+
+
 }

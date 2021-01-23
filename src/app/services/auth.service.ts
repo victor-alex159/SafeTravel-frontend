@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ClientBean } from '../Beans/Client';
 import { UserBean } from '../Beans/UserBean';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
 
   credentials = btoa('tallerProject' + ':' + 'taller');
 
-  urlEndpoint: string = 'http://localhost:8085/oauth/token';
+  urlEndpoint: string = `${this.sharedService.url + '/oauth/token'}`;
+  
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',
     'Authorization': 'Basic ' + this.credentials
@@ -22,7 +24,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
   public login(user: any): Observable<any> {

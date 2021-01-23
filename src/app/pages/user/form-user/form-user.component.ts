@@ -55,6 +55,8 @@ export class FormUserComponent implements OnInit {
     this.user.profile = profile;
     if(!this.authService.hasRole('Administrador')) {
       this.user.profile.id = 3;
+    } else {
+      this.user.profile.id = 2;
     }
     this.user.documentType="01";
     //this.user.organization.id = 1;
