@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
@@ -20,9 +21,11 @@ export class ProductDetailComponent implements OnInit {
   productList: Array<any> = [];
   nameProduct: string = '';
   p: number = 1;
+  imagenData: any;
   constructor(
     private productService: ProductService,
     private router: Router,
+    private sanitization: DomSanitizer,
     private route: ActivatedRoute
 
   ) { }
@@ -40,6 +43,10 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getListProductsDetail({data: this.product})
       .subscribe(resp => {
         this.productList = resp.data;
+        this.productList.forEach(pd => {
+          let objectURL = 'data:image/jpeg;base64,' + pd.image;
+          pd.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
+        });
         console.log(this.productList);
       });
       this.p = 1;
@@ -53,6 +60,10 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getListProductsDetail({data: product})
       .subscribe(resp => {
         this.productList = resp.data;
+        this.productList.forEach(pd => {
+          let objectURL = 'data:image/jpeg;base64,' + pd.image;
+          pd.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
+        });
         console.log(this.productList);
       });
       this.nameProduct = '';

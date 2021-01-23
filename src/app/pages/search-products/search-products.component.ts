@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search-products',
@@ -17,10 +18,14 @@ export class SearchProductsComponent implements OnInit {
   productList: Array<any> = [];
   product: ProductBean;
   public nameProduct: any;
+  image: string;
+  imagenData: any;
+  imagenEstado: boolean = false;
 
   constructor(
     public productService: ProductService,
-    public router: Router
+    public router: Router,
+    private sanitization: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +51,10 @@ export class SearchProductsComponent implements OnInit {
     this.productService.getAllProducts({ })
       .subscribe((resp: any) => {
         this.productList = resp.datalist;
+        this.productList.forEach(product => {
+          let objectURL = 'data:image/jpeg;base64,' + product.image;
+          product.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
+        });
       });
 
   }

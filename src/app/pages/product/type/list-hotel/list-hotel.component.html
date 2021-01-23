@@ -1,1 +1,43 @@
-<p>list-hotel works!</p>
+<div class="body">
+    <div class="dx-fieldset formulario">
+        <form novalidate style="width: 100%">
+            <div class="search-container">
+                <div class="dx-field search">
+                    <div class="dx-field-value">
+                        <dx-text-box
+                        [(value)]="nameProduct"
+                        placeholder="Buscar..." width="98%">
+                        </dx-text-box>
+                    </div>
+                </div>
+                <div class="dx-field search-button">
+                    <dx-button
+                        stylingMode="contained"
+                        text="Buscar"
+                        type="default"
+                        (click)="sendNameProduct()"
+                        width="20%">
+                    </dx-button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container-body animated fadeIn">
+        <div class="title">
+            <h2>Hotoles</h2>
+        </div>
+        <div class="container-product" *ngFor="let hotels of listHotels">
+            <div class="dx-field product">
+                <div class="caja">
+                    <div class="imgInfo">
+                        <img class="animated fadeIn" style="height: 215px; width: 98%;"
+                          [src]="hotels.imageFile">
+                    </div>
+                      <div class="description">
+                          <h3>{{hotels.name}}</h3>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

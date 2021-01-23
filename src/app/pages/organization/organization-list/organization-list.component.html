@@ -11,7 +11,7 @@
 
 </dx-data-grid>-->
 
-<dx-data-grid id="gridContainer"
+<!--<dx-data-grid id="gridContainer"
     [dataSource]="organizationList"
     [columnAutoWidth]="true"
     [showBorders]="true"
@@ -38,8 +38,59 @@
             <td>{{organizationList.data.responsablePaymentEmail}}</td>
             <td>{{organizationList.data.createDate | date: "M/d/yyyy"}}</td>
         </tr>
-        <!--<tr class="notes-row">
+        <tr class="notes-row">
             <td colspan="6"><div>lorem</div></td>
-        </tr>-->
+        </tr>
     </tbody>
-</dx-data-grid>
+</dx-data-grid>-->
+
+<div class="body">
+    <div class="table">
+        <dx-data-grid style="padding: 0;" *ngIf="organizationList.length>0" id="gridContainer" [showColumnLines]="true"
+            [dataSource]="organizationList"
+            [columnAutoWidth]="true"
+            [showBorders]="true">
+        
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
+        
+            <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
+            <dxi-column dataField="name" caption="Organización"> </dxi-column>
+            <dxi-column dataField="ruc" caption="RUC"> </dxi-column>
+            <dxi-column dataField="direction" caption="Dirección"> </dxi-column>
+            <dxi-column dataField="phone" caption="Teléfono"> </dxi-column>
+            <dxi-column dataField="responsablePaymentName" caption="Responsable de pago"> </dxi-column>
+            <dxi-column dataField="responsablePaymentPhone" caption="Celular del responsable de pago"> </dxi-column>
+            <dxi-column dataField="responsablePaymentEmail" caption="Correo del responsable de pago"> </dxi-column>
+            <dxi-column dataField="createDate" caption="Fecha de creación" dataType="date" formatDate="dd/MM/yyyy"> </dxi-column>
+            <dxi-column caption="Acciones" cellTemplate="actionCellTempalte">
+                <div *dxTemplate="let cell of 'actionCellTempalte'">
+                    <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
+                    <dx-button icon="far fa-trash-alt"></dx-button>
+                </div>
+            </dxi-column>
+            
+        </dx-data-grid>
+    </div>
+    <div class="button-add-product">
+        <dx-button
+        icon="add"
+        text="Agregar Organization"
+        (onClick)="showFormOrganization()"
+        ></dx-button>
+    </div>
+</div>
+<!--<dx-speed-dial-action
+        style="transform: translate(1754px, 781px)"
+        icon="add"
+        label="Agregar Producto"
+        [index]="1"
+        (onClick)="showFormProduct()"></dx-speed-dial-action>-->
+
+<dx-popup style="overflow: scroll !important;" title="Editar Organizacion" [width]="640" [height]="500" *ngIf="showPopupOrganizationFormEdit" [(visible)]="showPopupOrganizationFormEdit" >
+    <app-form-organization [organizationId]="selectedOrganization.id" ></app-form-organization>
+</dx-popup>
+<dx-popup title="Organizacion" [width]="640" [height]="500" *ngIf="showPopupOrganizationForm" [(visible)]="showPopupOrganizationForm">
+    <app-form-organization></app-form-organization>
+</dx-popup>

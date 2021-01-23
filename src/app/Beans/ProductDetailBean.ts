@@ -8,5 +8,7 @@ export class ProductDetailBean extends BaseBean {
 	public description: string;
 	public address: string;
 	public price: number;
+	public image: string;
+	public imageFile: any;
 	public imagePath: string;
 }

@@ -7,6 +7,7 @@ export class ProductBean extends BaseBean {
     public name: string;
     public emailAdmin: string;
     public image: string;
+    public imageFile: any;
     public imagePath: string;
     public type: string;
     public ubication: string;

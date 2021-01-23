@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { EventEmitter } from 'events';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
@@ -16,9 +17,15 @@ export class FormProductDetailComponent implements OnInit {
   url: string = 'http://localhost:8085/pc';
   productDetail: ProductDetailBean;
   uploadFile: any[] = [];
+  image: string;
+  imagenData: any;
+  imagenEstado: boolean = false;
+  selectedFiles: FileList;
+  currentFileUpload: File;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private sanitization: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -33,15 +40,13 @@ export class FormProductDetailComponent implements OnInit {
     this.productDetail.product.id = this.productId;
     console.log(this.productDetail);
     let productDetailId: number;
-    this.productService.saveProductDetail({data: this.productDetail})
+    if(this.selectedFiles != null) {
+      this.currentFileUpload = this.selectedFiles.item(0);
+    } else {
+      this.currentFileUpload = new File( [''], 'None' );
+    }
+    this.productService.saveProductDetail(this.productDetail, this.currentFileUpload)
     .subscribe(resp => {
-      productDetailId = resp.data.id;
-      console.log(resp);
-      const formData = new FormData();
-      this.uploadFile.forEach((file, idx) => {
-        formData.append('file', file);
-      });
-      this.productService.loadFileByProductDetail(formData, productDetailId).subscribe();
       swal.fire(
         'Registrado correctamente!',
         'Con éxito!',
@@ -58,8 +63,24 @@ export class FormProductDetailComponent implements OnInit {
     this.productService.getProductDetailByProductId({data: productDetail})
       .subscribe(resp => {
         this.productDetail = resp.data;
-        console.log(this.productDetail);
+        this.productService.getImageProductDetailById(this.productDetail.id)
+        .subscribe(resp => {
+          if ( resp.data) {
+            this.getImage(resp.data);
+          }
+        });
       });
+  }
+
+  getImage(base64: any){
+    let objectURL = 'data:image/jpeg;base64,' + base64;
+    this.imagenData = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
+    this.imagenEstado = true;
+  }
+
+  selectImage( evt: any ): void {
+    this.image = evt.target.files[0].name;
+    this.selectedFiles = evt.target.files;
   }
 
 }

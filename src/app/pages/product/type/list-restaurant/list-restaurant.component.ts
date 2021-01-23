@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ConstantsService } from 'src/app/services/constants.service';
@@ -18,6 +19,7 @@ export class ListRestaurantComponent implements OnInit {
   constructor(
     private constanService: ConstantsService,
     private productService: ProductService,
+    private sanitization: DomSanitizer,
     public router: Router
   ) { }
 
@@ -31,6 +33,10 @@ export class ListRestaurantComponent implements OnInit {
     this.productService.getProductByType({data: product})
       .subscribe(list => {
         this.listRestaurant = list.datalist;
+        this.listRestaurant.forEach(pd => {
+          let objectURL = 'data:image/jpeg;base64,' + pd.image;
+          pd.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
+        });
       });
   }
 

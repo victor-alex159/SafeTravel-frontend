@@ -47,9 +47,9 @@
     <app-form-product-detail [productId]="selectedProduct.id"></app-form-product-detail>
 </dx-popup>
 
-<dx-popup title="Editar Producto" [width]="500" [height]="650" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
+<dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="500" [height]="600" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
     <app-form-product [productId]="selectedProduct.id" ></app-form-product>
 </dx-popup>
-<dx-popup title="Producto" [width]="500" [height]="650" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
+<dx-popup title="Producto" [width]="500" [height]="750" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
     <app-form-product></app-form-product>
 </dx-popup>

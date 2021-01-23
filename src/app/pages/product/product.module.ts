@@ -26,9 +26,10 @@ import { DxCheckBoxModule,
   DxTextBoxModule
   } from 'devextreme-angular';
 import { ListRestaurantComponent } from './type/list-restaurant/list-restaurant.component';
+import { ListHotelComponent } from './type/list-hotel/list-hotel.component';
 
 @NgModule({
-  declarations: [ProductDetailComponent, InfoCommentaryProductComponent, ListProductsComponent, SideBarComponent, FormProductDetailComponent, FormProductComponent, ListRestaurantComponent],
+  declarations: [ProductDetailComponent, InfoCommentaryProductComponent, ListProductsComponent, SideBarComponent, FormProductDetailComponent, FormProductComponent, ListHotelComponent, ListRestaurantComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

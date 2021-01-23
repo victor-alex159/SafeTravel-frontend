@@ -9,8 +9,9 @@ export class ProductService {
   urlProduct: string = `${this.sharedService.url + '/pc'}`;
   urlProDetail: string = `${this.sharedService.url + '/pdc'}`;
   urlCommentary: string = `${this.sharedService.url + '/cmc'}`;
-  private httpHeaders = new HttpHeaders( { 'Content-Type': 'application/json'
-  } );
+  private httpHeadersToFile = new HttpHeaders();
+  private httpHeaders = new HttpHeaders( { 'Content-Type': 'application/json'} );
+  
 
   constructor(
     private http: HttpClient,
@@ -24,6 +25,15 @@ export class ProductService {
       return this.httpHeaders.append('Authorization', 'Bearer ' + token);
     }
     return this.httpHeaders;
+  }
+
+  private addAtuhorizationHeaderToFile() {
+    let token = this.authService.token;
+    let httpHeadersToFile = new HttpHeaders();
+    if(token != null) {
+      return httpHeadersToFile.append('Authorization', 'Bearer ' + token);
+    }
+    return httpHeadersToFile;
   }
 
   public saveProduct(product: any) {
@@ -42,9 +52,9 @@ export class ProductService {
     return this.http.post<any>(`${this.urlProduct + '/gpbup'}`, product, {headers: this.addAtuhorizationHeader()});
   }
 
-  public saveProductDetail(productDetail: any) {
-    return this.http.post<any>(`${this.urlProDetail + '/spd'}`, productDetail, {headers: this.addAtuhorizationHeader()}); 
-  }
+  /*public saveProductDetail(productDetail: any) {
+    return this.http.post<any>(`${this.urlProDetail + '/spd'}`, productDetail, {headers: this.addAtuhorizationHeaderToFile()}); 
+  }*/
 
   public loadFileByProductDetail(file: any, productDetailId: number) {
     return this.http.post<any>(`${this.urlProDetail + '/lf/' + productDetailId}`, file); 
@@ -72,6 +82,33 @@ export class ProductService {
 
   public getCommentaryByProductId(commentary: any) {
     return this.http.post<any>(`${this.urlCommentary + '/gcbpi'}`, commentary); 
+  }
+
+  public save(productBean: any, file?: File) {
+    let formData = new FormData();
+    formData.append('file', file);
+    const productBlob = new Blob([JSON.stringify(productBean)], { type: 'application/json' });
+    formData.append('product', productBlob);
+    return this.http.post<any>(`${this.urlProduct + '/sv'}`, formData, {headers: this.addAtuhorizationHeaderToFile()});
+  }
+  public saveProductDetail(productDetailBean: any, file?: File) {
+    let formData = new FormData();
+    formData.append('file', file);
+    const productDetailBlob = new Blob([JSON.stringify(productDetailBean)], { type: 'application/json' });
+    formData.append('productDetail', productDetailBlob);
+    return this.http.post<any>(`${this.urlProDetail + '/spd'}`, formData, {headers: this.addAtuhorizationHeaderToFile()});
+  }
+
+  public getImageById(productId: number) {
+    return this.http.post<any>(`${this.urlProduct + '/gi/' + productId}`, {
+      responseType: 'blob'
+    });
+  }
+
+  public getImageProductDetailById(producDetailtId: number) {
+    return this.http.post<any>(`${this.urlProDetail + '/gi/' + producDetailtId}`, {
+      responseType: 'blob'
+    });
   }
 
 }

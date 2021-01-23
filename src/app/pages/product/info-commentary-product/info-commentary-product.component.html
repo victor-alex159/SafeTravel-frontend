@@ -3,24 +3,48 @@
         <div class="container-photos">
             <div class="image" *ngIf="productDetail.id">
                 <img class="imgInfo animated fadeIn" style="height: 240px; width: 242px;"
-                [src]="url+'/gf/'+productDetail.id">
+                [src]="productDetail.imageFile">
             </div>
         </div>
         <div class="description">
-            description
+            <h4>Dirección : {{productDetail.address}}</h4>
+            <hr/>
+            <h4>Precio: S/.{{productDetail.price}}</h4>
+            <hr/>
+            <h4>Fecha de entrada: S/.{{productBean.startDate}}</h4>
+            <hr/>
+            <h4>Fecha de: S/.{{productBean.endDate}}</h4>
         </div>
     </div>
     
     <div class="row2">
         <div class="descripcion-product">
-            description-product
+            <h4>INFORMACIÓN</h4>
+            {{productDetail.description}}
         </div>
         <div class="info-covid">
             <div class="title-info-covid" style="text-align: center;">
                 <h3>Información de Bioseguridad</h3>
             </div>
             <div>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eius fuga optio dolorem in totam magnam cum eaque, repudiandae incidunt at! Iusto, et nostrum! Nostrum in blanditiis iure dolorem inventore?</p>
+                <h4>Qué puedes esperar durante tu estadía</h4>
+                <ul>
+                    <li>
+                        <span>Se requiere el uso de máscaras, barbijos o tapabocas para los huéspedes en zonas públicas</span>
+                    </li>
+                    <hr/>
+                    <li>
+                        <span>Se requieren máscaras, barbijos o tapabocas para el personal en zonas públicas</span>
+                    </li>
+                    <hr/>
+                    <li>
+                        <span>Alcohol en gel disponible para los huéspedes y el personal</span>
+                    </li>
+                    <hr/>
+                    <li>
+                        <span>Pisos marcados para el distanciamiento social</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

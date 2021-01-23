@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { EventEmitter } from 'events';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
@@ -23,10 +24,16 @@ export class FormProductComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   @Input() productId: number;
   @Output() closePopup = new EventEmitter();
+  image: string;
+  imagenData: any;
+  imagenEstado: boolean = false;
+  selectedFiles: FileList;
+  currentFileUpload: File;
 
   constructor(
     private productService: ProductService,
-    private organizationService: OrganizationServiceService
+    private organizationService: OrganizationServiceService,
+    private sanitization: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +42,12 @@ export class FormProductComponent implements OnInit {
     this.showPreview = false;
     if(this.productId) {
       this.getProduct(this.productId);
+      this.productService.getImageById(this.productId)
+        .subscribe(resp => {
+          if ( resp.data) {
+            this.getImage(resp.data);
+          }
+        });
     }
   }
 
@@ -42,7 +55,7 @@ export class FormProductComponent implements OnInit {
     this.showPreview = false;
   }
 
-  public saveProduct(e: any) {
+  /*public saveProduct(e: any) {
     let productId: number;
     if(this.product != null || this.product != undefined) {
       this.productService.saveProduct({data: this.product})
@@ -54,6 +67,26 @@ export class FormProductComponent implements OnInit {
         });
         this.productService.loadFile(formData, productId).subscribe();
         this.showPreview = true;
+        swal.fire(
+          'Registrado correctamente!',
+          'Con éxito!',
+          'success'
+        )
+      });
+    }
+    e.preventDefault();
+  }*/
+  
+  public saveProduct(e: any) {
+    let productId: number;
+    if(this.product != null || this.product != undefined) {
+      if(this.selectedFiles != null) {
+        this.currentFileUpload = this.selectedFiles.item(0);
+      } else {
+        this.currentFileUpload = new File( [''], 'None' );
+      }
+      this.productService.save(this.product, this.currentFileUpload)
+      .subscribe(resp => {
         swal.fire(
           'Registrado correctamente!',
           'Con éxito!',
@@ -76,5 +109,17 @@ export class FormProductComponent implements OnInit {
       console.log(this.product);
     });
   }
+
+  getImage(base64: any){
+    let objectURL = 'data:image/jpeg;base64,' + base64;
+    this.imagenData = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
+    this.imagenEstado = true;
+  }
+
+  selectImage( evt: any ): void {
+    this.image = evt.target.files[0].name;
+    this.selectedFiles = evt.target.files;
+  }
+
   
 }

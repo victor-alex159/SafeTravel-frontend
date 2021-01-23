@@ -6,7 +6,7 @@
                 <dx-button stylingMode="text" type="normal" text="INICIO" [routerLink]="['/sps']"></dx-button>
             </li>
             <li>
-                <dx-button stylingMode="text" type="normal" text="HOTELES"></dx-button>
+                <dx-button stylingMode="text" type="normal" text="HOTELES" [routerLink]="['/pr/gpbh']"></dx-button>
             </li>
             <li>
                 <dx-button stylingMode="text" type="normal" text="RESTAURANTES" [routerLink]="['/pr/gpbr']"></dx-button>
@@ -24,9 +24,17 @@
                 <dx-button 
                 *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
                         stylingMode="contained"
-                        text="Productos"
+                        text="PRODUCTOS"
                         type="default"
-                        width="100%" [routerLink]="['/pr/gap']" stylingMode="text" type="normal" text="PRODUCTOS"></dx-button>
+                        width="100%" [routerLink]="['/pr/gap']" stylingMode="text" type="normal"></dx-button>
+            </li>
+            <li>
+                <dx-button 
+                *ngIf="this.authService.hasRole('Administrador')"
+                        stylingMode="contained"
+                        text="ORGANIZACIONES"
+                        type="default"
+                        width="100%" [routerLink]="['/org/gao']" stylingMode="text" type="normal"></dx-button>
             </li>
         </ul>
     </div>

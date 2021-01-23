@@ -55,7 +55,7 @@
                 </dx-date-box>
             </div>
 
-            <div class="dx-field">
+            <!--<div class="dx-field">
                 <div class="dx-field-label">Imagen: </div>
                 <div id="fileuploader-container">
                     <dx-file-uploader
@@ -64,14 +64,18 @@
                         [allowedFileExtensions]="['.jpg','.jpeg', '.png']" labelText="" accept="*"
                         [maxFileSize]="1024 * 2048" uploadMode="useForm" readyToUploadMessage="" [(value)]="uploadFile">
                     </dx-file-uploader>
-                    <!--<input (change)="selectImage($event)" type="file">-->
+                    <input (change)="selectImage($event)" type="file">
                 </div>
-            </div>
+            </div>-->
             <!--<div class="dx-field">
                 <img class="imgInfo" style="max-height: 220px;"
                   [src]="url+'/gf/'+8">
             </div>-->
             
+
+            <img [src]="imagenData" *ngIf="imagenEstado" width="100%" height="220" />
+            <button mat-button type="button" onclick="document.getElementById('archivo').click();">Seleccionar Imagen</button>
+            <input id="archivo" type="file" (change)="selectImage($event)" style="display: none">
             <div class="dx-field">
                 <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="40%"></dx-button>
             </div>

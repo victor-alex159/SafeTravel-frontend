@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { OrganizationBean } from '../../../Beans/OrganizationBean';
 import { OrganizationServiceService } from '../../../services/organization-service.service';
@@ -13,6 +13,7 @@ import { ServiceBean } from 'src/app/Beans/ServiceBean';
 export class FormOrganizationComponent implements OnInit {
 
   organizationBean: OrganizationBean;
+  @Input() organizationId: number;
 
   constructor(
     private organizationService: OrganizationServiceService
@@ -20,12 +21,15 @@ export class FormOrganizationComponent implements OnInit {
 
   ngOnInit(): void {
     this.organizationBean = new OrganizationBean();
+    if(this.organizationId) {
+      this.getOrganzationById(this.organizationId);
+    }
   }
 
   public saveOrganization(e: any) {
     //const swal = require('sweetalert2');
     let userAdmin: UserBean = new UserBean();
-    let service: ServiceBean = new ServiceBean();
+    this.organizationBean.service = new ServiceBean();
     this.organizationBean.adminUserId = userAdmin;
     this.organizationBean.adminUserId.id = 3;
     this.organizationBean.service.id = 1;
@@ -40,6 +44,15 @@ export class FormOrganizationComponent implements OnInit {
       }
     });
     e.preventDefault();
+  }
+
+  public getOrganzationById(organizationId: number) {
+    let organizationBean = new OrganizationBean();
+    organizationBean.id = organizationId;
+    this.organizationService.getOrganizationById({data: organizationBean})
+      .subscribe(resp => {
+        this.organizationBean = resp.data;
+      });
   }
 
 }
