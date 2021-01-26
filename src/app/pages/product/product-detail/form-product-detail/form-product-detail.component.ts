@@ -21,6 +21,7 @@ export class FormProductDetailComponent implements OnInit {
   imagenEstado: boolean = false;
   selectedFiles: FileList;
   currentFileUpload: File;
+  urlImageSelected: any;
 
   constructor(
     private productService: ProductService,
@@ -78,9 +79,15 @@ export class FormProductDetailComponent implements OnInit {
     this.imagenEstado = true;
   }
 
-  selectImage( evt: any ): void {
-    this.image = evt.target.files[0].name;
-    this.selectedFiles = evt.target.files;
+  selectImage( e: any ): void {
+    this.image = e.target.files[0].name;
+    this.selectedFiles = e.target.files;
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload= (e)=> {
+      this.urlImageSelected = e.target.result;
+    };
+    this.imagenEstado = false;
   }
 
 }

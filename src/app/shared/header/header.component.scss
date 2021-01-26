@@ -52,6 +52,23 @@
     flex-direction: row;
     align-items: center;
     margin-right: 40px;
+    .username {
+        ul{
+            list-style: none;
+            text-decoration: none;
+        }
+        ul>li>ul {
+            display: none;
+            position: absolute;
+            z-index: 1;
+        }
+        ul>li:hover>ul{
+            display: block;
+            dx-button{
+                margin-bottom: 60px;
+            }
+        }
+    }
 }
 .user dx-button:hover {
     background-color: #0d595c !important;

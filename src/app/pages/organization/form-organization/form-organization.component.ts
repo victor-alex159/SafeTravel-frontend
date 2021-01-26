@@ -29,10 +29,7 @@ export class FormOrganizationComponent implements OnInit {
 
   public saveOrganization(e: any) {
     //const swal = require('sweetalert2');
-    let userAdmin: UserBean = new UserBean();
     this.organizationBean.service = new ServiceBean();
-    this.organizationBean.adminUserId = userAdmin;
-    this.organizationBean.adminUserId.id = 3;
     this.organizationBean.service.id = 1;
     console.log(this.organizationBean);
     this.organizationService.saveOrganization({data: this.organizationBean}).subscribe(resp => {

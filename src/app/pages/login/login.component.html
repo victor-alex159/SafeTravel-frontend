@@ -1,17 +1,25 @@
-<div class="formulario">
+<div class="formulario animated fadeIn">
     <div id="=form">
         <form novalidate (submit)="login($event)">
             <div class="dx-fieldset">
                 <div class="dx-field">
                     <div class="dx-field-label">Usuario: </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="user.username" placeholder="Usuario" width="100%"></dx-text-box>
+                        <dx-text-box [(value)]="user.username" placeholder="Usuario" width="100%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Contraseña: </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="user.password" placeholder="Contraseña" mode="password" width="100%"></dx-text-box>
+                        <dx-text-box [(value)]="user.password" placeholder="Contraseña" mode="password" width="100%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">

@@ -1,36 +1,55 @@
-<div class="formulario">
+<div class="formulario animated fadeIn">
     <div id="form">
         <form novalidate (submit)="saveUser($event)">
             <div class="dx-fieldset">
                 <div class="dx-field">
                     <div class="dx-field-label">Nombre </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.name" placeholder="Nombre" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.name" placeholder="Nombre" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                         </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Apellido paterno </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.lastname" placeholder="Apellido paterno" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.lastname" placeholder="Apellido paterno" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Apellido materno </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.surname" placeholder="Apellido materno" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.surname" placeholder="Apellido materno" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
     
                 <div class="dx-field">
                     <div class="dx-field-label">Fecha de nacimiento </div>
                     <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" [(value)]="user.birthDate" width="30%" style="float: left;">
+                        <dx-validator>
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dx-validator>
                     </dx-date-box>
                 </div>
     
                 <div class="dx-field">
                     <div class="dx-field-label">DNI </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.documentNumber" placeholder="Número de documento" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.documentNumber" placeholder="Número de documento" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
 
@@ -42,9 +61,9 @@
                         <div *dxTemplate="let data of 'item'">
                             <div class='custom-item' [title]='data.name'>{{data.name}}</div>
                         </div>
-                        <!--<dx-validator>
+                        <dx-validator>
                             <dxi-validation-rule type="required"></dxi-validation-rule>
-                        </dx-validator>-->
+                        </dx-validator>
                     </dx-select-box>
                 </div>
                 </div>
@@ -52,7 +71,11 @@
                 <div class="dx-field" *ngIf="this.authService.hasRole('Administrador')">
                     <div class="dx-field-label">Posición </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.position" placeholder="Posición" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.position" placeholder="Posición" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
 
@@ -77,25 +100,41 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Usuario  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.username" placeholder="Usuario" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.username" placeholder="Usuario" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Password  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.password" placeholder="Password" width="50%" mode="password"></dx-text-box>
+                            <dx-text-box [(value)]="user.password" placeholder="Password" width="50%" mode="password">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Email  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.email" placeholder="Correo elecctrónico" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.email" placeholder="Correo elecctrónico" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">
                     <div class="dx-field-label">Celular  </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="user.phone" placeholder="Celular" width="50%"></dx-text-box>
+                            <dx-text-box [(value)]="user.phone" placeholder="Celular" width="50%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
                     </div>
                 </div>
                 <div class="dx-field">

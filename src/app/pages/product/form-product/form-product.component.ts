@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, enableProdMode } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
 import { ProductService } from 'src/app/services/product.service';
 import swal from 'sweetalert2'
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-form-product',
@@ -28,6 +29,7 @@ export class FormProductComponent implements OnInit {
   imagenEstado: boolean = false;
   selectedFiles: FileList;
   currentFileUpload: File;
+  urlImageSelected: any;
 
   constructor(
     private productService: ProductService,
@@ -116,9 +118,15 @@ export class FormProductComponent implements OnInit {
     this.imagenEstado = true;
   }
 
-  selectImage( evt: any ): void {
-    this.image = evt.target.files[0].name;
-    this.selectedFiles = evt.target.files;
+  selectImage( e: any ): void {
+    this.image = e.target.files[0].name;
+    this.selectedFiles = e.target.files;
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload= (e)=> {
+      this.urlImageSelected = e.target.result;
+    };
+    this.imagenEstado = false
   }
 
   

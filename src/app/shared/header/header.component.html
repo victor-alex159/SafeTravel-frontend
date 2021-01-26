@@ -41,31 +41,53 @@
     <div class="user">
         <dx-button *ngIf="!this.authService.isAthenticated()"
             stylingMode="contained"
-            text="INICIAR SESIÓN"
-            type="default"
-            [routerLink]="['/log/fl']"
-             style="background-color: #108083; margin-right: 3px;">
-        </dx-button>
-        <dx-button *ngIf="!this.authService.isAthenticated() || this.authService.hasRole('Administrador')"
-            stylingMode="contained"
             text="REGISTRARSE"
             type="default"
             [routerLink]="['/us/uf']"
+            style="background-color: #108083; margin-right: 3px;"
             style="background-color: #108083;">
         </dx-button>
-        <dx-button *ngIf="this.authService.isAthenticated()"
-            stylingMode="contained"
-            text={{this.usuario}}
-            type="default"
-            style="background-color: #108083; margin-right: 3px;">
+
+        <dx-button *ngIf="!this.authService.isAthenticated()"
+                        stylingMode="contained"
+                        text="INICIAR SESIÓN"
+                        type="default"
+                        [routerLink]="['/log/fl']"
+                         style="background-color: #108083; margin-right: 3px;">
         </dx-button>
-        <dx-button *ngIf="this.authService.isAthenticated()"
+
+        <dx-button *ngIf="this.authService.isAthenticated() && this.authService.hasRole('Administrador')"
             stylingMode="contained"
-            text='CERRAR SESIÓN'
+            text="REGISTRAR USUARIO"
             type="default"
-            (click)="logout()"
-            style="background-color: #108083; ">
+            style="background-color: #108083; margin-right: 3px;"
+            [routerLink]="['/us/uf']">
         </dx-button>
+
+        <div class="username">
+            <ul>
+                <li>
+                    <dx-button *ngIf="this.authService.isAthenticated()"
+                        stylingMode="contained"
+                        text={{this.usuario}}
+                        type="default"
+                        style="background-color: #108083; margin-right: 3px;margin-top: 10px;">
+                    </dx-button>
+                    <ul>
+                        <li>
+                            <dx-button *ngIf="this.authService.isAthenticated()"
+                                stylingMode="contained"
+                                text='CERRAR SESIÓN'
+                                type="default"
+                                (click)="logout()"
+                                style="background-color: #108083; margin-top: 0px;">
+                            </dx-button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
     </div>
 </div>
 <div class="logo">

@@ -4,43 +4,71 @@
             <div class="dx-field">
                 <div class="dx-field-label">Nombre de Organizacion: </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="organizationBean.name" placeholder="Nombre de organizacion" width="80%"></dx-text-box>
+                        <dx-text-box [(value)]="organizationBean.name" placeholder="Nombre de organizacion" width="80%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                     </div>
             </div>
             <div class="dx-field">
                 <div class="dx-field-label">RUC: </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="organizationBean.ruc" placeholder="Ruc" width="80%"></dx-text-box>
+                        <dx-text-box [(value)]="organizationBean.ruc" placeholder="Ruc" width="80%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                 </div>
             </div>
             <div class="dx-field">
                 <div class="dx-field-label">Dirección: </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="organizationBean.direction" placeholder="Dirección" width="80%"></dx-text-box>
+                        <dx-text-box [(value)]="organizationBean.direction" placeholder="Dirección" width="80%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                 </div>
             </div>
             <div class="dx-field">
                 <div class="dx-field-label">Teléfono: </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="organizationBean.phone" placeholder="Teléfono" width="80%"></dx-text-box>
+                        <dx-text-box [(value)]="organizationBean.phone" placeholder="Teléfono" width="80%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                 </div>
             </div>
             <div class="dx-field">
                 <div class="dx-field-label">Responsable de pago: </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="organizationBean.responsablePaymentName" placeholder="Responsable de pago: " width="80%"></dx-text-box>
+                        <dx-text-box [(value)]="organizationBean.responsablePaymentName" placeholder="Responsable de pago: " width="80%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                 </div>
             </div>
             <div class="dx-field">
                 <div class="dx-field-label">Celular del responsable de pago:  </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="organizationBean.responsablePaymentPhone" placeholder="Celular responsable de pago" width="80%"></dx-text-box>
+                        <dx-text-box [(value)]="organizationBean.responsablePaymentPhone" placeholder="Celular responsable de pago" width="80%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                 </div>
             </div>
             <div class="dx-field">
                 <div class="dx-field-label">Correo del responsable de pago:  </div>
                     <div class="dx-field-value">
-                        <dx-text-box [(value)]="organizationBean.responsablePaymentEmail" placeholder="Correo responsable de pago" width="80%"></dx-text-box>
+                        <dx-text-box [(value)]="organizationBean.responsablePaymentEmail" placeholder="Correo responsable de pago" width="80%">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
                 </div>
             </div>
             <div class="dx-field">
