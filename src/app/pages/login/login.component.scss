@@ -1,5 +1,6 @@
-::ng-deep body > app-root > app-main > div > div.main-container > div.container > app-login {
+::ng-deep body > app-root > app-main > div > div.main-container > div > app-login {
     width: 100% !important;
+    background-color: #F2F2F2;
 }
 dx-button {
     background-color: #108083 !important;
@@ -11,8 +12,30 @@ dx-button:hover {
 .formulario{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    background-color: #FFFFFF;
+    //justify-content: center;
     border: 1px solid #ccc;
-    box-shadow: 0px 2px 2px #ccc;
+    //box-shadow: 0px 2px 2px #ccc;
+    .image {
+        display: flex;
+        flex-direction: column;
+        //border: 1px solid #0d595c;
+        width: 50%;
+        .container-image {
+            width: 100%;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .container-form {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        //border: 1px solid #0d595c;
+        width: 50%;
+        padding: 45px;
+        .sign-in, h2 {
+            text-align: center;
+        }
+    }
 }

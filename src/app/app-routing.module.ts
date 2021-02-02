@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'pr', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) },
   { path: 'main', loadChildren: () => import('./pages/search-products/search-products.module').then(m=> m.SearchProductsModule) },
   { path: 'org', loadChildren: () => import('./pages/organization/organization.module').then(m => m.OrganizationModule) },
+  { path: 'inf', loadChildren: () => import('./pages/information/information.module').then(m => m.InformationModule) },
   { path: '**', redirectTo: 'main/sps' }
 ];
 
