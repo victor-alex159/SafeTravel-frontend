@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
+import { AuthService } from 'src/app/services/auth.service';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -24,23 +25,38 @@ export class ListProductsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private organizationService: OrganizationServiceService
+    private organizationService: OrganizationServiceService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit(): void {
     this.product = new ProductBean();
     this.organization = new OrganizationBean();
     //this.selectedProduct = new ProductBean();
-    this.getProductsByUserPrincipal();
-    this.getOrganizationByUserPrincipal();
+    this.getProducts();
   }
 
-  public getProductsByUserPrincipal() {
+  /* public getProductsByUserPrincipal() {
     this.productService.getProductsByUserPrincipal({})
       .subscribe((resp: any) => {
         this.productList = resp.datalist;
         console.log(this.productList);
       })
+  } */
+
+
+  public getProducts() {
+    if(this.authService.hasRole('Administrador')) {
+      this.productService.getAllProducts({}).subscribe(resp => {
+        this.productList = resp.datalist;
+      });
+    } else {
+      this.productService.getProductsByUserPrincipal({})
+      .subscribe((resp: any) => {
+        this.productList = resp.datalist;
+        console.log(this.productList);
+      })
+    }
   }
 
   public getOrganizationByUserPrincipal() {
@@ -72,19 +88,29 @@ export class ListProductsComponent implements OnInit {
     console.log(e);
     if(e == 'false') {
       this.showPopupProductForm = false
+      setTimeout(() => {
+        this.getProducts();
+      }, 1500);
     }
   }
   public onClosePopupFormEdit(e: any) {
     console.log(e);
     if(e == 'false') {
       this.showPopupProductFormEdit = false
+      setTimeout(() => {
+        this.getProducts();
+      }, 1500);
     }
   }
   public onClosePopupFormEditDetail(e: any) {
     console.log(e);
     if(e == 'false') {
       this.showPopupDetailForm = false
+      setTimeout(() => {
+        this.getProducts();
+      }, 1500);
     }
   }
+  
 
 }

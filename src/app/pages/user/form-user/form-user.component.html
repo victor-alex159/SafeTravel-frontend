@@ -53,22 +53,8 @@
                     </div>
                 </div>
 
-                <div class="dx-field" *ngIf="this.authService.hasRole('Administrador')">
-                <div class="dx-field-label">Organización *</div>
-                <div class="dx-field-value">
-                    <dx-select-box itemTemplate="item" [items]="organizationList" displayExpr="name" valueExpr="id" [searchEnabled]="true" placeholder="Organización"
-                        [(value)]="user.organizationId" width="60%">
-                        <div *dxTemplate="let data of 'item'">
-                            <div class='custom-item' [title]='data.name'>{{data.name}}</div>
-                        </div>
-                        <dx-validator>
-                            <dxi-validation-rule type="required"></dxi-validation-rule>
-                        </dx-validator>
-                    </dx-select-box>
-                </div>
-                </div>
 
-                <div class="dx-field" *ngIf="this.authService.hasRole('Administrador')">
+                <!-- <div class="dx-field" *ngIf="this.authService.hasRole('Administrador')">
                     <div class="dx-field-label">Posición </div>
                         <div class="dx-field-value">
                             <dx-text-box [(value)]="user.position" placeholder="Posición" width="50%">
@@ -77,16 +63,59 @@
                                 </dx-validator>
                             </dx-text-box>
                     </div>
+                </div> -->
+                <div class="dx-field" *ngIf="this.authService.hasRole('Administrador - Empresa')">
+                    <div class="dx-field-label">Posicion *</div>
+                    <div class="dx-field-value">
+                        <dx-select-box itemTemplate="item" [items]="typePosition" displayExpr="name" valueExpr="type" [searchEnabled]="true" placeholder="Posición"
+                            [(value)]="profile.type" width="60%">
+                            <div *dxTemplate="let data of 'item'">
+                                <div class='custom-item' [title]='data.name'>{{data.name}}</div>
+                            </div>
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-select-box>
+                    </div>
+                </div>
+                <div class="dx-field" *ngIf="this.authService.hasRole('Administrador')">
+                    <div class="dx-field-label">Posicion *</div>
+                    <div class="dx-field-value">
+                        <dx-select-box itemTemplate="item" [items]="typePosition" displayExpr="name" valueExpr="type" [searchEnabled]="true" placeholder="Posición"
+                            [(value)]="profile.type" width="60%">
+                            <div *dxTemplate="let data of 'item'">
+                                <div class='custom-item' [title]='data.name'>{{data.name}}</div>
+                            </div>
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-select-box>
+                    </div>
+                </div>
+
+                <div class="dx-field" *ngIf="this.authService.hasRole('Administrador') && profile.type == '2'">
+                    <div class="dx-field-label">Organización *</div>
+                    <div class="dx-field-value">
+                        <dx-select-box itemTemplate="item" [items]="organizationList" displayExpr="name" valueExpr="id" [searchEnabled]="true" placeholder="Organización"
+                            [(value)]="user.organizationId" width="60%">
+                            <div *dxTemplate="let data of 'item'">
+                                <div class='custom-item' [title]='data.name'>{{data.name}}</div>
+                            </div>
+                            <dx-validator>
+                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                            </dx-validator>
+                        </dx-select-box>
+                    </div>
                 </div>
 
                 <div class="dx-field">
                     <div class="dx-field-label">Género</div>
                     <div class="dx-field-value">
                         <div class="dx-field-label">Masculino
-                            <dx-check-box [(value)]="genderMale" style="float: none;"></dx-check-box>
+                            <dx-check-box [disabled]="genderFamele" [(value)]="genderMale" style="float: none;"></dx-check-box>
                         </div>
                         <div class="dx-field-label">Femenino
-                            <dx-check-box [(value)]="genderFamele" style="float: none;"></dx-check-box>
+                            <dx-check-box [disabled]="genderMale" [(value)]="genderFamele" style="float: none;"></dx-check-box>
                         </div>
                     </div>
                 </div>

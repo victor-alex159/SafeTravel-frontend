@@ -2,20 +2,10 @@
     <form novalidate (submit)="saveProduct($event)">
         <div class="dx-fieldset">
             <div class="dx-field">
-                <div class="dx-field-label">Tipo de producto: </div>
+                <div class="dx-field-label">Tipo de producto *</div>
                 <div class="dx-field-value">
-                    <dx-text-box [(value)]="product.type" placeholder="Tipo de producto" width="100%">
-                        <dx-validator>
-                            <dxi-validation-rule type="required"></dxi-validation-rule>
-                        </dx-validator>
-                    </dx-text-box>
-                </div>
-            </div>
-            <!--<div class="dx-field">
-                <div class="dx-field-label">Organización *</div>
-                <div class="dx-field-value">
-                    <dx-select-box itemTemplate="item" [items]="organizationList" displayExpr="name" valueExpr="id" [searchEnabled]="true" placeholder="Organización"
-                        [(value)]="product.organization.id">
+                    <dx-select-box id="typeProducts" (onValueChanged)="dateFromTypeProduct($event)" itemTemplate="item" [items]="typeProduct" displayExpr="name" valueExpr="name" [searchEnabled]="true" placeholder="Producto"
+                        [(value)]="product.type" width="60%">
                         <div *dxTemplate="let data of 'item'">
                             <div class='custom-item' [title]='data.name'>{{data.name}}</div>
                         </div>
@@ -24,7 +14,7 @@
                         </dx-validator>
                     </dx-select-box>
                 </div>
-            </div>-->
+            </div>
 
             <div class="dx-field">
                 <div class="dx-field-label">Nombre: </div>
@@ -59,8 +49,8 @@
                 </div>
             </div>
 
-            <div class="dx-field">
-                <label >Fecha de inicio: </label>
+            <div class="dx-field" *ngIf="isTypeHotel">
+                <label>Fecha de inicio: </label>
                 <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.startDate">
                     <dx-validator>
                         <dxi-validation-rule type="required"></dxi-validation-rule>
@@ -68,13 +58,25 @@
                 </dx-date-box>
             </div>
 
-            <div class="dx-field">
+            <div class="dx-field" *ngIf="isTypeHotel">
                 <label >Fecha de caducidad: </label>
                 <dx-date-box type="date" applyValueMode="instantly" [displayFormat]="date_format" [min]="START_DATE" [max]="END_DATE" toDate="true" width="120" [(value)]="product.endDate">
                     <dx-validator>
                         <dxi-validation-rule type="required"></dxi-validation-rule>
                     </dx-validator>
                 </dx-date-box>
+            </div>
+
+            <div *ngIf="isTypeHotel">
+                <h4>Tipos de Servicios</h4>
+                <div class="dx-field" *ngFor="let catalogDetail of listCatalogDetail">
+                        <div class="dx-field-value" style="float: left;">
+                                <div class="dx-field-label">
+                                        <dx-check-box [value]="catalogDetailCheck"></dx-check-box>
+                                        <p>{{catalogDetail.shortDescription}}</p>
+                                </div>
+                        </div>
+                </div>
             </div>
 
             <!--<div class="dx-field">

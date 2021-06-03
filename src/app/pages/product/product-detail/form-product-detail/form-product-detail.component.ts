@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
 import { ProductService } from 'src/app/services/product.service';
@@ -25,7 +26,8 @@ export class FormProductDetailComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private sanitization: DomSanitizer
+    private sanitization: DomSanitizer,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class FormProductDetailComponent implements OnInit {
         'Con éxito!',
         'success'
       )
+      this.router.navigate(['/pr/gap']);
     });
     this.closePopup.emit("false");
     e.preventDefault();

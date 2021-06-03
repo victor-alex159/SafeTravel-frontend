@@ -20,12 +20,22 @@ export class FormUserComponent implements OnInit {
   user: UserBean;
   client: ClientBean;
   organizationList: Array<OrganizationBean> = [];
+  profile: ProfileBean = new ProfileBean();
   date_format:string = 'dd/MM/yyyy';
   genderMale: boolean = false;
   genderFamele: boolean = false;
   START_DATE = new Date(1900, 0, 1);
   END_DATE = new Date(2060, 12, 31);
-
+  typePosition: any = [
+    {
+      type: 2,
+      name: 'Administrador - Empresa'
+    },
+    {
+      type: 3,
+      name: 'Usuario - Libre'
+    }
+  ];
 
   constructor(
     private userService: UserService,
@@ -51,12 +61,17 @@ export class FormUserComponent implements OnInit {
 
   public saveUser(e: any) {
     //const swal = require('sweetalert2');
-    let profile = new ProfileBean();
-    this.user.profile = profile;
-    if(!this.authService.hasRole('Administrador')) {
-      this.user.profile.id = 3;
+    this.user.profile = this.profile;
+    if(this.authService.hasRole('Administrador')) {
+      if(this.profile.type == '3'){
+        this.user.profile.id = +this.profile.type;
+      }
+
+      if(this.profile.type == '2') {
+        this.user.profile.id = +this.profile.type;
+      }
     } else {
-      this.user.profile.id = 2;
+      this.user.profile.id = +this.profile.type;
     }
     this.user.documentType="01";
     //this.user.organization.id = 1;
@@ -79,14 +94,4 @@ export class FormUserComponent implements OnInit {
 
     e.preventDefault();
   }
-
-  public selectGender() {
-    if(this.genderMale) {
-      this.genderFamele = false;
-    } 
-    if(this.genderFamele) {
-      this.genderMale = false;
-    }
-  }
-
 }

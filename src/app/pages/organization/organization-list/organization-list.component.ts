@@ -54,6 +54,9 @@ export class OrganizationListComponent implements OnInit {
     console.log(e);
     if(e == 'false') {
       this.showPopupOrganizationForm = false
+      setTimeout(() => {
+        this.getAllOrganization();
+      }, 1000);
     }
   }
 
@@ -61,6 +64,9 @@ export class OrganizationListComponent implements OnInit {
     console.log(e);
     if(e == 'false') {
       this.showPopupOrganizationFormEdit = false
+      setTimeout(() => {
+        this.getAllOrganization();
+      }, 1000);
     }
   }
 

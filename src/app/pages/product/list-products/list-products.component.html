@@ -1,7 +1,8 @@
 <div class="body animated fadeIn">
-    <h3>Organización: {{organization.name}}</h3>
+    <h3 *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')">PRODUCTOS</h3>
+    <h3 *ngIf="this.authService.hasRole('Administrador - Empresa')">Organización: {{organization.name}}</h3>
     <div class="table">
-        <dx-data-grid style="padding: 0;" *ngIf="productList.length>0" id="gridContainer" [showColumnLines]="true"
+        <dx-data-grid style="padding: 0;" *ngIf="productList" id="gridContainer" [showColumnLines]="true"
             [dataSource]="productList"
             [columnAutoWidth]="true"
             [showBorders]="true">
@@ -14,7 +15,7 @@
             <dxi-column dataField="name" caption="Empresa"> </dxi-column>
             <dxi-column dataField="type" caption="Tipo de empresa"> </dxi-column>
             <dxi-column dataField="emailAdmin" caption="Correo administrador"> </dxi-column>
-            <dxi-column dataField="ubication" caption="Responsable de pago"> </dxi-column>
+            <dxi-column dataField="ubication" caption="Dirección"> </dxi-column>
             <dxi-column dataField="startDate" caption="Fecha de inicio" dataType="date"> </dxi-column>
             <dxi-column dataField="endDate" caption="Fecha de caducidad" dataType="date"> </dxi-column>
             <dxi-column caption="Acciones" cellTemplate="actionCellTempalte">
@@ -27,7 +28,7 @@
             
         </dx-data-grid>
     </div>
-    <div class="button-add-product">
+    <div *ngIf="this.authService.hasRole('Administrador - Empresa')" class="button-add-product">
         <dx-button
         icon="add"
         text="Agregar Producto"

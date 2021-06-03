@@ -6,6 +6,12 @@ import { OrganizationServiceService } from 'src/app/services/organization-servic
 import { ProductService } from 'src/app/services/product.service';
 import swal from 'sweetalert2'
 import { element } from 'protractor';
+import { AuthService } from 'src/app/services/auth.service';
+import { ConstantsService } from 'src/app/services/constants.service';
+import { CatalogDetailBean } from 'src/app/Beans/CatalogDetailBean';
+import { CatalogBean } from 'src/app/Beans/CatalogBean';
+import { CatalogService } from 'src/app/services/catalog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-product',
@@ -30,11 +36,27 @@ export class FormProductComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   urlImageSelected: any;
+  isTypeHotel: boolean = false;
+  isTypeRestaurant: boolean = false;
+  isTypeMuseo: boolean = false;
+  typeProduct: any = [
+    {name: 'Hotel'},
+    {name: 'Restaurante'},
+    {name: 'Museo'},
+    
+  ];
+  catalogDetailBean: CatalogDetailBean;
+  listCatalogDetail: Array<CatalogDetailBean> = [];
+  catalogDetailCheck: boolean = false;
 
   constructor(
     private productService: ProductService,
     private organizationService: OrganizationServiceService,
     private sanitization: DomSanitizer,
+    public authService: AuthService,
+    public constantService: ConstantsService,
+    private catalogService: CatalogService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -99,6 +121,7 @@ export class FormProductComponent implements OnInit {
     e.preventDefault();
   }
 
+  
   public getProduct(productId: number) {
     let productBean = new ProductBean();
     productBean.id = productId;
@@ -127,6 +150,41 @@ export class FormProductComponent implements OnInit {
       this.urlImageSelected = e.target.result;
     };
     this.imagenEstado = false
+  }
+
+  public dateFromTypeProduct(e: any) {
+    switch(e.value) {
+      case this.constantService.TYPE_PRODUCT_HOTEL: {
+        this.isTypeHotel = true;
+        this.isTypeRestaurant = false;
+        this.isTypeMuseo = false;
+        this.getListCatalogByCatalogId();
+        break;
+      }
+      case this.constantService.TYPE_PRODUCT_RESTAURANT: {
+        this.isTypeRestaurant = true;
+        this.isTypeHotel = false;
+        this.isTypeMuseo = false;
+        break;
+      }
+      case this.constantService.TYPE_PRODUCT_MUSEO: {
+        this.isTypeMuseo = true;
+        this.isTypeRestaurant = false;
+        this.isTypeHotel = false;
+        break;
+      }
+    }
+
+  }
+
+  public getListCatalogByCatalogId() {
+    this.catalogDetailBean = new CatalogDetailBean();
+    this.catalogDetailBean.catalog = new CatalogBean();
+    this.catalogDetailBean.catalog.id = this.constantService.TYPE_SERVICES_HOTEL;
+    this.catalogService.getListCatalogDetailByCatalogId({data: this.catalogDetailBean})
+      .subscribe(resp => {
+        this.listCatalogDetail = resp.datalist;
+      });
   }
 
   
