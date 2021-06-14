@@ -34,7 +34,6 @@ export class ProductDetailComponent implements OnInit {
     this.product = new ProductBean();
     this.nameProduct = this.route.snapshot.paramMap.get('name');
     if(this.nameProduct != '' && this.nameProduct != null) {
-      console.log(this.nameProduct);
       this.searchProductDetailByName(this.nameProduct);
     }
   }

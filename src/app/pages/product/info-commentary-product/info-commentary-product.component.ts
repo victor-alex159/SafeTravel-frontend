@@ -72,10 +72,18 @@ export class InfoCommentaryProductComponent implements OnInit {
       product: productFromCommentary
     }
     if(this.authService.isAthenticated()) {
-      this.productService.saveCommentary({data})
-        .subscribe(resp => {
-          this.getListCommentaries();
-        });
+      if(this.commentary.description != undefined) {
+        if(this.commentary.description.trim() != '') {
+          this.productService.saveCommentary({data})
+            .subscribe(resp => {
+              this.getListCommentaries();
+            });
+        } else {
+          swal.fire('Ingrese un comentario', '','warning');
+        }
+      } else {
+        swal.fire('Ingrese un comentario', '','warning');
+      }
     } else {
       swal.fire('Debe registrarse o iniciar sesión para comentar', '','warning');
     }

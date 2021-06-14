@@ -59,7 +59,7 @@
                 </dx-text-area>
                 <dx-button style="height: 38%; margin: auto;"
                     stylingMode="contained"
-                    text="Enviar comentario"
+                    text="Publicar"
                     type="default"
                     width="25%"
                     (onClick)="saveCommentary()"
@@ -76,7 +76,7 @@
                         <label type="date">{{comment.createDate | date: 'dd-MM-yyyy hh:mm a'}}</label>
                     </div>
                 </div>
-                <div>
+                <div class="comment">
                     <dx-text-area [readOnly]="true" [height]="100" [width]="630" [(value)]="comment.description"></dx-text-area>
                 </div>
             </div>

@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  showButtons: boolean = false;
+  showNavBar: boolean = true;
+  showNavBarButton: boolean = false;
+
   menuItems = [
     {
       text: 'INCIO'
@@ -40,14 +44,22 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userBean = new UserBean();
-    this.usuario = `${this.authService.user.username }` + ' - ' + `${this.authService.user.position }`;
-    console.log(this.authService.user);
+    //this.usuario = `${this.authService.user.username }` + ' - ' + `${this.authService.user.position }`;
+    this.usuario = `${this.authService.user.username }`
+    if(window.screen.width <= 812) {
+      this.showNavBar = false;
+      this.showNavBarButton = true;
+    }
   }
   
   public logout() {
     this.authService.logout();
     swal.fire('Ha cerrado sesión', 'Correctamente', 'success');
     this.router.navigate(['/main/sps']);
+  }
+
+  public showButtonsHeader() {
+    this.showNavBar = !this.showNavBar;
   }
 
 }

@@ -38,10 +38,10 @@ export class ListHotelComponent implements OnInit {
       });
   }
 
-  public sendNameProduct() {
-    console.log(typeof this.nameProduct);
-    this.router.navigate(['/pr/gpd', this.nameProduct]);
+  public sendNameProduct(e: any) {
+    if(this.nameProduct != '') {
+      this.router.navigate(['/pr/gpd', this.nameProduct]);
+    }
+    e.preventDefault();
   }
-
-
 }

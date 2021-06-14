@@ -89,3 +89,47 @@ dx-button:hover {
         box-shadow: 0px 2px 6px #0d595c;
     }
 }
+@media (max-width: 812px) {
+    .row1 {
+        display: block;
+        .container-photos {
+            width: 100%;
+        }
+        .description {
+            width: 100%;
+        }
+    }
+    .row2 {
+        display: block;
+        .descripcion-product {
+            width: 100%;
+        }
+        .info-covid {
+            width: 100%;
+            height: auto;
+        }
+    }
+    .row3 {
+        .container-opinion {
+            width: 100%;
+            .commentary {
+                dx-button {
+                    width: 30% !important;
+                }
+            }
+            .list-commentaries {
+                display: inline-flex;
+                width: 100% !important;
+                .icon {
+                    width: 25%;
+                }
+                .comment{
+                    width: 75%;
+                    dx-text-area {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+}

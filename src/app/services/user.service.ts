@@ -35,4 +35,13 @@ export class UserService {
     return this.http.post<any>(`${this.url + '/gubi'}`, user, { headers: this.addAtuhorizationHeader() });
   }
 
+
+  public recoverPassword(user: any) {
+    return this.http.post<any>(`${this.url + '/scvfp'}`, user);
+  }
+
+  public changePasswordWithTokenPassword(user: any, tokenResetPassword: string) {
+    return this.http.post<any>(`${this.url + '/cpwt/' + tokenResetPassword}`, user);
+  }
+
 }

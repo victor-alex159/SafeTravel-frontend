@@ -1,68 +1,79 @@
 <div class="bodyHeader">
     
     <div class="navBar">
-        <ul style="list-style: none;">
-            <li>
-                <dx-button stylingMode="text" type="normal" text="INICIO" [routerLink]="['/sps']"></dx-button>
-            </li>
-            <li>
-                <dx-button stylingMode="text" type="normal" text="HOTELES" [routerLink]="['/pr/gpbh']"></dx-button>
-            </li>
-            <li>
-                <dx-button stylingMode="text" type="normal" text="RESTAURANTES" [routerLink]="['/pr/gpbr']"></dx-button>
-            </li>
-            <li>
-                <dx-button stylingMode="text" type="normal" text="SERVICIO"></dx-button>
-            </li>
-            <li>
-                <dx-button stylingMode="text" type="normal" text="CONTACTO"></dx-button>
-            </li>
-            <li>
-                <dx-button stylingMode="text" type="normal" text="NOSOTROS" [routerLink]="['/inf/about']"></dx-button>
-            </li>
-            <li>
-                <dx-button 
-                *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
-                        stylingMode="contained"
-                        text="PRODUCTOS"
-                        type="default"
-                        width="100%" [routerLink]="['/pr/gap']" stylingMode="text" type="normal"></dx-button>
-            </li>
-            <li>
-                <dx-button 
-                *ngIf="this.authService.hasRole('Administrador')"
-                        stylingMode="contained"
-                        text="ORGANIZACIONES"
-                        type="default"
-                        width="100%" [routerLink]="['/org/gao']" stylingMode="text" type="normal"></dx-button>
-            </li>
-        </ul>
+        <div *ngIf="showNavBar" class="container-navBar">
+            <ul style="list-style: none;">
+                <li>
+                    <dx-button stylingMode="text" type="normal" text="INICIO" [routerLink]="['/sps']"></dx-button>
+                </li>
+                <li>
+                    <dx-button stylingMode="text" type="normal" text="HOTELES" [routerLink]="['/pr/gpbh']"></dx-button>
+                </li>
+                <li>
+                    <dx-button stylingMode="text" type="normal" text="RESTAURANTES" [routerLink]="['/pr/gpbr']"></dx-button>
+                </li>
+                <li>
+                    <dx-button stylingMode="text" type="normal" text="SERVICIO"></dx-button>
+                </li>
+                <li>
+                    <dx-button stylingMode="text" type="normal" text="CONTACTO"></dx-button>
+                </li>
+                <li>
+                    <dx-button stylingMode="text" type="normal" text="NOSOTROS" [routerLink]="['/inf/about']"></dx-button>
+                </li>
+                <li>
+                    <dx-button 
+                    *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
+                            stylingMode="contained"
+                            text="PRODUCTOS"
+                            type="default"
+                            width="100%" [routerLink]="['/pr/gap']" stylingMode="text" type="normal"></dx-button>
+                </li>
+                <li>
+                    <dx-button 
+                    *ngIf="this.authService.hasRole('Administrador')"
+                            stylingMode="contained"
+                            text="ORGANIZACIONES"
+                            type="default"
+                            width="100%" [routerLink]="['/org/gao']" stylingMode="text" type="normal"></dx-button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div *ngIf="showNavBarButton" class="hidden-button">
+        <dx-button (click)="showButtonsHeader()" text="---" style="color: white;" type="button"></dx-button>
     </div>
     <div class="user">
-        <dx-button *ngIf="!this.authService.isAthenticated()"
-            stylingMode="contained"
-            text="REGISTRARSE"
-            type="default"
-            [routerLink]="['/us/uf']"
-            style="background-color: #108083; margin-right: 3px;"
-            style="background-color: #108083;">
-        </dx-button>
+        <div class="register1">
+            <dx-button *ngIf="!this.authService.isAthenticated()"
+                stylingMode="contained"
+                text="REGISTRARSE"
+                type="default"
+                [routerLink]="['/us/uf']"
+                style="background-color: #108083; margin-right: 3px;"
+                style="background-color: #108083;">
+            </dx-button>
+        </div>
 
-        <dx-button *ngIf="!this.authService.isAthenticated()"
-                        stylingMode="contained"
-                        text="INICIAR SESIÓN"
-                        type="default"
-                        [routerLink]="['/log/fl']"
-                         style="background-color: #108083; margin-right: 3px;">
-        </dx-button>
+        <div class="log-in">
+            <dx-button *ngIf="!this.authService.isAthenticated()"
+                            stylingMode="contained"
+                            text="INICIAR SESIÓN"
+                            type="default"
+                            [routerLink]="['/log/fl']"
+                             style="background-color: #108083; margin-right: 3px;">
+            </dx-button>
+        </div>
 
-        <dx-button *ngIf="this.authService.isAthenticated() && this.authService.hasRole('Administrador')"
-            stylingMode="contained"
-            text="REGISTRAR USUARIO"
-            type="default"
-            style="background-color: #108083; margin-right: 3px;"
-            [routerLink]="['/us/uf']">
-        </dx-button>
+        <div class="register2">
+            <dx-button *ngIf="this.authService.isAthenticated() && this.authService.hasRole('Administrador')"
+                stylingMode="contained"
+                text="REGISTRAR USUARIO"
+                type="default"
+                style="background-color: #108083; margin-right: 3px;"
+                [routerLink]="['/us/uf']">
+            </dx-button>
+        </div>
 
         <div class="username">
             <ul>
@@ -74,7 +85,7 @@
                         style="background-color: #108083; margin-right: 3px;margin-top: 10px;">
                     </dx-button>
                     <ul>
-                        <li>
+                        <li style="margin-left: -39px;">
                             <dx-button *ngIf="this.authService.isAthenticated()"
                                 stylingMode="contained"
                                 text='CERRAR SESIÓN'
@@ -92,5 +103,7 @@
 </div>
 <div class="logo">
     <!--<img src="../../../assets/image/logo.PNG" alt="">-->
-    <h2>SafeTravel.pe</h2>
+    <a [routerLink]="['/']">
+        <h2>SafeTravel.pe</h2>
+    </a>
 </div>

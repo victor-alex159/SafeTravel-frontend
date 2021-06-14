@@ -10,14 +10,14 @@ dx-button:hover {
 .body {
     display: flex;
     flex-direction: column;
-    margin-left: 25px;
+    margin-left: 9%;
 }
 .container-body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    //justify-content: center;
     .title {
         width: 100%;
     }
@@ -70,5 +70,46 @@ dx-button:hover {
             flex-direction: row;
             justify-content: center;
         }
+    }
+}
+@media (max-width: 812px) {
+    .body {
+        margin-left: 20%;
+        .search-button {
+            dx-button {
+                width: 30% !important;
+            }
+        }
+        .search-container {
+            .dx-field-value {
+                width: 100% !important;
+            }
+        }
+        .search-button {
+            dx-button {
+                width: 30%;
+            }
+        }
+    }
+    .caja {
+        width: 204px !important;
+        img {
+            height: 138px !important;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .caja {
+        width: 323px !important;
+        img {
+            height: 170px !important;
+        }
+    }
+}
+
+@media (min-width: 1800px) {
+    .body {
+        margin-left: 14%;
     }
 }

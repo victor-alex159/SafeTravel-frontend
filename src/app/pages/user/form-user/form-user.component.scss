@@ -25,3 +25,24 @@ dx-button:hover {
         }
     }
 }
+
+@media (max-width: 812px) {
+    #form {
+        width: 100% !important;
+        dx-button {
+            width: 30% !important;
+        }
+        dx-text-box {
+            width: 100% !important;
+        }
+        dx-date-box {
+            width: 58% !important;
+        }
+        dx-select-box {
+            width: 108% !important;
+        }
+        .dx-field-label {
+            width: auto;
+        }
+    }
+}

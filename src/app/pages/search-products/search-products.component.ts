@@ -55,16 +55,23 @@ export class SearchProductsComponent implements OnInit {
   public getAllProducts() {
     let product = new ProductBean();
     let listProducts: Array<any> = [];
+    let contHotels = 0;
+    let contRestaurants = 0;
     this.productService.getAllProducts({})
       .subscribe((resp: any) => {
         listProducts = resp.datalist;
-        console.log(resp.datalist);
         listProducts.forEach(prod => {
           if(this.constantsService.TYPE_PRODUCT_HOTEL == prod.type) {
-            this.listHotels.push(prod);
+            if(contHotels < 4) {
+              this.listHotels.push(prod);
+              contHotels++;
+            }
           }
           if(this.constantsService.TYPE_PRODUCT_RESTAURANT == prod.type) {
-            this.listRestaurants.push(prod);
+            if(contRestaurants < 4) {
+              this.listRestaurants.push(prod);
+              contRestaurants++;
+            }
           }
         });
         
@@ -101,9 +108,11 @@ export class SearchProductsComponent implements OnInit {
   }
   
 
-  public sendNameProduct() {
-    console.log(typeof this.nameProduct);
-    this.router.navigate(['/pr/gpd', this.nameProduct]);
+  public sendNameProduct(e: any) {
+    if(this.nameProduct != '') {
+      this.router.navigate(['/pr/gpd', this.nameProduct]);
+    }
+    e.preventDefault();
   }
 
 }

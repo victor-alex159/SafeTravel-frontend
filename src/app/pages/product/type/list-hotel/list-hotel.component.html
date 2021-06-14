@@ -1,6 +1,6 @@
 <div class="body">
     <div class="dx-fieldset formulario">
-        <form novalidate style="width: 100%">
+        <form id="form" novalidate (submit)="sendNameProduct($event)" style="width: 100%">
             <div class="search-container">
                 <div class="dx-field search">
                     <div class="dx-field-value">
@@ -15,7 +15,7 @@
                         stylingMode="contained"
                         text="Buscar"
                         type="default"
-                        (click)="sendNameProduct()"
+                        [useSubmitBehavior]="true"
                         width="20%">
                     </dx-button>
                 </div>

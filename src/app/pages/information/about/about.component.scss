@@ -34,12 +34,13 @@
         flex-direction: row;
         width: 100%;
         font-size: 18px;
-        .images {
+        .info2 {
             display: flex;
             flex-direction: column;
             width: 50%;
             border-left: 1px solid #0d595c;
             padding: 25px;
+            text-align: -webkit-center;
             h2{
                 text-align: center;
             }
@@ -50,7 +51,6 @@
                 box-shadow: 0px 1px 3px #0d595c;
                 width: 70%;
                 height: 70%;
-                align-self: center;
                 img {
                     width: 100%;
                 }
@@ -66,6 +66,32 @@
             h2{
                 text-align: center;
             }
+        }
+    }
+}
+@media (max-width: 812px) {
+    .container-info-images {
+        flex-direction: column !important;
+    }
+    .image-container {
+        height: 200px !important;
+    }
+    .information{
+        flex-direction: row !important;
+        width: 100% !important;
+        .container-info {
+            display: block;
+        }
+    }
+    .info2 {
+        flex-direction: row !important;
+        width: 100% !important;
+        .container-info2 {
+            display: block;
+        }
+        .hotel {
+            height: 200px !important;
+            width: 100% !important;
         }
     }
 }

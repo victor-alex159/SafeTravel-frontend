@@ -116,3 +116,73 @@ dx-button:hover {
 ::ng-deep .pagination .ngx-pagination .current  {
     background: #108083;
 }
+@media (max-width: 812px) {
+    .sideBar {
+        display: none !important;
+    }
+}
+
+@media (max-width: 719px) {
+    .sideBar {
+        display: none !important;
+    }
+    .body {
+        justify-content: center;
+    }
+    .search-container {
+        display: block;
+        text-align: -webkit-center;
+        .dx-field {
+            margin-right: 0px !important;
+        }
+        dx-date-box {
+            width: 63% !important;
+        }
+        dx-text-box {
+            width: 250px !important;
+        }
+    }
+    .search-button {
+        dx-button {
+            width: 45% !important;
+        }
+    }
+    .container-product {
+        width: 100% !important;
+        .caja {
+            display: block !important;
+            .image {
+                text-align: -webkit-center;
+                img {
+                    width: 204px !important;
+                    height: 138px !important;
+                }
+            }
+            .description {
+                width: 100% !important;
+                h3 {
+                    text-align: center;
+                }
+                p {
+                    font-size: smaller;
+                }
+            }
+            .logo {
+                height: 105px;
+                width: 200px;
+                line-height: 2;
+                dx-button {
+                    font-size: xx-small !important;
+                }
+                .address {
+                    font-size: smaller;
+                }
+            }
+        }
+    }
+    
+}
+
+@media (min-width: 1010px) {
+    
+}

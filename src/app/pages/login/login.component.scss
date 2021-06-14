@@ -39,3 +39,19 @@ dx-button:hover {
         }
     }
 }
+@media (max-width: 812px) {
+    .formulario {
+        dx-text-box {
+            width: 100% !important;
+        }
+        .image {
+            display: none;
+        }
+        .container-form {
+            width: 100%;
+        }
+        dx-button {
+            width: 50% !important;
+        }
+    }
+}

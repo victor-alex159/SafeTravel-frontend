@@ -23,8 +23,8 @@
         </div>
     </div>
     
-    <div class="dx-fieldset" style="padding: 8%; background-image: url('../../../assets/image/image-search.PNG'); background-repeat: no-repeat; background-position-x: right;">
-        <form novalidate>
+    <div class="dx-fieldset image-search">
+        <form id="form" novalidate (submit)="sendNameProduct($event)">
             <div class="dx-field">
                 <div class="dx-field-value">
                     <dx-text-box
@@ -45,7 +45,7 @@
                     stylingMode="contained"
                     text="Buscar"
                     type="default"
-                    (click)="sendNameProduct()"
+                    [useSubmitBehavior]="true"
                     width="20%">
                 </dx-button>
             </div>
@@ -63,9 +63,9 @@
                         <img class="animated fadeIn" style="height: 215px; width: 98%;"
                           [src]="products.imageFile">
                     </div>
-                      <div class="description">
-                          <h3>{{products.name}}</h3>
-                      </div>
+                    <div class="description">
+                        <h3>{{products.name}}</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,11 +75,13 @@
         <div class="container-product" *ngFor="let products of listRestaurants">
             <div class="dx-field product" *ngIf="products.type == 'Restaurante'">
                 <div class="caja">
-                    <img class="imgInfo animated fadeIn" style="height: 215px; width: 98%;"
-                      [src]="products.imageFile">
-                      <div class="description">
-                          <h3>{{products.name}}</h3>
-                      </div>
+                    <div class="imgInfo">
+                        <img class="animated fadeIn" style="height: 215px; width: 98%;"
+                          [src]="products.imageFile">
+                    </div>
+                    <div class="description">
+                        <h3>{{products.name}}</h3>
+                    </div>
                 </div>
             </div>
         </div>

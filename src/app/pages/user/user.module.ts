@@ -17,9 +17,11 @@ import { DxCheckBoxModule,
   DxListModule
   } from 'devextreme-angular';
 import { FormUserComponent } from './form-user/form-user.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
-  declarations: [FormUserComponent],
+  declarations: [FormUserComponent, RecoverPasswordComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

@@ -19,8 +19,8 @@ dx-button:hover {
     display: -ms-flexbox;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
-    margin-left: 25px;
+    //justify-content: center;
+    margin-left: 9%;
     .title {
         width: 100%;
     }
@@ -38,7 +38,7 @@ dx-button:hover {
     flex-direction: column;
     border: 1px solid #ccc;
     box-shadow: 0px 2px 6px #0d595c;
-    width: 400px;
+    width: 324px;
     margin: 5px;
     .imgInfo {
         display: flex;
@@ -47,6 +47,9 @@ dx-button:hover {
     .description {
         display: flex;
         flex-direction: column;
+        h3 {
+            text-align: center;
+        }
     }
 }
 .slider-container {
@@ -56,6 +59,44 @@ dx-button:hover {
     width: 97%;
     height: 500px;
     margin: auto;
+}
+
+.image-search {
+    padding: 8%; 
+    background-image: url('../../../assets/image/image-search.PNG'); 
+    background-repeat: no-repeat; 
+    background-position-x: right;
+}
+
+@media (max-width: 812px) and (max-width: 1024px) {
+    .products {
+        margin-left: 20%;
+    }
+    .slider-container {
+        height: 245px;
+    }
+    .image-search {
+        padding: 22%;
+        background-position-x: left;
+        .dx-field-value {
+            width: 100% !important;
+        }
+        dx-button {
+            width: 50% !important;
+        }
+    }
+    .caja {
+        width: 204px;
+        img {
+            height: 138px !important;
+        }
+    }
+}
+
+@media (min-width: 1800px) {
+    .products {
+        margin-left: 14%;
+    }
 }
 
 .box-slider {
