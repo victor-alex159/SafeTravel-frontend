@@ -26,16 +26,44 @@
         <div class="title">
             <h2>Restaurantes</h2>
         </div>
-        <div class="container-product" *ngFor="let restaurants of listRestaurant">
+        <div class="container-product" *ngFor="let restaurant of listRestaurant">
             <div class="dx-field product">
                 <div class="caja">
-                    <div class="imgInfo">
-                        <img class="animated fadeIn" style="height: 215px; width: 98%;"
-                          [src]="restaurants.imageFile">
+                    <div class="body-image-description">
+                        <div class="imgInfo">
+                            <img class="animated fadeIn" style="height: 215px; width: 98%;"
+                              [src]="restaurant.imageFile">
+                        </div>
+                        <div class="body-description">
+                            <div class="description">
+                                <div class="name-hotel">
+                                    <h3>{{restaurant.name}}</h3>
+                                </div>
+                                <div><hr/></div>
+                                <div class="ubication-hotel">
+                                    <h5>Ubicación: {{restaurant.ubication}}</h5>
+                                </div>
+                            </div>
+                            <div class="description2">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                                Dolorum alias nihil consectetur, magni illo, aperiam laudantium ducimus voluptates quaerat distinctio vero tenetur illum nemo nostrum recusandae harum quis facilis non?
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                                Dolorum alias nihil consectetur, magni illo, aperiam laudantium ducimus voluptates quaerat distinctio vero tenetur illum nemo nostrum recusandae harum quis facilis non?
+                            </div>
+                        </div>
                     </div>
-                      <div class="description">
-                          <h3>{{restaurants.name}}</h3>
-                      </div>
+                    <div class="services">
+                        <div class="list-services">
+                            <i class="fas fa-wifi" style="color: gray;"><span>WIFI</span></i>
+                            <i class="fas fa-utensils" style="color: wheat;"><span>Restaurante</span></i>
+                            <i class="fas fa-warehouse" style="color: steelblue;"><span>Cochera</span></i>
+                            <i class="fas fa-swimmer" style="color: lightblue;"><span>Piscinas</span></i>
+                            <i class="fas fa-dice" style="color: chocolate;"><span>Centros recreativos</span></i>
+                        </div>
+                        <div class="description-protocol">
+                            <h4>Cuenta con los protocolos de seguridad</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

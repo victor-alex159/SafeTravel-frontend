@@ -39,7 +39,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public search(e: any) {
-    this.productService.getListProductsDetail({data: this.product})
+    this.productService.getAllProductsByNameAndDates({data: this.product})
       .subscribe(resp => {
         this.productList = resp.data;
         this.productList.forEach(pd => {
@@ -56,7 +56,7 @@ export class ProductDetailComponent implements OnInit {
     let product = new ProductBean();
     console.log(name);
     product.name = name;
-    this.productService.getListProductsDetail({data: product})
+    this.productService.getAllProductsByNameAndDates({data: product})
       .subscribe(resp => {
         this.productList = resp.data;
         this.productList.forEach(pd => {

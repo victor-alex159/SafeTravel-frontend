@@ -1,15 +1,15 @@
 <div class="body animated fadeIn">
     <div class="row1">
         <div class="container-photos">
-            <div class="image" *ngIf="productDetail.id">
+            <div class="image" *ngIf="productBean.id">
                 <img class="imgInfo animated fadeIn" style="height: 240px; width: 242px;"
-                [src]="productDetail.imageFile">
+                [src]="productBean.imageFile">
             </div>
         </div>
         <div class="description">
             <h4>Dirección: {{productBean.ubication}}</h4>
             <hr/>
-            <h4>Precio: S/.{{productDetail.price}}</h4>
+            <h4>Precio: S/.{{productBean.price}}</h4>
             <hr/>
             <h4>Fecha de entrada: {{productBean.startDate}}</h4>
             <hr/>
@@ -20,7 +20,7 @@
     <div class="row2">
         <div class="descripcion-product">
             <h4>INFORMACIÓN</h4>
-            {{productDetail.description}}
+            {{productBean.long_description}}
         </div>
         <div class="info-covid">
             <div class="title-info-covid" style="text-align: center;">

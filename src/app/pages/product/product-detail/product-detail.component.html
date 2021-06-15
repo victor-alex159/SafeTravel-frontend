@@ -44,24 +44,24 @@
     </div>
     <div class="body-products">
         <div *ngIf="productList.length>0" class="products animated fadeIn">
-            <div class="container-product" *ngFor="let products of productList | paginate: { itemsPerPage: 5, currentPage: p }">
+            <div class="container-product" *ngFor="let product of productList | paginate: { itemsPerPage: 5, currentPage: p }">
                 <div class="dx-field product">
                     <div class="caja">
                         <div class="image">
                             <img class="imgInfo animated fadeIn" style="height: 240px; width: 242px;"
-                            [src]="products.imageFile">
+                            [src]="product.imageFile">
                         </div>
                         <div class="description">
-                            <h3>{{products.name}}</h3>
-                            <p>Entrada: {{products.startDate}} Salida: {{products.endDate}}</p>
+                            <h3>{{product.name}}</h3>
+                            <p>Entrada: {{product.startDate}} Salida: {{product.endDate}}</p>
                             <!--<p>{{products.description}}</p>-->
-                            <p>{{products.description}}</p>
+                            <p>{{product.description}}</p>
                             <p>Varlor 5 STARS</p>
-                            <p>S/.{{products.price}}</p>
+                            <p>S/.{{product.price}}</p>
                         </div>
                         <div class="logo">
                             <div class="address">
-                                <p>{{products.address}}</p>
+                                <p>{{product.ubication}}</p>
                             </div>
                             <div class="dx-field button">
                                 <dx-button 
@@ -69,7 +69,7 @@
                                 text="Ver oferta"
                                 type="default"
                                 width="70%"
-                                (click)="getProductId(products.productId)"
+                                (click)="getProductId(product.id)"
                                 [useSubmitBehavior]="true" icon="far fa-plus-square"></dx-button>
                             </div>
                         </div>

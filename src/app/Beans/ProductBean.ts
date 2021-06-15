@@ -15,4 +15,10 @@ export class ProductBean extends BaseBean {
     public endDate: Date;
     public startDateRequest: Date;
     public endDateRequest: Date;
+    public department: string;
+	public province: string;
+	public district: string;
+	public short_description: string;
+	public long_description: string;
+	public price: number;
 }

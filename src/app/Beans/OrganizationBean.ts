@@ -13,5 +13,5 @@ export class OrganizationBean extends BaseBean {
     public responsablePaymentPhone: string;
     public responsablePaymentEmail: string;
     public adminUserId: UserBean;
-
+    public photo: string;
 }

@@ -12,7 +12,7 @@ dx-button:hover {
 .body {
     display: flex;
     flex-direction: column;
-    margin-left: 9%
+    margin-left: 0px !important;
 }
 .container-body {
     display: -webkit-flex;
@@ -22,35 +22,104 @@ dx-button:hover {
     //justify-content: center;
     .title {
         width: 100%;
+        text-align: center;
     }
-    .product {
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .container-product img {
+    .container-product {
         display: flex;
         flex-direction: row;
-        border: 1px solid #ccc;
-        box-shadow: 0px 2px 6px #0d595c;
-        margin: 4px;
-    }
-    .caja {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #ccc;
-        box-shadow: 0px 2px 6px #0d595c;
-        width: 400px;
-        margin: 5px;
-        .imgInfo {
+        width: 100%;
+        justify-content: center;
+        background-image: url("../../../../../assets/image/paven.png");
+        .product {
+            background-color: #FFFF;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
-            flex-direction: column;
-        }
-        .description {
-            display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            width: 60%;
+            .caja {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid #ccc;
+                box-shadow: 0px 2px 6px #0d595c;
+                width: 100%;
+                height: 410px;
+                margin: 5px;
+                padding: 2%;
+                .imgInfo {
+                    display: flex;
+                    flex-direction: column;
+                    width: 30%;
+                    margin-top: 8px;
+                    img {
+                        display: flex;
+                        flex-direction: row;
+                        border: 1px solid #ccc;
+                        box-shadow: 0px 2px 6px #0d595c;
+                        margin: 4px;
+                    }
+                }
+                .body-description {
+                    display: flex;
+                    flex-direction: column;
+                    width: 70%;
+                    border: 1px solid #ccc;
+                    box-shadow: 0px 2px 6px #0d595c;
+                    height: 245px;
+                    margin-left: 22px;
+                    margin-bottom: 10px;
+                    .description {
+                        display: flex;
+                        flex-direction: column;
+                        //height: 40%;
+                        .name-hotel {
+                            flex-direction: row;
+                            text-align: center;
+                        }
+                        .ubication-hotel{
+                            flex-direction: row;
+                            padding: 2%;
+                        }
+                    }
+                    .description2 {
+                        display: flex;
+                        flex-direction: row;
+                        //height: 60%;
+                        padding: 2%;
+                        margin-top: -28px;
+                    }
+                }
+                .body-image-description {
+                    display: flex;
+                    flex-direction: row; 
+                }
+                .services {
+                    display: flex;
+                    flex-direction: column; 
+                    border: 1px solid #ccc;
+                    box-shadow: 0px 2px 6px #0d595c;
+                    padding: 2%;
+                    height: 120px;
+                    .list-services {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        i {
+                            margin-right: 7%;
+                            span {
+                                margin-left: 5px;
+                                color: black;
+                            }
+                        }
+                    }
+                    .description-protocol {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        margin-top: 16px;
+                    }
+                }
+            }
         }
     }
 }
@@ -82,6 +151,36 @@ dx-button:hover {
                 width: 100% !important;
             }
         }
+        .product {
+            width: 100% !important;
+        }
+        .body-image-description {
+            display: block !important;
+            .imgInfo {
+                width: 100% !important;
+                margin-top: 0px !important;
+            }
+            .body-description {
+                width: 100% !important;
+                margin-left: 0px !important;
+                height: auto !important;
+                .description2 {
+                    margin-top: -16px !important;
+                }
+            }
+        }
+        .services {
+            height: auto !important;
+            .list-services {
+                display: block !important;
+                i {
+                    margin-right: 5px !important;
+                }
+            }
+            .description-protocol {
+                text-align: -webkit-center;
+            }
+        }
         .search-button {
             dx-button {
                 width: 30% !important;
@@ -89,13 +188,14 @@ dx-button:hover {
         }
     }
     .caja {
-        width: 204px !important;
+        width: 95% !important;
+        height: 99% !important;
         img {
             height: 138px !important;
         }
     }
 }
-
+/* 
 @media (min-width: 1024px) {
     .caja {
         width: 323px !important;
@@ -103,7 +203,7 @@ dx-button:hover {
             height: 170px !important;
         }
     }
-}
+} */
 
 @media (min-width: 1800px) {
     .body {

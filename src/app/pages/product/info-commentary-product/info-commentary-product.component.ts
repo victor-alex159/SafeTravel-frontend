@@ -22,7 +22,7 @@ export class InfoCommentaryProductComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   productId: any;
   productDetail: ProductDetailBean;
-  productBean: ProductBean;
+  productBean: ProductBean = new ProductBean();
   user: UserBean;
   commentary: CommentaryBean;
   listCommentaries: Array<any> = [];
@@ -46,21 +46,13 @@ export class InfoCommentaryProductComponent implements OnInit {
   }
 
   public getProductDetailById(productId: number) {
-    let productDetail = new ProductDetailBean();
-    productDetail.product = new ProductBean();
     let product = new ProductBean();
     product.id = productId;
-    productDetail.product.id = productId;
     this.productService.getProductById({data: product})
       .subscribe(resp => {
         this.productBean = resp.data;
-      });
-    this.productService.getProductDetailByProductId({data: productDetail})
-      .subscribe(resp => {
-        this.productDetail = resp.data;
-        let objectURL = 'data:image/jpeg;base64,' + this.productDetail.image;
-        this.productDetail.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
-        console.log(this.productDetail);
+        let objectURL = 'data:image/jpeg;base64,' + this.productBean.image;
+        this.productBean.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
       });
   }
 
@@ -95,7 +87,6 @@ export class InfoCommentaryProductComponent implements OnInit {
     commentaryData.product.id = this.productId; 
     this.productService.getCommentaryByProductId({data: commentaryData})
       .subscribe(resp => {
-        console.log(resp);
         this.listCommentaries = resp.datalist;
       });
   }

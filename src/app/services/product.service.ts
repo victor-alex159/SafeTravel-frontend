@@ -47,6 +47,10 @@ export class ProductService {
   public getAllProducts(product: any) {
     return this.http.post<any>(`${this.urlProduct + '/gap'}`, product); 
   }
+  
+  public getAllProductsByNameAndDates(product: any) {
+    return this.http.post<any>(`${this.urlProduct + '/gpbnad'}`, product); 
+  }
 
   public getProductsByUserPrincipal(product: any) {
     return this.http.post<any>(`${this.urlProduct + '/gpbup'}`, product, {headers: this.addAtuhorizationHeader()});
