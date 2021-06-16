@@ -31,16 +31,20 @@
                 <div class="caja">
                     <div class="body-image-description">
                         <div class="imgInfo">
-                            <img class="animated fadeIn" style="height: 215px; width: 98%;"
-                              [src]="restaurant.imageFile">
+                            <a (click)="getProductId(restaurant.id)" style="cursor: pointer;">
+                                <img class="animated fadeIn" style="height: 215px; width: 98%;"
+                                  [src]="restaurant.imageFile">
+                            </a>
                         </div>
                         <div class="body-description">
                             <div class="description">
-                                <div class="name-hotel">
-                                    <h3>{{restaurant.name}}</h3>
+                                <div class="name-restaurant">
+                                    <a (click)="getProductId(restaurant.id)" style="cursor: pointer;">
+                                        <h3>{{restaurant.name}}</h3>
+                                    </a>
                                 </div>
                                 <div><hr/></div>
-                                <div class="ubication-hotel">
+                                <div class="ubication-restaurant">
                                     <h5>Ubicación: {{restaurant.ubication}}</h5>
                                 </div>
                             </div>

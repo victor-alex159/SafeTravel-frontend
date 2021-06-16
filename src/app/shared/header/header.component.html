@@ -1,109 +1,82 @@
 <div class="bodyHeader">
-    
+    <div class="logo">
+        <!--<img src="../../../assets/image/logo.PNG" alt="">-->
+        <a [routerLink]="['/']">
+            <h2>SafeTravel.pe</h2>
+        </a>
+    </div>
+
     <div class="navBar">
         <div *ngIf="showNavBar" class="container-navBar">
-            <ul style="list-style: none;">
-                <li>
-                    <dx-button stylingMode="text" type="normal" text="INICIO" [routerLink]="['/sps']"></dx-button>
-                </li>
-                <li>
-                    <dx-button stylingMode="text" type="normal" text="HOTELES" [routerLink]="['/pr/gpbh']"></dx-button>
-                </li>
-                <li>
-                    <dx-button stylingMode="text" type="normal" text="RESTAURANTES" [routerLink]="['/pr/gpbr']"></dx-button>
-                </li>
-                <li>
-                    <dx-button stylingMode="text" type="normal" text="SERVICIO"></dx-button>
-                </li>
-                <li>
-                    <dx-button stylingMode="text" type="normal" text="CONTACTO"></dx-button>
-                </li>
-                <li>
-                    <dx-button stylingMode="text" type="normal" text="NOSOTROS" [routerLink]="['/inf/about']"></dx-button>
-                </li>
-                <li>
-                    <dx-button 
-                    *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')"
-                            stylingMode="contained"
-                            text="PRODUCTOS"
-                            type="default"
-                            width="100%" [routerLink]="['/pr/gap']" stylingMode="text" type="normal"></dx-button>
-                </li>
-                <li>
-                    <dx-button 
-                    *ngIf="this.authService.hasRole('Administrador')"
-                            stylingMode="contained"
-                            text="ORGANIZACIONES"
-                            type="default"
-                            width="100%" [routerLink]="['/org/gao']" stylingMode="text" type="normal"></dx-button>
-                </li>
-            </ul>
+            <dx-button class="cool-link" [routerLink]="['/sps']">INICIO</dx-button>
+            <dx-button class="cool-link" type="normal" text="HOTELES" [routerLink]="['/pr/gpbh']"></dx-button>
+            <dx-button class="cool-link" type="normal" text="RESTAURANTES" [routerLink]="['/pr/gpbr']"></dx-button>
+            <dx-button class="cool-link" type="normal" text="SERVICIO"></dx-button>
+            <dx-button class="cool-link" type="normal" text="CONTACTO"></dx-button>
+            <dx-button class="cool-link" type="normal" text="NOSOTROS" [routerLink]="['/inf/about']"></dx-button>
+            <div *ngIf="this.authService.hasRole('Administrador - Empresa')" class="dropdown">
+                <dx-button class="dropbtn cool-link"
+                 text="ADMINISTRADOR EMPRESA" width="100%" type="normal"></dx-button>
+                <div class="dropdown-content">
+                    <a class="cool-link" [routerLink]="['/pr/gap']" stylingMode="text" type="normal">MIS PRODUCTOS</a>
+                </div>
+            </div>
+            <div *ngIf="this.authService.hasRole('Administrador')" class="dropdown">
+                <dx-button class="dropbtn cool-link"
+               text="ADMINISTRADOR" width="100%"></dx-button>
+                <div class="dropdown-content">
+                    <a class="cool-link" [routerLink]="['/org/gao']" type="normal">ORGANIZACIONES</a>
+                    <a class="cool-link" [routerLink]="['/pr/gap']" type="normal">PRODUCTOS</a>
+                </div>
+            </div>
         </div>
     </div>
     <div *ngIf="showNavBarButton" class="hidden-button">
-        <dx-button (click)="showButtonsHeader()" text="---" style="color: white;" type="button"></dx-button>
+        <i class="fas fa-bars" (click)="showButtonsHeader()" style="color: white;" type="button"></i>
     </div>
     <div class="user">
         <div class="register1">
-            <dx-button *ngIf="!this.authService.isAthenticated()"
-                stylingMode="contained"
+            <dx-button class="cool-link" *ngIf="!this.authService.isAthenticated()"
                 text="REGISTRARSE"
-                type="default"
                 [routerLink]="['/us/uf']"
-                style="background-color: #108083; margin-right: 3px;"
-                style="background-color: #108083;">
+                style="background-color: #108083; margin-right: 3px; color: #ffff;">
             </dx-button>
         </div>
 
         <div class="log-in">
-            <dx-button *ngIf="!this.authService.isAthenticated()"
+            <dx-button class="cool-link" *ngIf="!this.authService.isAthenticated()"
                             stylingMode="contained"
                             text="INICIAR SESIÓN"
                             type="default"
                             [routerLink]="['/log/fl']"
-                             style="background-color: #108083; margin-right: 3px;">
+                             style="background-color: #108083; margin-right: 3px; color: #ffff">
             </dx-button>
         </div>
 
         <div class="register2">
-            <dx-button *ngIf="this.authService.isAthenticated() && this.authService.hasRole('Administrador')"
-                stylingMode="contained"
+            <dx-button class="cool-link" *ngIf="this.authService.isAthenticated() && this.authService.hasRole('Administrador')"
                 text="REGISTRAR USUARIO"
-                type="default"
-                style="background-color: #108083; margin-right: 3px;"
+                style="background-color: #108083; margin-right: 3px; color: #ffff"
                 [routerLink]="['/us/uf']">
             </dx-button>
         </div>
 
         <div class="username">
-            <ul>
-                <li>
-                    <dx-button *ngIf="this.authService.isAthenticated()"
-                        stylingMode="contained"
-                        text={{this.usuario}}
-                        type="default"
-                        style="background-color: #108083; margin-right: 3px;margin-top: 10px;">
-                    </dx-button>
-                    <ul>
-                        <li style="margin-left: -39px;">
-                            <dx-button *ngIf="this.authService.isAthenticated()"
-                                stylingMode="contained"
-                                text='CERRAR SESIÓN'
-                                type="default"
-                                (click)="logout()"
-                                style="background-color: #108083; margin-top: 0px;">
-                            </dx-button>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="dropdown">
+                <dx-button class="dropbtn cool-link" *ngIf="this.authService.isAthenticated()"
+                    text={{this.usuario}}
+                    width="100%"
+                    style="background-color: #108083; margin-right: 3px;">
+                </dx-button>
+                <div class="dropdown-content">
+                    <a class="cool-link" *ngIf="this.authService.isAthenticated()"
+                        (click)="logout()"
+                        style="background-color: #108083; cursor: pointer; font-size: smaller;">CERRAR SESIÓN
+                    </a>
+                </div>
+            </div>
         </div>
         
     </div>
 </div>
-<div class="logo">
-    <!--<img src="../../../assets/image/logo.PNG" alt="">-->
-    <a [routerLink]="['/']">
-        <h2>SafeTravel.pe</h2>
-    </a>
-</div>
+

@@ -44,4 +44,8 @@ export class ListHotelComponent implements OnInit {
     }
     e.preventDefault();
   }
+
+  public getProductId(productId: number) {
+    this.router.navigate(['/pr/icp', productId]);
+  }
 }

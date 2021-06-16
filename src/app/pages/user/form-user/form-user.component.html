@@ -1,6 +1,12 @@
-<div class="formulario animated fadeIn">
-    <div id="form">
+<div class="animated fadeIn formulario">
+    <div class="image">
+        <div class="container-image">
+            <img src="../../../../assets/image/form-user-image.jpg" alt="">
+        </div>
+    </div>
+    <div class="container-form">
         <form novalidate (submit)="saveUser($event)">
+            <h3 style="text-align: center; padding: 5px;">REGÍSTRATE</h3>
             <div class="dx-fieldset">
                 <div class="dx-field">
                     <div class="dx-field-label">Nombre </div>
@@ -166,7 +172,7 @@
                             </dx-text-box>
                     </div>
                 </div>
-                <div class="dx-field">
+                <div class="dx-field" style="text-align: center;">
                     <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="20%"></dx-button>
                 </div>
             </div>

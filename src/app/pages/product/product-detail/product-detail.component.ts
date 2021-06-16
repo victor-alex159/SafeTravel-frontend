@@ -46,7 +46,6 @@ export class ProductDetailComponent implements OnInit {
           let objectURL = 'data:image/jpeg;base64,' + pd.image;
           pd.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
         });
-        console.log(this.productList);
       });
       this.p = 1;
     e.preventDefault();
@@ -63,7 +62,6 @@ export class ProductDetailComponent implements OnInit {
           let objectURL = 'data:image/jpeg;base64,' + pd.image;
           pd.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
         });
-        console.log(this.productList);
       });
       this.nameProduct = '';
   }
