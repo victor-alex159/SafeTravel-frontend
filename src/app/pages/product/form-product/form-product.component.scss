@@ -7,3 +7,7 @@ dx-button {
 dx-button:hover {
     background-color: #0d595c !important;
 }
+
+::ng-deep dxi-item {
+    margin-bottom: 10px !important;
+}

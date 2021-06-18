@@ -18,7 +18,7 @@ export class ProductBean extends BaseBean {
     public department: string;
 	public province: string;
 	public district: string;
-	public short_description: string;
-	public long_description: string;
+	public shortDescription: string;
+	public longDescription: string;
 	public price: number;
 }

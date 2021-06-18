@@ -1,33 +1,31 @@
 <div class="body animated fadeIn">
     <h3 *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')">PRODUCTOS</h3>
     <h3 *ngIf="this.authService.hasRole('Administrador - Empresa')">Organización: {{organization.name}}</h3>
-    <div class="table">
-        <dx-data-grid style="padding: 0;" *ngIf="productList" id="gridContainer" [showColumnLines]="true"
-            [dataSource]="productList"
-            [columnAutoWidth]="true"
-            [showBorders]="true">
+    <dx-data-grid style="padding: 0;" *ngIf="productList" id="gridContainer" [allowColumnResizing]="true" [allowColumnReordering]="true"
+        [dataSource]="productList"
+        [columnAutoWidth]="true"
+        [showBorders]="true">
+    
+        <dxo-paging [pageSize]="5"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
+    
+        <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
+        <dxi-column dataField="name" caption="Empresa"> </dxi-column>
+        <dxi-column dataField="type" caption="Tipo de empresa"> </dxi-column>
+        <dxi-column dataField="emailAdmin" caption="Correo administrador"> </dxi-column>
+        <dxi-column dataField="ubication" caption="Dirección"> </dxi-column>
+        <dxi-column dataField="startDate" caption="Fecha de inicio" dataType="date"> </dxi-column>
+        <dxi-column dataField="endDate" caption="Fecha de caducidad" dataType="date"> </dxi-column>
+        <dxi-column caption="Acciones" cellTemplate="actionCellTempalte">
+            <div *dxTemplate="let cell of 'actionCellTempalte'">
+                <!-- <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button> -->
+                <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
+                <dx-button icon="far fa-trash-alt"></dx-button>
+            </div>
+        </dxi-column>
         
-            <dxo-paging [pageSize]="10"></dxo-paging>
-            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
-            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
-        
-            <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
-            <dxi-column dataField="name" caption="Empresa"> </dxi-column>
-            <dxi-column dataField="type" caption="Tipo de empresa"> </dxi-column>
-            <dxi-column dataField="emailAdmin" caption="Correo administrador"> </dxi-column>
-            <dxi-column dataField="ubication" caption="Dirección"> </dxi-column>
-            <dxi-column dataField="startDate" caption="Fecha de inicio" dataType="date"> </dxi-column>
-            <dxi-column dataField="endDate" caption="Fecha de caducidad" dataType="date"> </dxi-column>
-            <dxi-column caption="Acciones" cellTemplate="actionCellTempalte">
-                <div *dxTemplate="let cell of 'actionCellTempalte'">
-                    <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button>
-                    <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
-                    <dx-button icon="far fa-trash-alt"></dx-button>
-                </div>
-            </dxi-column>
-            
-        </dx-data-grid>
-    </div>
+    </dx-data-grid>
     <div *ngIf="this.authService.hasRole('Administrador - Empresa')" class="button-add-product">
         <dx-button
         icon="add"
@@ -43,14 +41,14 @@
         [index]="1"
         (onClick)="showFormProduct()"></dx-speed-dial-action>-->
         
-<dx-popup title="Agregar detalle" [width]="500" [height]="640" *ngIf="showPopupDetailForm" [(visible)]="showPopupDetailForm" >
+<dx-popup title="Agregar detalle" [width]="800" [height]="640" *ngIf="showPopupDetailForm" [(visible)]="showPopupDetailForm" >
     <h3>{{productName}}</h3>
     <app-form-product-detail [productId]="selectedProduct.id" (closePopup)=onClosePopupFormEditDetail($event)></app-form-product-detail>
 </dx-popup>
 
-<dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="500" [height]="640" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
+<dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="550" [height]="640" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
     <app-form-product (closePopup)=onClosePopupFormEdit($event) [productId]="selectedProduct.id" ></app-form-product>
 </dx-popup>
-<dx-popup title="Producto" [width]="500" [height]="640" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
+<dx-popup title="Producto" [width]="550" [height]="640" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
     <app-form-product (closePopup)=onClosePopupForm($event)></app-form-product>
 </dx-popup>

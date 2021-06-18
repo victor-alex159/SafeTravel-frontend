@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
+import { AuthService } from 'src/app/services/auth.service';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
 
 
@@ -17,7 +18,8 @@ export class OrganizationListComponent implements OnInit {
   showPopupOrganizationFormEdit: boolean = false;
   organizationId: number;
   constructor(
-    private organizationService: OrganizationServiceService
+    private organizationService: OrganizationServiceService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
