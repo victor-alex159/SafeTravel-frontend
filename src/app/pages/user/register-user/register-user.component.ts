@@ -23,13 +23,15 @@ export class RegisterUserComponent implements OnInit {
   genderFamele: boolean = false;
   START_DATE = new Date(1900, 0, 1);
   END_DATE = new Date(2060, 12, 31);
-  typePosition: any = [
+  organizationBean: OrganizationBean;
+  organizationId: number;
+  typeUser: any = [
     {
-      type: 2,
-      name: 'Administrador - Organización'
+      type: '2',
+      name: 'Organización'
     },
     {
-      type: 3,
+      type: '3',
       name: 'Turista'
     }
   ];
@@ -43,6 +45,7 @@ export class RegisterUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = new UserBean();
+    this.organizationBean = new OrganizationBean();
     if(this.authService.hasRole('Administrador')) {
       this.getAllOrganizations();
     }
@@ -56,39 +59,33 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public saveUser(e: any) {
-    //const swal = require('sweetalert2');
     this.user.profile = this.profile;
-    if(this.authService.hasRole('Administrador')) {
-      if(this.profile.type == '3'){
-        this.user.profile.id = +this.profile.type;
-      }
-
-      if(this.profile.type == '2') {
-        this.user.profile.id = +this.profile.type;
-      }
-    } else {
-      this.user.profile.id = +this.profile.type;
-    }
+    this.user.profile.id = +this.profile.type;
     this.user.documentType="01";
-    //this.user.organization.id = 1;
     if(this.genderMale) {
       this.user.genderTypeId = "1";
     } else if(this.genderFamele) {
       this.user.genderTypeId = "2";
     }
-    this.userService.saveUser({data: this.user})
-    .subscribe(resp => {
-      if(this.user != null) {
+    if(this.profile.type == '2') {
+      this.organizationService.saveOrganization({data: this.organizationBean})
+      .subscribe(resp => {
+        this.organizationId = resp.data.id;
+        this.user.organizationId = this.organizationId;
+      });
+    }
+    setTimeout(() => {
+      this.userService.saveUser({data: this.user})
+      .subscribe(resp => {
         swal.fire(
-          'Usuario registrado correctamente!',
+          'Se ha registrado correctamente!',
           'Con éxito!',
           'success'
-        )
-      }
-      this.router.navigate(['/log/fl']);
-    });
-
-    e.preventDefault();
+          )
+          this.router.navigate(['/log/fl']);
+        });
+    }, 1000);
+      e.preventDefault();
   }
 
 }

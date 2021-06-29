@@ -74,21 +74,9 @@ export class FormUserComponent implements OnInit {
   }
 
   public saveUser(e: any) {
-    //const swal = require('sweetalert2');
     this.user.profile = this.profile;
-    if(this.authService.hasRole('Administrador')) {
-      if(this.profile.type == '3'){
-        this.user.profile.id = +this.profile.type;
-      }
-
-      if(this.profile.type == '2') {
-        this.user.profile.id = +this.profile.type;
-      }
-    } else {
-      this.user.profile.id = +this.profile.type;
-    }
+    this.user.profile.id = +this.profile.type;
     this.user.documentType="01";
-    //this.user.organization.id = 1;
     if(this.genderMale) {
       this.user.genderTypeId = "1";
     } else if(this.genderFamele) {

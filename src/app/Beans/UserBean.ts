@@ -4,7 +4,7 @@ import { ProfileBean } from './ProfileBean';
 
 export class UserBean extends BaseBean {
     public id: number;
-    public organizationId: string;
+    public organizationId: number;
     public documentType: string;
     public documentNumber: string;
     public genderTypeId: string;
