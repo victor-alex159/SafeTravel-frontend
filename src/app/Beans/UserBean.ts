@@ -18,4 +18,5 @@ export class UserBean extends BaseBean {
     public password: string;
     public email: string;
     public phone: string;
+    public photo: any;
 }

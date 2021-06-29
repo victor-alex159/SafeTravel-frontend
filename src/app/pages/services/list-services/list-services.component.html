@@ -1,0 +1,43 @@
+<div class="body animated fadeIn">
+    <h3 *ngIf="this.authService.hasRole('Administrador')">SERVICIOS</h3>
+    <dx-data-grid  style="padding: 0; margin: 0 auto;" *ngIf="listServices" id="gridContainer" [allowColumnResizing]="true" [allowColumnReordering]="true"
+        [dataSource]="listServices"
+        [columnAutoWidth]="true"
+        [showBorders]="true">
+    
+        <dxo-paging [pageSize]="5"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
+    
+        <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
+        <dxi-column caption="N°" [width]="80" cellTemplate="idxRowTemplate" [formItem]="{visible:false}"> </dxi-column>
+        <dxi-column dataField="code" [width]="100" caption="Código"> </dxi-column>
+        <dxi-column dataField="description" [width]="500" caption="Descripción"> </dxi-column>
+        <dxi-column caption="Acciones" [width]="100" cellTemplate="actionCellTempalte">
+            <div style="text-align: center;" *dxTemplate="let cell of 'actionCellTempalte'">
+                <!-- <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button> -->
+                <dx-button icon="fas fa-edit" (onClick)="editService(cell)"></dx-button>
+                <dx-button icon="far fa-trash-alt"></dx-button>
+            </div>
+        </dxi-column>
+        <div *dxTemplate="let cell of 'idxRowTemplate'">
+            <div>
+                {{cell.component.pageIndex() * cell.component.pageSize() + cell.rowIndex + 1}}
+            </div>
+        </div>
+    </dx-data-grid>
+    <div *ngIf="this.authService.hasRole('Administrador')" class="button-add-product">
+        <dx-button
+        icon="add"
+        text="Agregar Servicio"
+        (onClick)="showFormService()"
+        ></dx-button>
+    </div>
+</div>
+
+<dx-popup style="overflow: scroll !important;" title="Editar Servicio" [width]="440" [height]="240" *ngIf="showPopupServiceFormEdit" [(visible)]="showPopupServiceFormEdit" >
+    <app-form-service (closePopup)=onClosePopupFormEdit($event) [serviceId]="selectedService.id" ></app-form-service>
+</dx-popup>
+<dx-popup title="Registro de Servicio" [width]="440" [height]="240" *ngIf="showPopupServiceForm" [(visible)]="showPopupServiceForm">
+    <app-form-service (closePopup)=onClosePopupForm($event)></app-form-service>
+</dx-popup>

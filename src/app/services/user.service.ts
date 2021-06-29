@@ -26,6 +26,15 @@ export class UserService {
     return this.httpHeaders;
   }
 
+  private addAtuhorizationHeaderToFile() {
+    let token = this.authService.token;
+    let httpHeadersToFile = new HttpHeaders();
+    if(token != null) {
+      return httpHeadersToFile.append('Authorization', 'Bearer ' + token);
+    }
+    return httpHeadersToFile;
+  }
+
   public saveUser(user: any) {
     return this.http.post<any>(`${this.url + '/su'}`, user);
 
@@ -35,13 +44,38 @@ export class UserService {
     return this.http.post<any>(`${this.url + '/gubi'}`, user, { headers: this.addAtuhorizationHeader() });
   }
 
+  public getAllUsers(user: any) {
+    return this.http.post<any>(`${this.url + '/gau'}`, user, { headers: this.addAtuhorizationHeader() });
+  }
 
   public recoverPassword(user: any) {
     return this.http.post<any>(`${this.url + '/scvfp'}`, user);
   }
 
+  public changePassword(user: any) {
+    return this.http.post<any>(`${this.url + '/cp/'}`, user);
+  }
+
   public changePasswordWithTokenPassword(user: any, tokenResetPassword: string) {
     return this.http.post<any>(`${this.url + '/cpwt/' + tokenResetPassword}`, user);
+  }
+  
+  public getUserByUserSession(user: any) {
+    return this.http.post<any>(`${this.url + '/gubus/'}`, user,{ headers: this.addAtuhorizationHeader() });
+  }
+
+  public savePhoto(userBean: any, file?: File) {
+    let formData = new FormData();
+    formData.append('file', file);
+    const userBlob = new Blob([JSON.stringify(userBean)], { type: 'application/json' });
+    formData.append('userPhoto', userBlob);
+    return this.http.post<any>(`${this.url + '/sp'}`, formData, {headers: this.addAtuhorizationHeaderToFile()});
+  }
+
+  public getImageById(userId: number) {
+    return this.http.post<any>(`${this.url + '/gi/' + userId}`, {
+      responseType: 'blob'
+    });
   }
 
 }

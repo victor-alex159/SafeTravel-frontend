@@ -10,6 +10,7 @@
         <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
     
         <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
+        <dxi-column caption="N°"  [width]="50" cellTemplate="idxRowTemplate" [formItem]="{visible:false}"> </dxi-column>
         <dxi-column dataField="name" caption="Organización"> </dxi-column>
         <dxi-column dataField="ruc" caption="RUC"> </dxi-column>
         <dxi-column dataField="direction" caption="Dirección"> </dxi-column>
@@ -20,13 +21,17 @@
         <dxi-column dataField="createDate" caption="Fecha de creación" dataType="date" formatDate="dd/MM/yyyy"> </dxi-column>
         <dxi-column caption="Acciones" cellTemplate="actionCellTempalte">
             <div *dxTemplate="let cell of 'actionCellTempalte'">
-                <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
-                <dx-button icon="far fa-trash-alt"></dx-button>
+                <dx-button icon="fas fa-edit" (onClick)="selectOrganizationEdit(cell)"></dx-button>
+                <dx-button icon="far fa-trash-alt" (onClick)="deleteOrganization(cell)"></dx-button>
             </div>
         </dxi-column>
-        
+        <div *dxTemplate="let cell of 'idxRowTemplate'">
+            <div>
+                {{cell.component.pageIndex() * cell.component.pageSize() + cell.rowIndex + 1}}
+            </div>
+        </div>
     </dx-data-grid>
-    <div class="button-add-product">
+    <div class="button-add-organization">
         <dx-button
         icon="add"
         text="Agregar Organization"

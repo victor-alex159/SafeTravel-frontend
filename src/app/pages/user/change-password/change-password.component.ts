@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { UserService } from 'src/app/services/user.service';
 import swal from 'sweetalert2'
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-change-password',
@@ -34,6 +35,8 @@ export class ChangePasswordComponent implements OnInit {
   public changePassword(e: any) {
     if(this.user.password == this.userPassword) {
       this.passwordValidate = true;
+      let salt = bcrypt.genSaltSync(10);
+      this.user.password = bcrypt.hashSync(this.user.password, salt);
       this.userService.changePasswordWithTokenPassword({data: this.user}, this.tokenResetPassword)
         .subscribe(resp => {
           if(resp.data != null) {

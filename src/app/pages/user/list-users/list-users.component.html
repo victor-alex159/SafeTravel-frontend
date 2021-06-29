@@ -1,0 +1,49 @@
+<div class="body animated fadeIn">
+    <h3 *ngIf="this.authService.hasRole('Administrador')">USUARIOS</h3>
+    <dx-data-grid  style="padding: 0;" *ngIf="listUsers" id="gridContainer" [allowColumnResizing]="true" [allowColumnReordering]="true"
+        [dataSource]="listUsers"
+        [columnAutoWidth]="true"
+        [showBorders]="true">
+    
+        <dxo-paging [pageSize]="5"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
+    
+        <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
+        <dxi-column caption="N°" [width]="50" cellTemplate="idxRowTemplate" [formItem]="{visible:false}"> </dxi-column>
+        <dxi-column dataField="profile.longDescription" [width]="200" caption="Tipo de usuario"> </dxi-column>
+        <dxi-column dataField="name" [width]="150" caption="Nombres"> </dxi-column>
+        <dxi-column dataField="lastname" [width]="150" caption="Apellido Paterno"> </dxi-column>
+        <dxi-column dataField="surname" [width]="150" caption="Apellido Materno"> </dxi-column>
+        <dxi-column dataField="documentNumber" [width]="150" caption="N° de documento"> </dxi-column>
+        <dxi-column dataField="username" [width]="200" caption="Usuario"> </dxi-column>
+        <dxi-column dataField="email" [width]="250" caption="Correo"> </dxi-column>
+        <dxi-column dataField="phone" [width]="100" caption="Celular"> </dxi-column>
+        <dxi-column caption="Acciones" [width]="100" cellTemplate="actionCellTempalte">
+            <div style="text-align: center;" *dxTemplate="let cell of 'actionCellTempalte'">
+                <!-- <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button> -->
+                <dx-button icon="fas fa-edit" (onClick)="editUser(cell)"></dx-button>
+                <dx-button icon="far fa-trash-alt"></dx-button>
+            </div>
+        </dxi-column>
+        <div *dxTemplate="let cell of 'idxRowTemplate'">
+            <div>
+                {{cell.component.pageIndex() * cell.component.pageSize() + cell.rowIndex + 1}}
+            </div>
+        </div>
+    </dx-data-grid>
+    <div *ngIf="this.authService.hasRole('Administrador')" class="button-add-user">
+        <dx-button
+        icon="add"
+        text="Agregar Usuario"
+        (onClick)="showFormUser()"
+        ></dx-button>
+    </div>
+</div>
+
+<dx-popup style="overflow: scroll !important;" title="Editar usuario" [width]="570" [height]="585" *ngIf="showPopupUserFormEdit" [(visible)]="showPopupUserFormEdit" >
+    <app-form-user (closePopup)=onClosePopupFormEdit($event) [userId]="selectedUser.id" ></app-form-user>
+</dx-popup>
+<dx-popup title="Registro de usuario" [width]="570" [height]="585" *ngIf="showPopupUserForm" [(visible)]="showPopupUserForm">
+    <app-form-user (closePopup)=onClosePopupForm($event)></app-form-user>
+</dx-popup>

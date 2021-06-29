@@ -40,7 +40,27 @@
 
 <div class="body">
     <div class="sideBar">
-        <app-side-bar></app-side-bar>
+        <div class="bodySideBar animated fadeIn">
+            <h4>BIOSEGURIDAD</h4>
+            <div class="dx-field">
+                    <div class="dx-field-value">
+                            <div class="dx-field-label">
+                                    <dx-check-box [value]="false"></dx-check-box>
+                                    <p>Establecimientos que tomaron<br> medidas de seguridad</p>
+                            </div>
+                    </div>
+            </div>
+            <h4>Servicios</h4>
+            <div class="email-card">
+                    <hr>
+                            <!-- <dx-text-box [height]="50" [(value)]="this.dataObservation"></dx-text-box> -->
+                    <dx-list [dataSource]="listServices" [height]="560" [showSelectionControls]="true" selectionMode="multiple" valueExpr="code" [(selectedItems)]="listServiceSelected">
+                            <div *dxTemplate="let data of 'item'" style="padding-bottom: 1px;padding-top: 1px;border-bottom:1px solid #ddd">
+                            <p> {{data.description}} </p>
+                            </div>
+                    </dx-list>
+            </div>
+        </div>
     </div>
     <div class="body-products">
         <div *ngIf="productList.length>0" class="products animated fadeIn">

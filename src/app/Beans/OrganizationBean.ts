@@ -5,7 +5,6 @@ import { UserBean } from './UserBean';
 export class OrganizationBean extends BaseBean {
     public id: number;
     public name: string;
-    public service: ServiceBean;
     public ruc: string;
     public direction: string;
     public phone: string;

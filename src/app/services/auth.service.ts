@@ -14,6 +14,7 @@ export class AuthService {
   private _token: string;
 
   credentials = btoa('tallerProject' + ':' + 'taller');
+  //credentials = btoa('safetravel' + ':' + 'fivesolutions');
 
   urlEndpoint: string = `${this.sharedService.url + '/oauth/token'}`;
   

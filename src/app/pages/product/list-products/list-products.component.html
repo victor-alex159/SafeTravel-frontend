@@ -1,6 +1,7 @@
 <div class="body animated fadeIn">
-    <h3 *ngIf="this.authService.hasRole('Administrador') || this.authService.hasRole('Administrador - Empresa')">PRODUCTOS</h3>
-    <h3 *ngIf="this.authService.hasRole('Administrador - Empresa')">Organización: {{organization.name}}</h3>
+    <h2 *ngIf="this.authService.hasRole('Administrador - Organizacion')">{{organization.name}}</h2>
+    <h3 *ngIf=" this.authService.hasRole('Administrador - Organizacion')">MIS EMPRESAS</h3>
+    <h3 *ngIf="this.authService.hasRole('Administrador')">EMPRESAS DE ORGANIZACIONES</h3>
     <dx-data-grid style="padding: 0;" *ngIf="productList" id="gridContainer" [allowColumnResizing]="true" [allowColumnReordering]="true"
         [dataSource]="productList"
         [columnAutoWidth]="true"
@@ -11,6 +12,7 @@
         <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" placeholder="Buscar.."></dxo-search-panel>
     
         <!--<dxi-column dataField="image" caption="Imagen"> </dxi-column>-->
+        <dxi-column caption="N°"  [width]="50" cellTemplate="idxRowTemplate" [formItem]="{visible:false}"> </dxi-column>
         <dxi-column dataField="name" caption="Empresa"> </dxi-column>
         <dxi-column dataField="type" caption="Tipo de empresa"> </dxi-column>
         <dxi-column dataField="emailAdmin" caption="Correo administrador"> </dxi-column>
@@ -21,10 +23,14 @@
             <div *dxTemplate="let cell of 'actionCellTempalte'">
                 <!-- <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button> -->
                 <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
-                <dx-button icon="far fa-trash-alt"></dx-button>
+                <dx-button *ngIf="this.authService.hasRole('Administrador - Organizacion')" icon="far fa-trash-alt"></dx-button>
             </div>
         </dxi-column>
-        
+        <div *dxTemplate="let cell of 'idxRowTemplate'">
+            <div>
+                {{cell.component.pageIndex() * cell.component.pageSize() + cell.rowIndex + 1}}
+            </div>
+        </div>
     </dx-data-grid>
     <div *ngIf="this.authService.hasRole('Administrador - Empresa')" class="button-add-product">
         <dx-button
@@ -41,10 +47,10 @@
         [index]="1"
         (onClick)="showFormProduct()"></dx-speed-dial-action>-->
         
-<dx-popup title="Agregar detalle" [width]="800" [height]="640" *ngIf="showPopupDetailForm" [(visible)]="showPopupDetailForm" >
+<!-- <dx-popup title="Agregar detalle" [width]="800" [height]="640" *ngIf="showPopupDetailForm" [(visible)]="showPopupDetailForm" >
     <h3>{{productName}}</h3>
     <app-form-product-detail [productId]="selectedProduct.id" (closePopup)=onClosePopupFormEditDetail($event)></app-form-product-detail>
-</dx-popup>
+</dx-popup> -->
 
 <dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="550" [height]="640" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
     <app-form-product (closePopup)=onClosePopupFormEdit($event) [productId]="selectedProduct.id" ></app-form-product>

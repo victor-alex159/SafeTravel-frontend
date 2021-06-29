@@ -53,8 +53,13 @@ export class ListProductsComponent implements OnInit {
     } else {
       this.productService.getProductsByUserPrincipal({})
       .subscribe((resp: any) => {
-        this.productList = resp.datalist;
-        console.log(this.productList);
+        if(resp.datalist != null) {
+          this.productList = resp.datalist;
+          this.organizationService.getOrganizationById({data: this.productList[0].organization})
+            .subscribe(org => {
+              this.organization.name = org.data.name;
+            });
+        }
       })
     }
   }
@@ -74,7 +79,6 @@ export class ListProductsComponent implements OnInit {
     let productSelected: ProductBean = e.data;
     this.selectedProduct = JSON.parse(JSON.stringify(productSelected));
     this.productName = this.selectedProduct.name;
-    console.log(this.selectedProduct);
     this.showPopupDetailForm = true;
   }
   public selectProductEdit(e:any) {
@@ -85,7 +89,6 @@ export class ListProductsComponent implements OnInit {
   }
 
   public onClosePopupForm(e: any) {
-    console.log(e);
     if(e == 'false') {
       this.showPopupProductForm = false
       setTimeout(() => {
@@ -94,7 +97,6 @@ export class ListProductsComponent implements OnInit {
     }
   }
   public onClosePopupFormEdit(e: any) {
-    console.log(e);
     if(e == 'false') {
       this.showPopupProductFormEdit = false
       setTimeout(() => {
@@ -103,7 +105,6 @@ export class ListProductsComponent implements OnInit {
     }
   }
   public onClosePopupFormEditDetail(e: any) {
-    console.log(e);
     if(e == 'false') {
       this.showPopupDetailForm = false
       setTimeout(() => {

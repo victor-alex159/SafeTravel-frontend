@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
+import { ServiceBean } from 'src/app/Beans/ServiceBean';
 import { ProductService } from 'src/app/services/product.service';
+import { ServiceService } from 'src/app/services/service.service';
 import { SearchProductsComponent } from '../../search-products/search-products.component';
 
 
@@ -22,23 +24,43 @@ export class ProductDetailComponent implements OnInit {
   nameProduct: string = '';
   p: number = 1;
   imagenData: any;
+  listServices: Array<ServiceBean> = [];
+  listServiceSelected: Array<any> = [];
+
   constructor(
     private productService: ProductService,
     private router: Router,
     private sanitization: DomSanitizer,
+    private serviceService: ServiceService,
     private route: ActivatedRoute
 
   ) { }
 
   ngOnInit(): void {
     this.product = new ProductBean();
+    this.getAllServices();
     this.nameProduct = this.route.snapshot.paramMap.get('name');
     if(this.nameProduct != '' && this.nameProduct != null) {
       this.searchProductDetailByName(this.nameProduct);
     }
   }
 
+  public getAllServices() {
+    let service = new ServiceBean();
+    this.serviceService.getAllServices({data: service}).subscribe(resp => {
+      this.listServices = resp.datalist;
+      console.log(this.listServices)
+    });
+  }
+
   public search(e: any) {
+    if(this.listServiceSelected.length>0) {
+      let servicesCodes = '';
+      this.listServiceSelected.forEach(service => {
+        servicesCodes = servicesCodes + service.code.concat(',');
+      });
+      this.product.serviceId = servicesCodes.substring(0, servicesCodes.length-1);
+    }
     this.productService.getAllProductsByNameAndDates({data: this.product})
       .subscribe(resp => {
         this.productList = resp.data;
@@ -47,6 +69,7 @@ export class ProductDetailComponent implements OnInit {
           pd.imageFile = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
         });
       });
+      this.product.serviceId = '';
       this.p = 1;
     e.preventDefault();
   }

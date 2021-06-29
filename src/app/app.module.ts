@@ -27,6 +27,7 @@ import { SearchProductsModule } from './pages/search-products/search-products.mo
 import { ProductModule } from './pages/product/product.module';
 import { OrganizationModule } from './pages/organization/organization.module';
 import { LoginModule } from './pages/login/login.module';
+import { ServicesModule } from './pages/services/services.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { LoginModule } from './pages/login/login.module';
     ProductModule,
     SearchProductsModule,
     UserModule,
+    ServicesModule,
     FontAwesomeModule,
     NgxPaginationModule,
     DevExtremeModule,

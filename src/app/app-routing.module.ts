@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: '**', redirectTo: 'sps' }*/
 
   { path: 'log', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+  { path: 'services', loadChildren: () => import('./pages/services/services.module').then(m => m.ServicesModule) },
   { path: 'us', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
   { path: 'pr', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) },
   { path: 'main', loadChildren: () => import('./pages/search-products/search-products.module').then(m=> m.SearchProductsModule) },

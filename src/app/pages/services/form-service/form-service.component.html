@@ -1,0 +1,61 @@
+<div id="form">
+    <form novalidate (submit)="save($event)">
+        <dx-scroll-view direction="vertical">
+            <dx-responsive-box singleColumnScreen="xs sm" style="padding: 2%;">
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+    
+                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
+
+                <dxi-item>
+                    <dxi-location [row]="0" [col]="0" screen="md lg" [colspan]="2"></dxi-location>
+                    <dxi-location [row]="0" [col]="0" screen="xs sm"></dxi-location>
+                    <div class="dx-field">
+                        <div class="dx-field-label">Código: </div>
+                        <div class="dx-field-value">
+                            <dx-text-box [(value)]="service.code" placeholder="Código" width="100%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
+                        </div>
+                    </div>
+                </dxi-item>
+    
+                <dxi-item>
+                    <dxi-location [row]="1" [col]="0" screen="md lg" [colspan]="2"></dxi-location>
+                    <dxi-location [row]="1" [col]="0" screen="xs sm"></dxi-location>
+                    <div class="dx-field">
+                        <div class="dx-field-label">Descripción: </div>
+                        <div class="dx-field-value">
+                            <dx-text-box [(value)]="service.description" placeholder="Descripción" width="100%">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
+                        </div>
+                    </div>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location [row]="2" [col]="0" screen="md lg" [colspan]="2"></dxi-location>
+                    <dxi-location [row]="2" [col]="0" screen="xs sm"></dxi-location>
+                    <div class="dx-field" style="text-align: center !important; line-height: 5;">
+                        <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="40%"></dx-button>
+                    </div>
+                </dxi-item>
+
+            </dx-responsive-box>
+        </dx-scroll-view>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    width: 86%;
+    margin: 0 auto;
+    .table {
+        display: flex;
+        flex-direction: row;
+    }
+    .button-add-user {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}

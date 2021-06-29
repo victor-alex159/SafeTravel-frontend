@@ -43,5 +43,9 @@ export class OrganizationServiceService {
     return this.http.post<any>(`${this.url + '/gobi'}`, organization, { headers: this.addAtuhorizationHeader() });
   }
 
+  public deleteOrganization(organization: any) {
+    return this.http.post<any>(`${this.url + '/dobi'}`, organization, { headers: this.addAtuhorizationHeader() });
+  }
+
 
 }

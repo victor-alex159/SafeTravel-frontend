@@ -11,14 +11,13 @@
             <dx-button class="cool-link" [routerLink]="['/sps']">INICIO</dx-button>
             <dx-button class="cool-link" type="normal" text="HOTELES" [routerLink]="['/pr/gpbh']"></dx-button>
             <dx-button class="cool-link" type="normal" text="RESTAURANTES" [routerLink]="['/pr/gpbr']"></dx-button>
-            <dx-button class="cool-link" type="normal" text="SERVICIO"></dx-button>
             <dx-button class="cool-link" type="normal" text="CONTACTO"></dx-button>
             <dx-button class="cool-link" type="normal" text="NOSOTROS" [routerLink]="['/inf/about']"></dx-button>
-            <div *ngIf="this.authService.hasRole('Administrador - Empresa')" class="dropdown">
+            <div *ngIf="this.authService.hasRole('Administrador - Organizacion')" class="dropdown">
                 <dx-button class="dropbtn cool-link"
-                 text="ADMINISTRADOR EMPRESA" width="100%" type="normal"></dx-button>
+                 text="ADMINISTRADOR ORGANIZACIÓN" width="100%" type="normal"></dx-button>
                 <div class="dropdown-content">
-                    <a class="cool-link" [routerLink]="['/pr/gap']" stylingMode="text" type="normal">MIS PRODUCTOS</a>
+                    <a class="cool-link" [routerLink]="['/pr/gap']" stylingMode="text" type="normal">MIS EMPRESAS</a>
                 </div>
             </div>
             <div *ngIf="this.authService.hasRole('Administrador')" class="dropdown">
@@ -26,7 +25,9 @@
                text="ADMINISTRADOR" width="100%"></dx-button>
                 <div class="dropdown-content">
                     <a class="cool-link" [routerLink]="['/org/gao']" type="normal">ORGANIZACIONES</a>
-                    <a class="cool-link" [routerLink]="['/pr/gap']" type="normal">PRODUCTOS</a>
+                    <a class="cool-link" [routerLink]="['/pr/gap']" type="normal">EMPRESAS DE ORGANIZACIONES</a>
+                    <a class="cool-link" [routerLink]="['/services']" type="normal">SERVICIOS</a>
+                    <a class="cool-link" [routerLink]="['/us/list-users']" type="normal">USUARIOS</a>
                 </div>
             </div>
         </div>
@@ -38,7 +39,7 @@
         <div class="register1">
             <dx-button class="cool-link" *ngIf="!this.authService.isAthenticated()"
                 text="REGISTRARSE"
-                [routerLink]="['/us/uf']"
+                [routerLink]="['/us/register-user']"
                 style="background-color: #108083; margin-right: 3px; color: #ffff;">
             </dx-button>
         </div>
@@ -57,7 +58,7 @@
             <dx-button class="cool-link" *ngIf="this.authService.isAthenticated() && this.authService.hasRole('Administrador')"
                 text="REGISTRAR USUARIO"
                 style="background-color: #108083; margin-right: 3px; color: #ffff"
-                [routerLink]="['/us/uf']">
+                [routerLink]="['/us/register-user']">
             </dx-button>
         </div>
 
@@ -70,8 +71,10 @@
                 </dx-button>
                 <div class="dropdown-content">
                     <a class="cool-link" *ngIf="this.authService.isAthenticated()"
-                        (click)="logout()"
-                        style="background-color: #108083; cursor: pointer; font-size: smaller;">CERRAR SESIÓN
+                        [routerLink]="['/us/profile']" type="normal" style="background-color: #108083; cursor: pointer; font-size: smaller;">MI PERFIL
+                    </a>
+                    <a class="cool-link" *ngIf="this.authService.isAthenticated()" 
+                    (click)="logout()" type="normal" style="background-color: #108083; cursor: pointer; font-size: smaller;">CERRAR SESIÓN
                     </a>
                 </div>
             </div>

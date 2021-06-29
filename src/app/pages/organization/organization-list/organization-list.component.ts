@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
-
+import swal from 'sweetalert2'
 
 @Component({
   selector: 'app-organization-list',
@@ -30,7 +30,6 @@ export class OrganizationListComponent implements OnInit {
     this.organizationService.getAllOrganization( { } )
       .subscribe((resp: any) => {
         this.organizationList = resp.datalist;
-        console.log(this.organizationList);
       });
   }
 
@@ -39,13 +38,7 @@ export class OrganizationListComponent implements OnInit {
     this.showPopupOrganizationForm = true;
   }
 
-  public selectProduct(e:any) {
-    let organizationSelected: OrganizationBean = e.data;
-    this.selectedOrganization = JSON.parse(JSON.stringify(organizationSelected));
-    console.log(this.selectedOrganization);
-    this.showPopupOrganizationForm = true;
-  }
-  public selectProductEdit(e:any) {
+  public selectOrganizationEdit(e:any) {
     let organizationSelected: OrganizationBean = e.data;
     this.selectedOrganization = JSON.parse(JSON.stringify(organizationSelected));
     this.showPopupOrganizationFormEdit = true;
@@ -72,5 +65,30 @@ export class OrganizationListComponent implements OnInit {
     }
   }
 
+  public deleteOrganization(e: any) {
+    let organizationSelected: OrganizationBean = e.data;
+    this.selectedOrganization = JSON.parse(JSON.stringify(organizationSelected));
+    swal.fire({
+      title: '¿Seguro de eliminar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then(result => {
+      if(result.isConfirmed) {
+        this.organizationService.deleteOrganization({data: this.selectedOrganization})
+          .subscribe(resp => {
+            swal.fire(
+              'Organanización eliminada correctamente!',
+              '',
+              'success'
+            )
+            this.getAllOrganization();
+          });
+      }
+    });
+  }
 
 }

@@ -1,7 +1,7 @@
 <div id="form">
     <form novalidate (submit)="saveProduct($event)">
         <dx-scroll-view [height]="550" direction="vertical">
-            <dx-responsive-box singleColumnScreen="xs sm">
+            <dx-responsive-box singleColumnScreen="xs sm" style="padding: 2%;">
     
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
@@ -24,7 +24,7 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Tipo de producto *</div>
                         <div class="dx-field-value">
-                            <dx-select-box id="typeProducts" (onValueChanged)="dateFromTypeProduct($event)" itemTemplate="item" [items]="typeProduct" displayExpr="name" valueExpr="name" [searchEnabled]="true" placeholder="Producto"
+                            <dx-select-box [readOnly]="disableEdit" id="typeProducts" (onValueChanged)="dateFromTypeProduct($event)" itemTemplate="item" [items]="typeProduct" displayExpr="name" valueExpr="name" [searchEnabled]="true" placeholder="Producto"
                                 [(value)]="product.type" width="60%">
                                 <div *dxTemplate="let data of 'item'">
                                     <div class='custom-item' [title]='data.name'>{{data.name}}</div>
@@ -42,7 +42,7 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Nombre: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="product.name" placeholder="Nombre de producto" width="100%">
+                            <dx-text-box [readOnly]="disableEdit" [(value)]="product.name" placeholder="Nombre de producto" width="100%">
                                 <dx-validator>
                                     <dxi-validation-rule type="required"></dxi-validation-rule>
                                 </dx-validator>
@@ -57,7 +57,7 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Dirección: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="product.ubication" placeholder="Dirección" width="100%">
+                            <dx-text-box [readOnly]="disableEdit" [(value)]="product.ubication" placeholder="Dirección" width="100%">
                                 <dx-validator>
                                     <dxi-validation-rule type="required"></dxi-validation-rule>
                                 </dx-validator>
@@ -72,7 +72,7 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Correo administrador: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="product.emailAdmin" placeholder="Correo administrador" width="100%">
+                            <dx-text-box [readOnly]="disableEdit" [(value)]="product.emailAdmin" placeholder="Correo administrador" width="100%">
                                 <dx-validator>
                                     <dxi-validation-rule type="required"></dxi-validation-rule>
                                 </dx-validator>
@@ -81,7 +81,7 @@
                     </div>
                 </dxi-item>
                 
-                <dxi-item>
+                <!-- <dxi-item>
                     <dxi-location [row]="3" [col]="0" screen="md lg"></dxi-location>
                     <dxi-location [row]="4" [col]="0" screen="xs sm"></dxi-location>
                     <div class="dx-field" >
@@ -105,30 +105,30 @@
                             </dx-validator>
                         </dx-date-box>
                     </div>
-                </dxi-item>
+                </dxi-item> -->
     
                 <dxi-item>
-                    <dxi-location [row]="4" [col]="0" screen="md lg"></dxi-location>
+                    <dxi-location [row]="3" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
                     <dxi-location [row]="6" [col]="0" screen="xs sm"></dxi-location>
-                    <div *ngIf="isTypeHotel">
-                        <h4>Tipos de Servicios</h4>
-                        <div class="dx-field" *ngFor="let catalogDetail of listCatalogDetail">
-                                <div class="dx-field-value" style="float: left;">
-                                        <div class="dx-field-label">
-                                                <dx-check-box [value]="catalogDetailCheck"></dx-check-box>
-                                                <p>{{catalogDetail.shortDescription}}</p>
-                                        </div>
-                                </div>
-                        </div>
+                    <div class="email-card">
+                        <span> Servicios </span>
+                        <hr>
+                            <!-- <dx-text-box [height]="50" [(value)]="this.dataObservation"></dx-text-box> -->
+                        <dx-list [dataSource]="listServices" [height]="250" [showSelectionControls]="true" selectionMode="multiple" valueExpr="code" [(selectedItemKeys)]="listServiceSelected" >
+                            <div *dxTemplate="let data of 'item'" style="padding-bottom: 1px;padding-top: 1px;border-bottom:1px solid #ddd">
+                                <p> {{data.description}} </p>
+                            </div>
+                        </dx-list>
                     </div>
                 </dxi-item>
     
                 <dxi-item>
-                    <dxi-location [row]="5" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
+                    <dxi-location [row]="4" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
                     <dxi-location [row]="7" [col]="0" screen="xs sm"></dxi-location>
                     <div class="dx-field">
-                        <label for="">Descripción:</label>
-                        <dx-text-area [height]="100" [(value)]="product.longDescription">
+                        <span>Descripción:</span>
+                        <hr>
+                        <dx-text-area [readOnly]="disableEdit" [height]="100" [(value)]="product.longDescription">
                             <dx-validator>
                                 <dxi-validation-rule type="required"></dxi-validation-rule>
                             </dx-validator>
@@ -137,12 +137,12 @@
                 </dxi-item>
     
                 <dxi-item>
-                    <dxi-location [row]="6" [col]="0" screen="md lg"></dxi-location>
+                    <dxi-location [row]="5" [col]="0" screen="md lg"></dxi-location>
                     <dxi-location [row]="8" [col]="0" screen="xs sm"></dxi-location>
                     <div class="dx-field">
                         <div class="dx-field-label">Precio: </div>
                         <div class="dx-field-value">
-                            <dx-text-box [(value)]="product.price" placeholder="Precio" width="100%">
+                            <dx-text-box [readOnly]="disableEdit" [(value)]="product.price" placeholder="Precio" width="100%">
                                 <dx-validator>
                                     <dxi-validation-rule type="required"></dxi-validation-rule>
                                 </dx-validator>
@@ -168,9 +168,9 @@
                       [src]="url+'/gf/'+8">
                 </div>-->
                 <dxi-item>
-                    <dxi-location [row]="7" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
+                    <dxi-location [row]="6" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
                     <dxi-location [row]="9" [col]="0" screen="xs sm"></dxi-location>
-                    <div class="dx-field">
+                    <div *ngIf=" this.authService.hasRole('Administrador - Organizacion')" class="dx-field">
                         <img [src]="imagenData" *ngIf="imagenEstado" width="100%" height="160" />
                         <img *ngIf="urlImageSelected" [src]="urlImageSelected" width="100%" height="160" />
                         <button type="button" onclick="document.getElementById('archivo').click();">Seleccionar Imagen</button>

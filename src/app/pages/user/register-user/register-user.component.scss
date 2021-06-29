@@ -1,0 +1,66 @@
+::ng-deep body > app-root > app-main > div > div.main-container > div > app-register-user {
+    width: 100% !important;
+}
+dx-button {
+    background-color: #108083 !important;
+}
+dx-button:hover {
+    background-color: #0d595c !important;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: row;
+    background-image: url("../../../../assets/image/paven.png");
+    .image {
+        display: flex;
+        flex-direction: column;
+        //border: 1px solid #0d595c;
+        width: 50%;
+        align-self: center;
+        .container-image {
+            width: 100%;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .container-form {
+        display: flex;
+        flex-direction: column;
+        background-color: #FFFFFF;
+        border: 1px solid #ccc;
+        box-shadow: 0px 2px 2px #ccc;
+        width: 50%;
+        margin: 10px;
+        form {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 812px) {
+    .formulario {
+        .container-form {
+            width: 100% !important;
+            dx-button {
+                width: 30% !important;
+            }
+            dx-text-box {
+                width: 100% !important;
+            }
+            dx-date-box {
+                width: 58% !important;
+            }
+            dx-select-box {
+                width: 108% !important;
+            }
+            .dx-field-label {
+                width: auto;
+            }
+        }
+        .image {
+            display: none;
+        }
+    }
+}

@@ -21,4 +21,5 @@ export class ProductBean extends BaseBean {
 	public shortDescription: string;
 	public longDescription: string;
 	public price: number;
+    public serviceId: string;
 }

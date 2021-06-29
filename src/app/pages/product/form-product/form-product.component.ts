@@ -12,6 +12,8 @@ import { CatalogDetailBean } from 'src/app/Beans/CatalogDetailBean';
 import { CatalogBean } from 'src/app/Beans/CatalogBean';
 import { CatalogService } from 'src/app/services/catalog.service';
 import { Router } from '@angular/router';
+import { ServiceService } from 'src/app/services/service.service';
+import { ServiceBean } from 'src/app/Beans/ServiceBean';
 
 @Component({
   selector: 'app-form-product',
@@ -48,6 +50,10 @@ export class FormProductComponent implements OnInit {
   catalogDetailBean: CatalogDetailBean;
   listCatalogDetail: Array<CatalogDetailBean> = [];
   catalogDetailCheck: boolean = false;
+  listServices: Array<ServiceBean> = [];
+  listServiceSelected: Array<any> = [];
+  selectedKeys: Array<any> = [];
+  disableEdit: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -56,13 +62,19 @@ export class FormProductComponent implements OnInit {
     public authService: AuthService,
     public constantService: ConstantsService,
     private catalogService: CatalogService,
+    private serviceService: ServiceService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.listServiceSelected = [];
     this.product = new ProductBean();
     this.product.organization = new OrganizationBean();
     this.showPreview = false;
+    this.getAllServices();
+    if(this.authService.hasRole('Administrador')) {
+      this.disableEdit = true;
+    }
     if(this.productId) {
       this.getProduct(this.productId);
       this.productService.getImageById(this.productId)
@@ -101,12 +113,18 @@ export class FormProductComponent implements OnInit {
   }*/
   
   public saveProduct(e: any) {
-    let productId: number;
     if(this.product != null || this.product != undefined) {
       if(this.selectedFiles != null) {
         this.currentFileUpload = this.selectedFiles.item(0);
       } else {
         this.currentFileUpload = new File( [''], 'None' );
+      }
+      if(this.listServiceSelected.length>0) {
+        let servicesCodes = '';
+        this.listServiceSelected.forEach(service => {
+          servicesCodes = servicesCodes + service.code.concat(',');
+        });
+        this.product.serviceId = servicesCodes.substring(0, servicesCodes.length-1);
       }
       this.productService.save(this.product, this.currentFileUpload)
       .subscribe(resp => {
@@ -125,13 +143,22 @@ export class FormProductComponent implements OnInit {
   public getProduct(productId: number) {
     let productBean = new ProductBean();
     productBean.id = productId;
+    this.listServiceSelected = [];
     this.productService.getProductById({data: productBean})
     .subscribe(resp => {
-      console.log(resp.data);
       this.product = resp.data;
       this.product.imagePath = resp.data.imagePath;
+      if(this.product.serviceId != null) {
+        let listServiceCodes = this.product.serviceId.split(',');
+        this.listServices.forEach(service => {
+          for(let code of listServiceCodes) {
+            if(service.code == code) {
+              this.listServiceSelected.push(service);
+            }
+          }
+        });
+      }
       //this.product = resp.data.id;
-      console.log(this.product);
     });
   }
 
@@ -175,6 +202,14 @@ export class FormProductComponent implements OnInit {
       }
     }
 
+  }
+
+
+  public getAllServices() {
+    let service = new ServiceBean();
+    this.serviceService.getAllServices({data: service}).subscribe(resp => {
+      this.listServices = resp.datalist;
+    });
   }
 
   public getListCatalogByCatalogId() {
