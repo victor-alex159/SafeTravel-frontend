@@ -66,3 +66,34 @@ dx-button:hover {
         padding: 2%;
     }
 }
+@media (max-width: 812px) {
+    .content {
+        display: block;
+        height: auto;
+        width: 95%;
+        .photo {
+            width: auto !important;
+            margin-left: 0px;
+            padding: 5%;
+            .image {
+                width: 236px;
+                margin-top: 0px;
+            }
+        }
+        .content-info, .change-password {
+            width: auto !important;
+            margin-top: 30px;
+            dx-text-box, dx-select-box {
+                width: 80% !important;
+            }
+            dx-date-box {
+                width: 48% !important;
+            }
+            dx-button {
+                width: 35% !important;
+            }
+            .btnsProfile {
+            }
+        }
+    }
+}

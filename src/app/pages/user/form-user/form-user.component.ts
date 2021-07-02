@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
 import { UserService } from 'src/app/services/user.service';
 import swal from 'sweetalert2'
-
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-form-user',
@@ -81,6 +81,10 @@ export class FormUserComponent implements OnInit {
       this.user.genderTypeId = "1";
     } else if(this.genderFamele) {
       this.user.genderTypeId = "2";
+    }
+    if(this.user.id == null) {
+      let salt = bcrypt.genSaltSync(10);
+      this.user.password = bcrypt.hashSync(this.user.documentNumber, salt); 
     }
     this.userService.saveUser({data: this.user})
     .subscribe(resp => {

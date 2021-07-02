@@ -11,7 +11,7 @@
                 <div class="dx-field">
                     <div class="dx-field-label">Tipo de usuario</div>
                     <div class="dx-field-value">
-                        <dx-select-box itemTemplate="item" [items]="typeUser" displayExpr="name" valueExpr="type" [searchEnabled]="true" placeholder="Tipo de usuario"
+                        <dx-select-box (onValueChanged)="selecProfileUser($event)" itemTemplate="item" [items]="typeUser" displayExpr="name" valueExpr="type" [searchEnabled]="true" placeholder="Tipo de usuario"
                             [(value)]="profile.type" width="60%">
                             <div *dxTemplate="let data of 'item'">
                                 <div class='custom-item' [title]='data.name'>{{data.name}}</div>

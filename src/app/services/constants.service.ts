@@ -15,4 +15,7 @@ export class ConstantsService {
   TYPE_SERVICES_RESTAURANT: number = 2;
   TYPE_SERVICES_MUSEO: number = 3;
 
+  TYPE_PROFILE_ORGANIZATION: string = '2';
+  TYPE_PROFILE_TOURIST: string = '3';
+
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentaryBean } from 'src/app/Beans/CommentaryBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
@@ -27,13 +27,17 @@ export class InfoCommentaryProductComponent implements OnInit {
   commentary: CommentaryBean;
   listCommentaries: Array<any> = [];
   commentariesWithUsername: Array<any> = [];
+  image: string;
+  imagenData: any;
+  imagenEstado: boolean = false;
 
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private authService: AuthService,
-    private sanitization: DomSanitizer
+    private sanitization: DomSanitizer,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -88,7 +92,18 @@ export class InfoCommentaryProductComponent implements OnInit {
     this.productService.getCommentaryByProductId({data: commentaryData})
       .subscribe(resp => {
         this.listCommentaries = resp.datalist;
+        this.listCommentaries.forEach(comment => {
+          if(comment.userPhoto != null) {
+            this.getImage(comment.userPhoto);
+          }
+        });
       });
+  }
+
+  getImage(base64: any){
+    let objectURL = 'data:image/jpeg;base64,' + base64;
+    this.imagenData = this.sanitization.bypassSecurityTrustResourceUrl(objectURL);
+    this.imagenEstado = true;
   }
 
 }

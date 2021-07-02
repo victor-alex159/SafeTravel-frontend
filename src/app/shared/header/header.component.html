@@ -62,10 +62,15 @@
             </dx-button>
         </div> -->
 
-        <div class="username">
+        <div class="username" *ngIf="this.authService.user.username">
+            <div class="image">
+                <img (click)="goMyProfile()" src="../../../../assets/image/profile-boy.jpg" *ngIf="!userBean.photo && userBean.genderTypeId !='2'" />
+                <img (click)="goMyProfile()" src="../../../../assets/image/profile-girl.png" *ngIf="!userBean.photo && userBean.genderTypeId !='1'" />
+                <img (click)="goMyProfile()" [src]="imagenData" *ngIf="imagenEstado" />
+            </div>
             <div class="dropdown">
                 <dx-button class="dropbtn cool-link" *ngIf="this.authService.isAthenticated()"
-                    text={{this.usuario}}
+                    text={{this.username}}
                     width="100%"
                     style="background-color: #108083; margin-right: 3px;">
                 </dx-button>

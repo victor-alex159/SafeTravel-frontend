@@ -122,17 +122,38 @@
     margin-right: 40px;
     dx-button {
         background-color: inherit !important;
-        box-shadow: 0px 0px 6px #9EAEBF inset;
+        box-shadow: 0px 0px 6px #9EAEBF;
     }
     .username {
+        display: inline-flex;
+        box-shadow: 0px 0px 6px #9EAEBF;
+        padding: 2%;
+        border-radius: 10px;
         dx-button:hover {
             padding: 0px !important;
+        }
+        .dropdown-content {
+            a {
+                padding: 7% !important;
+            }
+        }
+        .image {
+            display: flex;
+            flex-direction: row;
+            img {
+                width: 50px;
+                height: 45px;
+                padding: 2%;
+                border-radius: 10px;
+                margin-top: 2px;
+                cursor: pointer;
+            }
         }
     }
 }
 .user dx-button:hover {
     background-color: #0d595c !important;
-    box-shadow: 0px 0px 6px #9EAEBF inset;
+    box-shadow: 0px 0px 6px #9EAEBF;
 
 }
 
@@ -140,6 +161,7 @@
     .user {
         display: block;
         margin-right: 0px;
+        margin-top: 12px;
         .register1 {
             line-height: 3;
         }
@@ -187,5 +209,12 @@
     }
     .dropdown:hover .dropdown-content {
         display: inline-block;
+    }
+    .dropdown-content {
+        margin-left: -55px;
+        a {
+            padding: 0 !important;
+            padding-left: 7% !important;
+        }
     }
 }

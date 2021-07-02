@@ -4,6 +4,7 @@ import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProfileBean } from 'src/app/Beans/ProfileBean';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConstantsService } from 'src/app/services/constants.service';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
 import { UserService } from 'src/app/services/user.service';
 import swal from 'sweetalert2'
@@ -25,6 +26,7 @@ export class RegisterUserComponent implements OnInit {
   END_DATE = new Date(2060, 12, 31);
   organizationBean: OrganizationBean;
   organizationId: number;
+  userProfileType: string = '';
   typeUser: any = [
     {
       type: '2',
@@ -40,7 +42,8 @@ export class RegisterUserComponent implements OnInit {
     private userService: UserService,
     public authService: AuthService,
     private organizationService: OrganizationServiceService,
-    private router: Router
+    private router: Router,
+    public constants: ConstantsService
   ) { }
 
   ngOnInit(): void {
@@ -67,7 +70,7 @@ export class RegisterUserComponent implements OnInit {
     } else if(this.genderFamele) {
       this.user.genderTypeId = "2";
     }
-    if(this.profile.type == '2') {
+    if(this.userProfileType == this.constants.TYPE_PROFILE_ORGANIZATION) {
       this.organizationService.saveOrganization({data: this.organizationBean})
       .subscribe(resp => {
         this.organizationId = resp.data.id;
@@ -86,6 +89,13 @@ export class RegisterUserComponent implements OnInit {
         });
     }, 1000);
       e.preventDefault();
+  }
+
+  public selecProfileUser(e: any) {
+    this.userProfileType = e.value;
+    if(this.userProfileType == this.constants.TYPE_PROFILE_TOURIST) {
+      this.organizationBean = new OrganizationBean();
+    }
   }
 
 }

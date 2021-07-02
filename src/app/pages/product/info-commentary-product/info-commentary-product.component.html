@@ -1,50 +1,45 @@
 <div class="body animated fadeIn">
     <div class="row1">
         <div class="container-photos">
+            <h3 style="text-align: center;">{{productBean.name}}</h3>
+            <hr/>
             <div class="image" *ngIf="productBean.id">
-                <img class="imgInfo animated fadeIn" style="height: 240px; width: 242px;"
-                [src]="productBean.imageFile">
+                <img class="imgInfo animated fadeIn" style="height: 290px; width: 50%;" [src]="productBean.imageFile">                
             </div>
-        </div>
-        <div class="description">
-            <h4>Dirección: {{productBean.ubication}}</h4>
-            <hr/>
-            <h4>Precio: S/.{{productBean.price}}</h4>
-            <hr/>
-            <h4>Fecha de entrada: {{productBean.startDate}}</h4>
-            <hr/>
-            <h4>Fecha de salida: {{productBean.endDate}}</h4>
         </div>
     </div>
     
     <div class="row2">
         <div class="descripcion-product">
-            <h4>INFORMACIÓN</h4>
-            {{productBean.longDescription}}
+            <h4 style="text-align: center;">Información</h4>
+            <hr/>
+            <p>{{productBean.longDescription}}</p>
+        </div>
+        <div class="details">
+            <h4 style="text-align: center;">Detalles</h4>
+            <div>
+                <hr/>
+            </div>
+            <span><i class="fas fa-money-bill-wave" style="margin-right: 10px; margin-bottom: 30px;"></i>Precio: S/.{{productBean.price}}</span>
+            <span><i class="fas fa-calendar-week" style="margin-right: 10px; margin-bottom: 30px;"></i>Fecha de entrada: {{productBean.startDate}}</span>
+            <span><i class="fas fa-calendar-week" style="margin-right: 10px; margin-bottom: 30px;"></i>Fecha de salida: {{productBean.endDate}}</span>
+            <span><i class="fas fa-map-marker-alt" style="margin-right: 10px; margin-bottom: 9px;"></i>Dirección: {{productBean.ubication}}</span>
+            <div class="imgCroquis">
+                <img src="../../../../assets/image/croquis-example.jpeg" style="height: 166px; width: 100%;">
+            </div>
         </div>
         <div class="info-covid">
             <div class="title-info-covid" style="text-align: center;">
-                <h3>Información de Bioseguridad</h3>
+                <h4>Información de Bioseguridad</h4>
+                <hr/>
             </div>
             <div>
                 <h4>Qué puedes esperar durante tu estadía</h4>
-                <ul>
-                    <li>
-                        <span>Se requiere el uso de máscaras, barbijos o tapabocas para los huéspedes en zonas públicas</span>
-                    </li>
-                    <hr/>
-                    <li>
-                        <span>Se requieren máscaras, barbijos o tapabocas para el personal en zonas públicas</span>
-                    </li>
-                    <hr/>
-                    <li>
-                        <span>Alcohol en gel disponible para los huéspedes y el personal</span>
-                    </li>
-                    <hr/>
-                    <li>
-                        <span>Pisos marcados para el distanciamiento social</span>
-                    </li>
-                </ul>
+                <hr/>
+                <p><i class="fas fa-check" style="margin-right: 10px; margin-bottom: 30px;"></i>Se requiere el uso de máscaras, barbijos o tapabocas para los huéspedes en zonas públicas.<br></p>
+                <p><i class="fas fa-check" style="margin-right: 10px; margin-bottom: 30px;"></i>Se requieren máscaras, barbijos o tapabocas para el personal en zonas públicas.<br></p>
+                <p><i class="fas fa-check" style="margin-right: 10px; margin-bottom: 30px;"></i>Alcohol en gel disponible para los huéspedes y el personal.<br></p>
+                <p><i class="fas fa-check" style="margin-right: 10px; margin-bottom: 30px;"></i>Pisos marcados para el distanciamiento social.<br></p>
             </div>
         </div>
     </div>
@@ -68,9 +63,14 @@
             </div>
             <h4>Comentarios</h4>
             <div class="dx-field list-commentaries" *ngFor="let comment of listCommentaries">
-                <div class="icon" style="line-height: 2; margin-right: 15px;">
-                    <div>
-                        <label requeried style="width: 10vh;">{{comment.username}}</label>
+                <div class="icon" style="line-height: 1; margin-right: 15px; margin-top: 15px;">
+                    <div class="imageUser">
+                        <img src="../../../../assets/image/profile-boy.jpg" *ngIf="!comment.userPhoto && comment.genderTypeId !='2'" />
+                        <img src="../../../../assets/image/profile-girl.png" *ngIf="!comment.userPhoto && comment.genderTypeId !='1'" />
+                        <img [src]="imagenData" *ngIf="comment.userPhoto" />
+                        <div>
+                            <label requeried style="width: 10vh; line-height: 4;">{{comment.username}}</label>
+                        </div>
                     </div>
                     <div>
                         <label type="date">{{comment.createDate | date: 'dd-MM-yyyy hh:mm a'}}</label>
