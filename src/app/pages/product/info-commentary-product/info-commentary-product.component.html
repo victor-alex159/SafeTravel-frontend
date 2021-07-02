@@ -34,8 +34,7 @@
                 <hr/>
             </div>
             <div>
-                <h4>Qué puedes esperar durante tu estadía</h4>
-                <hr/>
+                <h5>Qué puedes esperar durante tu estadía</h5>
                 <p><i class="fas fa-check" style="margin-right: 10px; margin-bottom: 30px;"></i>Se requiere el uso de máscaras, barbijos o tapabocas para los huéspedes en zonas públicas.<br></p>
                 <p><i class="fas fa-check" style="margin-right: 10px; margin-bottom: 30px;"></i>Se requieren máscaras, barbijos o tapabocas para el personal en zonas públicas.<br></p>
                 <p><i class="fas fa-check" style="margin-right: 10px; margin-bottom: 30px;"></i>Alcohol en gel disponible para los huéspedes y el personal.<br></p>
@@ -69,15 +68,16 @@
                         <img src="../../../../assets/image/profile-girl.png" *ngIf="!comment.userPhoto && comment.genderTypeId !='1'" />
                         <img [src]="imagenData" *ngIf="comment.userPhoto" />
                         <div>
-                            <label requeried style="width: 10vh; line-height: 4;">{{comment.username}}</label>
+                            <label requeried style="width: 10vh; line-height: 3; margin-left: 5px;">{{comment.username}}</label>
                         </div>
                     </div>
-                    <div>
+                    <div class="dateComment">
                         <label type="date">{{comment.createDate | date: 'dd-MM-yyyy hh:mm a'}}</label>
                     </div>
                 </div>
                 <div class="comment">
-                    <dx-text-area [readOnly]="true" [height]="100" [width]="630" [(value)]="comment.description"></dx-text-area>
+                    <dx-text-area [readOnly]="true" [height]="100" [(value)]="comment.description"></dx-text-area>
+                    <hr/>
                 </div>
             </div>
         </div>

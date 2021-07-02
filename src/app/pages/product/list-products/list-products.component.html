@@ -23,7 +23,7 @@
             <div *dxTemplate="let cell of 'actionCellTempalte'">
                 <!-- <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button> -->
                 <dx-button icon="fas fa-edit" (onClick)="selectProductEdit(cell)"></dx-button>
-                <dx-button *ngIf="this.authService.hasRole('Administrador - Organizacion')" icon="far fa-trash-alt"></dx-button>
+                <dx-button *ngIf="this.authService.hasRole('Administrador - Organizacion')" (onClick)="deleteProduct(cell)" icon="far fa-trash-alt"></dx-button>
             </div>
         </dxi-column>
         <div *dxTemplate="let cell of 'idxRowTemplate'">

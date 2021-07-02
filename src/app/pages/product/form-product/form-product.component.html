@@ -170,13 +170,13 @@
                 <dxi-item>
                     <dxi-location [row]="6" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
                     <dxi-location [row]="9" [col]="0" screen="xs sm"></dxi-location>
-                    <div *ngIf=" this.authService.hasRole('Administrador - Organizacion')" class="dx-field">
+                    <div class="dx-field">
                         <img [src]="imagenData" *ngIf="imagenEstado" width="100%" height="160" />
                         <img *ngIf="urlImageSelected" [src]="urlImageSelected" width="100%" height="160" />
-                        <button type="button" onclick="document.getElementById('archivo').click();">Seleccionar Imagen</button>
+                        <button *ngIf=" this.authService.hasRole('Administrador - Organizacion')" type="button" onclick="document.getElementById('archivo').click();">Seleccionar Imagen</button>
                         <input id="archivo" type="file" (change)="selectImage($event)" style="display: none">
                         <div class="dx-field">
-                            <dx-button type="default" text="GUARDAR" [useSubmitBehavior]="true" width="40%"></dx-button>
+                            <dx-button *ngIf=" this.authService.hasRole('Administrador - Organizacion')" type="default" text="GUARDAR" [useSubmitBehavior]="true" width="40%"></dx-button>
                         </div>
                     </div>
                 </dxi-item>

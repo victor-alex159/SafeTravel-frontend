@@ -30,6 +30,10 @@ export class ServiceService {
   public saveService(service: any) {
     return this.http.post<any>(`${this.url + '/ss'}`, service, {headers: this.addAtuhorizationHeader()}); 
   }
+  
+  public deleteService(service: any) {
+    return this.http.post<any>(`${this.url + '/ds'}`, service, {headers: this.addAtuhorizationHeader()}); 
+  }
 
   public getAllServices(service: any) {
     return this.http.post<any>(`${this.url + '/gas'}`, service, {headers: this.addAtuhorizationHeader()}); 

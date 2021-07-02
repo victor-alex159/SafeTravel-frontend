@@ -17,7 +17,7 @@
             <div style="text-align: center;" *dxTemplate="let cell of 'actionCellTempalte'">
                 <!-- <dx-button icon="far fa-plus-square" (onClick)="selectProduct(cell)"></dx-button> -->
                 <dx-button icon="fas fa-edit" (onClick)="editService(cell)"></dx-button>
-                <dx-button icon="far fa-trash-alt"></dx-button>
+                <dx-button icon="far fa-trash-alt" (onClick)="deleteService(cell)"></dx-button>
             </div>
         </dxi-column>
         <div *dxTemplate="let cell of 'idxRowTemplate'">

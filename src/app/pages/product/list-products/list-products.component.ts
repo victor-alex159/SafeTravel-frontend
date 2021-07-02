@@ -4,6 +4,7 @@ import { ProductBean } from 'src/app/Beans/ProductBean';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
 import { ProductService } from 'src/app/services/product.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-products',
@@ -86,6 +87,32 @@ export class ListProductsComponent implements OnInit {
     this.selectedProduct = JSON.parse(JSON.stringify(productSelected));
     this.productName = this.selectedProduct.name;
     this.showPopupProductFormEdit = true;
+  }
+
+  public deleteProduct(e: any) {
+    let organizationSelected: OrganizationBean = e.data;
+    this.selectedProduct = JSON.parse(JSON.stringify(organizationSelected));
+    swal.fire({
+      title: '¿Seguro de eliminar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then(result => {
+      if(result.isConfirmed) {
+        this.productService.deleteProduct({data: this.selectedProduct})
+          .subscribe(resp => {
+            swal.fire(
+              'Product eliminado correctamente!',
+              '',
+              'success'
+            )
+            this.getProducts();
+          });
+      }
+    });
   }
 
   public onClosePopupForm(e: any) {

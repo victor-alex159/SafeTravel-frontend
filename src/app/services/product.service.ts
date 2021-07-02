@@ -40,6 +40,10 @@ export class ProductService {
     return this.http.post<any>(`${this.urlProduct + '/sp'}`, product, {headers: this.addAtuhorizationHeader()}); 
   }
 
+  public deleteProduct(product: any) {
+    return this.http.post<any>(`${this.urlProduct + '/dp'}`, product, {headers: this.addAtuhorizationHeader()}); 
+  }
+
   public loadFile(file: any, productId: number) {
     return this.http.post<any>(`${this.urlProduct + '/lf/' + productId}`, file); 
   }

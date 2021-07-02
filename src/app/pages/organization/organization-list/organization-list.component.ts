@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrganizationServiceService } from 'src/app/services/organization-service.service';
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-organization-list',
