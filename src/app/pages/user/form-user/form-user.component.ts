@@ -82,10 +82,10 @@ export class FormUserComponent implements OnInit {
     } else if(this.genderFamele) {
       this.user.genderTypeId = "2";
     }
-    if(this.user.id == null) {
+    /* if(this.user.id == null) {
       let salt = bcrypt.genSaltSync(10);
       this.user.password = bcrypt.hashSync(this.user.documentNumber, salt); 
-    }
+    } */
     this.userService.saveUser({data: this.user})
     .subscribe(resp => {
       if(this.user != null) {
