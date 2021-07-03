@@ -24,10 +24,10 @@
                     <div class="dx-field">
                         <div class="dx-field-label">Tipo de producto *</div>
                         <div class="dx-field-value">
-                            <dx-select-box [readOnly]="disableEdit" id="typeProducts" (onValueChanged)="dateFromTypeProduct($event)" itemTemplate="item" [items]="typeProduct" displayExpr="name" valueExpr="name" [searchEnabled]="true" placeholder="Producto"
+                            <dx-select-box [readOnly]="disableEdit" id="typeProducts" (onValueChanged)="selecTypeProduct($event)" itemTemplate="item" [items]="typeProduct" displayExpr="name" valueExpr="name" [searchEnabled]="true" placeholder="Producto"
                                 [(value)]="product.type" width="60%">
                                 <div *dxTemplate="let data of 'item'">
-                                    <div class='custom-item' [title]='data.name'>{{data.name}}</div>
+                                    <div class='custom-item' [title]='data.type'>{{data.name}}</div>
                                 </div>
                                 <dx-validator>
                                     <dxi-validation-rule type="required"></dxi-validation-rule>
@@ -106,25 +106,10 @@
                         </dx-date-box>
                     </div>
                 </dxi-item> -->
-    
+
                 <dxi-item>
                     <dxi-location [row]="3" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
-                    <dxi-location [row]="6" [col]="0" screen="xs sm"></dxi-location>
-                    <div class="email-card">
-                        <span> Servicios </span>
-                        <hr>
-                            <!-- <dx-text-box [height]="50" [(value)]="this.dataObservation"></dx-text-box> -->
-                        <dx-list [dataSource]="listServices" [height]="250" [showSelectionControls]="true" selectionMode="multiple" valueExpr="code" [(selectedItemKeys)]="listServiceSelected" >
-                            <div *dxTemplate="let data of 'item'" style="padding-bottom: 1px;padding-top: 1px;border-bottom:1px solid #ddd">
-                                <p> {{data.description}} </p>
-                            </div>
-                        </dx-list>
-                    </div>
-                </dxi-item>
-    
-                <dxi-item>
-                    <dxi-location [row]="4" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
-                    <dxi-location [row]="7" [col]="0" screen="xs sm"></dxi-location>
+                    <dxi-location [row]="4" [col]="0" screen="xs sm"></dxi-location>
                     <div class="dx-field">
                         <span>Descripción:</span>
                         <hr>
@@ -135,19 +120,68 @@
                         </dx-text-area>
                     </div>
                 </dxi-item>
-    
+
                 <dxi-item>
-                    <dxi-location [row]="5" [col]="0" screen="md lg"></dxi-location>
-                    <dxi-location [row]="8" [col]="0" screen="xs sm"></dxi-location>
+                    <dxi-location [row]="4" [col]="0" screen="md lg"></dxi-location>
+                    <dxi-location [row]="5" [col]="0" screen="xs sm"></dxi-location>
+                    <div class="dx-field" >
+                        <ng-template [ngIf]="product.type == 'Restaurante'">
+                            <div class="dx-field-label">Rango de precio S/. </div>
+                            <div class="dx-field-value">
+                                <dx-text-box [readOnly]="disableEdit" [(value)]="product.priceMin" placeholder="Desde" width="100%">
+                                    <dx-validator>
+                                        <dxi-validation-rule type="required"></dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-text-box>
+                            </div>
+                        </ng-template>
+                    </div>
+                    </dxi-item>
+                <dxi-item>
+                    <dxi-location [row]="4" [col]="1" screen="md lg"></dxi-location>
+                    <dxi-location [row]="6" [col]="0" screen="xs sm"></dxi-location>
                     <div class="dx-field">
-                        <div class="dx-field-label">Precio: </div>
-                        <div class="dx-field-value">
-                            <dx-text-box [readOnly]="disableEdit" [(value)]="product.price" placeholder="Precio" width="100%">
-                                <dx-validator>
-                                    <dxi-validation-rule type="required"></dxi-validation-rule>
-                                </dx-validator>
-                            </dx-text-box>
-                        </div>
+                        <ng-template [ngIf]="product.type == 'Restaurante'" >
+                            <div class="dx-field-value">
+                                <dx-text-box [readOnly]="disableEdit" [(value)]="product.priceMax" placeholder="Hasta" width="100%">
+                                    <dx-validator>
+                                        <dxi-validation-rule type="required"></dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-text-box>
+                            </div>
+                        </ng-template>
+                    </div>
+                </dxi-item>
+                
+                <dxi-item >
+                    <dxi-location [row]="5" [col]="0" screen="md lg"></dxi-location>
+                    <dxi-location [row]="5" [col]="0" screen="xs sm"></dxi-location>
+                    <div class="dx-field">
+                        <ng-template [ngIf]="product.type == 'Hotel'">
+                            <div class="dx-field-label">Precio Reserva </div>
+                            <div class="dx-field-value">
+                                <dx-text-box [readOnly]="disableEdit" [(value)]="product.price" placeholder="Precio" width="100%">
+                                    <dx-validator>
+                                        <dxi-validation-rule type="required"></dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-text-box>
+                            </div>
+                        </ng-template>
+                    </div>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location [row]="6" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
+                    <dxi-location [row]="6" [col]="0" screen="xs sm"></dxi-location>
+                    <div class="email-card">
+                        <span> Servicios </span>
+                        <hr>
+                            <!-- <dx-text-box [height]="50" [(value)]="this.dataObservation"></dx-text-box> -->
+                        <dx-list [dataSource]="listServices" [height]="250" [showSelectionControls]="true" selectionMode="multiple" valueExpr="code" [(selectedItemKeys)]="listServiceSelected" >
+                            <div *dxTemplate="let data of 'item'" style="padding-bottom: 1px;padding-top: 1px;border-bottom:1px solid #ddd">
+                                <p> {{data.description}} </p>
+                            </div>
+                        </dx-list>
                     </div>
                 </dxi-item>
     
@@ -168,15 +202,21 @@
                       [src]="url+'/gf/'+8">
                 </div>-->
                 <dxi-item>
-                    <dxi-location [row]="6" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
-                    <dxi-location [row]="9" [col]="0" screen="xs sm"></dxi-location>
+                    <dxi-location [row]="7" [col]="0" [colspan]="2" screen="md lg"></dxi-location>
+                    <dxi-location [row]="7" [col]="0" screen="xs sm"></dxi-location>
                     <div class="dx-field">
-                        <img [src]="imagenData" *ngIf="imagenEstado" width="100%" height="160" />
-                        <img *ngIf="urlImageSelected" [src]="urlImageSelected" width="100%" height="160" />
-                        <button *ngIf=" this.authService.hasRole('Administrador - Organizacion')" type="button" onclick="document.getElementById('archivo').click();">Seleccionar Imagen</button>
-                        <input id="archivo" type="file" (change)="selectImage($event)" style="display: none">
-                        <div class="dx-field">
-                            <dx-button *ngIf=" this.authService.hasRole('Administrador - Organizacion')" type="default" text="GUARDAR" [useSubmitBehavior]="true" width="40%"></dx-button>
+                        <div class="photo">
+                            <div class="content-btns">
+                                <div class="btnImage">
+                                    <dx-button *ngIf=" this.authService.hasRole('Administrador - Organizacion')" type="default" onclick="document.getElementById('archivo').click();">Seleccionar Imagen</dx-button>
+                                    <input id="archivo" type="file" accept="image/png, image/jpeg, image/jpg" (change)="selectImage($event)" style="display: none">
+                                </div>
+                            </div>
+                            <div class="image">
+                                <img [src]="imagenData" *ngIf="imagenEstado" width="100%" height="160" />
+                                <img *ngIf="urlImageSelected" [src]="urlImageSelected" width="100%" height="160" />
+                            </div>
+                            <dx-button style="margin: 0 auto; margin-top: 8px !important;" *ngIf=" this.authService.hasRole('Administrador - Organizacion')" type="default" text="GUARDAR" [useSubmitBehavior]="true"></dx-button>
                         </div>
                     </div>
                 </dxi-item>

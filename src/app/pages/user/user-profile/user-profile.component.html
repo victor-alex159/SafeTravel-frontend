@@ -8,7 +8,7 @@
         <div class="content-btns">
             <div class="btnImage">
                 <dx-button type="default" text="Elegir mi Foto" onclick="document.getElementById('archivo').click();"></dx-button>
-                <input id="archivo" type="file" (change)="selectImage($event)" style="display: none">
+                <input id="archivo" type="file" accept="image/png, image/jpeg, image/jpg" (change)="selectImage($event)" style="display: none">
                 <dx-button *ngIf="urlImageSelected && noSavedPhoto" style="margin-left: 5px; margin-right: 18px;" type="default" (click)="savePhoto()" text="Guardar Foto"></dx-button>
             </div>
             <div class="btnOpts">

@@ -43,8 +43,7 @@ export class FormProductComponent implements OnInit {
   isTypeMuseo: boolean = false;
   typeProduct: any = [
     {name: 'Hotel'},
-    {name: 'Restaurante'},
-    {name: 'Museo'},
+    {name: 'Restaurante'}
     
   ];
   catalogDetailBean: CatalogDetailBean;
@@ -147,6 +146,7 @@ export class FormProductComponent implements OnInit {
     this.productService.getProductById({data: productBean})
     .subscribe(resp => {
       this.product = resp.data;
+      //this.selecTypeProduct(this.product.type);
       this.product.imagePath = resp.data.imagePath;
       if(this.product.serviceId != null) {
         let listServiceCodes = this.product.serviceId.split(',');
@@ -179,24 +179,21 @@ export class FormProductComponent implements OnInit {
     this.imagenEstado = false
   }
 
-  public dateFromTypeProduct(e: any) {
-    switch(e.value) {
+  public selecTypeProduct(e: any) {
+    let typeProduct = '';
+    if(typeof e === 'string') {
+      typeProduct = e;
+    } else {
+      typeProduct = e.value;
+    }
+    switch(typeProduct) {
       case this.constantService.TYPE_PRODUCT_HOTEL: {
         this.isTypeHotel = true;
         this.isTypeRestaurant = false;
-        this.isTypeMuseo = false;
-        this.getListCatalogByCatalogId();
         break;
       }
       case this.constantService.TYPE_PRODUCT_RESTAURANT: {
         this.isTypeRestaurant = true;
-        this.isTypeHotel = false;
-        this.isTypeMuseo = false;
-        break;
-      }
-      case this.constantService.TYPE_PRODUCT_MUSEO: {
-        this.isTypeMuseo = true;
-        this.isTypeRestaurant = false;
         this.isTypeHotel = false;
         break;
       }
@@ -204,23 +201,10 @@ export class FormProductComponent implements OnInit {
 
   }
 
-
   public getAllServices() {
     let service = new ServiceBean();
     this.serviceService.getAllServices({data: service}).subscribe(resp => {
       this.listServices = resp.datalist;
     });
-  }
-
-  public getListCatalogByCatalogId() {
-    this.catalogDetailBean = new CatalogDetailBean();
-    this.catalogDetailBean.catalog = new CatalogBean();
-    this.catalogDetailBean.catalog.id = this.constantService.TYPE_SERVICES_HOTEL;
-    this.catalogService.getListCatalogDetailByCatalogId({data: this.catalogDetailBean})
-      .subscribe(resp => {
-        this.listCatalogDetail = resp.datalist;
-      });
-  }
-
-  
+  }  
 }

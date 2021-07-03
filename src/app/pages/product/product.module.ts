@@ -10,7 +10,6 @@ import { DevExtremeModule } from 'devextreme-angular';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SideBarComponent } from 'src/app/shared/side-bar/side-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormProductDetailComponent } from './product-detail/form-product-detail/form-product-detail.component';
 import { FormProductComponent } from './form-product/form-product.component';
 import { DxCheckBoxModule,
   DxSelectBoxModule,
@@ -29,7 +28,7 @@ import { ListRestaurantComponent } from './type/list-restaurant/list-restaurant.
 import { ListHotelComponent } from './type/list-hotel/list-hotel.component';
 
 @NgModule({
-  declarations: [ProductDetailComponent, InfoCommentaryProductComponent, ListProductsComponent, SideBarComponent, FormProductDetailComponent, FormProductComponent, ListHotelComponent, ListRestaurantComponent],
+  declarations: [ProductDetailComponent, InfoCommentaryProductComponent, ListProductsComponent, SideBarComponent, FormProductComponent, ListHotelComponent, ListRestaurantComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

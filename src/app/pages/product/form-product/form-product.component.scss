@@ -11,3 +11,37 @@ dx-button:hover {
 ::ng-deep dxi-item {
     margin-bottom: 10px !important;
 }
+.photo {
+    display: flex;
+    flex-direction: column;
+    .image {
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0px 2px 6px #0d595c;
+        width: 480px;
+        margin: 0 auto;
+        margin-top: 20px;
+        img {
+            width: 100%;
+            height: 215px;
+            padding: 2%;
+            margin: 0 auto;
+        }
+    }
+    .content-btns {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        margin-top: 10px;
+        .btnImage {
+            display: flex;
+            flex-direction: row;
+            dx-button {
+                margin-top: 5px;
+            }
+            margin-top: 5px !important;
+            margin-bottom: 13px !important;
+            margin: 0 auto;
+        }
+    }
+}

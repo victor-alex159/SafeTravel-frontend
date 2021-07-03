@@ -20,9 +20,10 @@
             <div>
                 <hr/>
             </div>
-            <span><i class="fas fa-money-bill-wave" style="margin-right: 10px; margin-bottom: 30px;"></i>Precio: S/.{{productBean.price}}</span>
-            <span><i class="fas fa-calendar-week" style="margin-right: 10px; margin-bottom: 30px;"></i>Fecha de entrada: {{productBean.startDate}}</span>
-            <span><i class="fas fa-calendar-week" style="margin-right: 10px; margin-bottom: 30px;"></i>Fecha de salida: {{productBean.endDate}}</span>
+            <span *ngIf="productBean.type == 'Hotel'"><i class="fas fa-money-bill-wave" style="margin-right: 10px; margin-bottom: 30px;"></i>Precio: S/.{{productBean.price}}</span>
+            <span *ngIf="productBean.type == 'Restaurante'"><i class="fas fa-money-bill-wave" style="margin-right: 10px; margin-bottom: 30px;"></i>Rango de precio: S/.{{productBean.priceMin}} hasta S/.{{productBean.priceMax}}</span>
+            <span *ngIf="productBean.type == 'Hotel'"><i class="fas fa-calendar-week" style="margin-right: 10px; margin-bottom: 30px;"></i>Fecha de entrada: {{productBean.startDate}}</span>
+            <span *ngIf="productBean.type == 'Hotel'"><i class="fas fa-calendar-week" style="margin-right: 10px; margin-bottom: 30px;"></i>Fecha de salida: {{productBean.endDate}}</span>
             <span><i class="fas fa-map-marker-alt" style="margin-right: 10px; margin-bottom: 9px;"></i>Dirección: {{productBean.ubication}}</span>
             <div class="imgCroquis">
                 <img src="../../../../assets/image/croquis-example.jpeg" style="height: 166px; width: 100%;">

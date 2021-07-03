@@ -52,9 +52,9 @@
     <app-form-product-detail [productId]="selectedProduct.id" (closePopup)=onClosePopupFormEditDetail($event)></app-form-product-detail>
 </dx-popup> -->
 
-<dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="550" [height]="640" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
+<dx-popup style="overflow: scroll !important;" title="Editar Producto" [width]="755" [height]="640" *ngIf="showPopupProductFormEdit" [(visible)]="showPopupProductFormEdit" >
     <app-form-product (closePopup)=onClosePopupFormEdit($event) [productId]="selectedProduct.id" ></app-form-product>
 </dx-popup>
-<dx-popup title="Producto" [width]="550" [height]="640" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
+<dx-popup title="Producto" [width]="755" [height]="640" *ngIf="showPopupProductForm" [(visible)]="showPopupProductForm">
     <app-form-product (closePopup)=onClosePopupForm($event)></app-form-product>
 </dx-popup>
