@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ServiceBean } from 'src/app/Beans/ServiceBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { ServiceService } from 'src/app/services/service.service';
+import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -18,8 +18,8 @@ export class ListServicesComponent implements OnInit {
   @Output() closePopup: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
-    private serviceService: ServiceService,
     public authService: AuthService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class ListServicesComponent implements OnInit {
   }
   
   public getAllServices() {
-    this.serviceService.getAllServices({})
+    this.sharedService.sendOrRecieveData('/sc/gas', {}, false)
       .subscribe(resp => {
         this.listServices = resp.datalist;
       });
@@ -75,7 +75,7 @@ export class ListServicesComponent implements OnInit {
       cancelButtonText: 'No'
     }).then(result => {
       if(result.isConfirmed) {
-        this.serviceService.deleteService({data: this.selectedService})
+        this.sharedService.sendOrRecieveData('/sc/ds', this.selectedService, false)
           .subscribe(resp => {
             swal.fire(
               'Servicio eliminado correctamente!',

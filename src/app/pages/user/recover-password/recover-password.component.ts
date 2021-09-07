@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserBean } from 'src/app/Beans/UserBean';
-import { UserService } from 'src/app/services/user.service';
+import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2'
 
 @Component({
@@ -13,14 +13,15 @@ export class RecoverPasswordComponent implements OnInit {
   user: UserBean = new UserBean();
 
   constructor(
-    private userService: UserService
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
   }
 
   public sendEmail(e: any) {
-    this.userService.recoverPassword({data: this.user}).subscribe(resp => {
+    this.sharedService.sendOrRecieveData('/uc/scvfp', this.user, true)
+    .subscribe(resp => {
       if(resp.data != null) {
         swal.fire('Se ha enviado un enlace a su correo electrónico', '','success');
       } else {

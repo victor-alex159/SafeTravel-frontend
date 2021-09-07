@@ -6,8 +6,7 @@ import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { ProductService } from 'src/app/services/product.service';
-import { UserService } from 'src/app/services/user.service';
+import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2'
 
 @Component({
@@ -16,7 +15,6 @@ import swal from 'sweetalert2'
   styleUrls: ['./info-commentary-product.component.scss']
 })
 export class InfoCommentaryProductComponent implements OnInit {
-  url: string = 'http://localhost:8085/pdc';
   date_format:string = 'dd/MM/yyyy';
   START_DATE = new Date(1900, 0, 1);
   END_DATE = new Date(2060, 12, 31);
@@ -34,10 +32,10 @@ export class InfoCommentaryProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
     private authService: AuthService,
     private sanitization: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +50,7 @@ export class InfoCommentaryProductComponent implements OnInit {
   public getProductDetailById(productId: number) {
     let product = new ProductBean();
     product.id = productId;
-    this.productService.getProductById({data: product})
+    this.sharedService.sendOrRecieveData('/pc/gpbi', product, false)
       .subscribe(resp => {
         this.productBean = resp.data;
         let objectURL = 'data:image/jpeg;base64,' + this.productBean.image;
@@ -70,7 +68,7 @@ export class InfoCommentaryProductComponent implements OnInit {
     if(this.authService.isAthenticated()) {
       if(this.commentary.description != undefined) {
         if(this.commentary.description.trim() != '') {
-          this.productService.saveCommentary({data})
+          this.sharedService.sendOrRecieveData('/cmc/sc', data, false)
             .subscribe(resp => {
               this.getListCommentaries();
             });
@@ -88,8 +86,8 @@ export class InfoCommentaryProductComponent implements OnInit {
   public getListCommentaries() {
     let commentaryData = new CommentaryBean();
     commentaryData.product = new ProductBean();
-    commentaryData.product.id = this.productId; 
-    this.productService.getCommentaryByProductId({data: commentaryData})
+    commentaryData.product.id = this.productId;
+    this.sharedService.sendOrRecieveData('/cmc/gcbpi', commentaryData, true)
       .subscribe(resp => {
         this.listCommentaries = resp.datalist;
         this.listCommentaries.forEach(comment => {

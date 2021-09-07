@@ -4,10 +4,9 @@ import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProfileBean } from 'src/app/Beans/ProfileBean';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { OrganizationServiceService } from 'src/app/services/organization-service.service';
-import { UserService } from 'src/app/services/user.service';
 import swal from 'sweetalert2'
 import * as bcrypt from 'bcryptjs';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-form-user',
@@ -38,10 +37,9 @@ export class FormUserComponent implements OnInit {
   ]
 
   constructor(
-    private userService: UserService,
     public authService: AuthService,
-    private organizationService: OrganizationServiceService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -56,7 +54,7 @@ export class FormUserComponent implements OnInit {
   }
 
   public getAllOrganizations() {
-    this.organizationService.getAllOrganization({})
+    this.sharedService.sendOrRecieveData('/oc/gao', {}, true)
       .subscribe(resp => {
         this.organizationList = resp.datalist;
       });
@@ -65,7 +63,7 @@ export class FormUserComponent implements OnInit {
   public getUserById(id: number) {
     let userBean = new UserBean();
     userBean.id = id;
-    this.userService.getUserById({data: userBean})
+    this.sharedService.sendOrRecieveData('/uc/gubi', userBean, false)
       .subscribe(resp => {
         this.user = resp.data;
         this.profile = this.user.profile;
@@ -86,7 +84,7 @@ export class FormUserComponent implements OnInit {
       let salt = bcrypt.genSaltSync(10);
       this.user.password = bcrypt.hashSync(this.user.documentNumber, salt); 
     } */
-    this.userService.saveUser({data: this.user})
+    this.sharedService.sendOrRecieveData('/uc/su', this.user, true)
     .subscribe(resp => {
       if(this.user != null) {
         swal.fire(

@@ -4,7 +4,7 @@ import { UserBean } from '../../Beans/UserBean';
 import swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UserService } from 'src/app/services/user.service';
+import { SharedService } from 'src/app/services/shared.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -44,9 +44,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private userService: UserService,
     private router: Router,
-    private sanitization: DomSanitizer
+    private sanitization: DomSanitizer,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +57,8 @@ export class HeaderComponent implements OnInit {
       this.showNavBar = false;
       this.showNavBarButton = true;
     }
-    this.userService.getUserByUserSession({}).subscribe(resp => {
+    this.sharedService.sendOrRecieveData('/uc/gubus', {}, false)
+    .subscribe(resp => {
       this.userBean = resp.data;
       if(this.userBean != null && this.userBean.photo != null) {
           this.getImage(this.userBean.photo);

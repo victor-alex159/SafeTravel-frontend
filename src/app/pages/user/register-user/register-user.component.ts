@@ -5,8 +5,7 @@ import { ProfileBean } from 'src/app/Beans/ProfileBean';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConstantsService } from 'src/app/services/constants.service';
-import { OrganizationServiceService } from 'src/app/services/organization-service.service';
-import { UserService } from 'src/app/services/user.service';
+import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2'
 
 @Component({
@@ -39,11 +38,10 @@ export class RegisterUserComponent implements OnInit {
   ];
 
   constructor(
-    private userService: UserService,
     public authService: AuthService,
-    private organizationService: OrganizationServiceService,
     private router: Router,
-    public constants: ConstantsService
+    public constants: ConstantsService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +53,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public getAllOrganizations() {
-    this.organizationService.getAllOrganization({})
+    this.sharedService.sendOrRecieveData('/oc/gao', {}, true)
       .subscribe(resp => {
         this.organizationList = resp.datalist;
       });
@@ -71,14 +69,14 @@ export class RegisterUserComponent implements OnInit {
       this.user.genderTypeId = "2";
     }
     if(this.userProfileType == this.constants.TYPE_PROFILE_ORGANIZATION) {
-      this.organizationService.saveOrganization({data: this.organizationBean})
+      this.sharedService.sendOrRecieveData('/oc/so', this.organizationBean, false)
       .subscribe(resp => {
         this.organizationId = resp.data.id;
         this.user.organizationId = this.organizationId;
       });
     }
     setTimeout(() => {
-      this.userService.saveUser({data: this.user})
+      this.sharedService.sendOrRecieveData('/uc/su', this.user, true)
       .subscribe(resp => {
         swal.fire(
           'Se ha registrado correctamente!',

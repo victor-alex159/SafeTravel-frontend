@@ -3,9 +3,8 @@ import { CatalogBean } from 'src/app/Beans/CatalogBean';
 import { CatalogDetailBean } from 'src/app/Beans/CatalogDetailBean';
 import { ServiceBean } from 'src/app/Beans/ServiceBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { CatalogService } from 'src/app/services/catalog.service';
 import { ConstantsService } from 'src/app/services/constants.service';
-import { ServiceService } from 'src/app/services/service.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -22,9 +21,8 @@ export class SideBarComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private catalogService: CatalogService,
-    private serviceService: ServiceService,
-    private constantService: ConstantsService
+    private constantService: ConstantsService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -34,16 +32,16 @@ export class SideBarComponent implements OnInit {
 
   public getAllServices() {
     let service = new ServiceBean();
-    this.serviceService.getAllServices({data: service}).subscribe(resp => {
+    this.sharedService.sendOrRecieveData('/sc/gas', service, true)
+    .subscribe(resp => {
       this.listServices = resp.datalist;
-      console.log(this.listServices)
     });
   }
 
   public getListCatalogByCatalogId() {
     this.catalogDetailBean.catalog = new CatalogBean();
     this.catalogDetailBean.catalog.id = this.constantService.TYPE_SERVICES_HOTEL;
-    this.catalogService.getListCatalogDetailByCatalogId({data: this.catalogDetailBean})
+    this.sharedService.sendOrRecieveData('/cdc/glcdbci', this.catalogDetailBean, true)
       .subscribe(resp => {
         this.listCatalogDetail = resp.datalist;
       });

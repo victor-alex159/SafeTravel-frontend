@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { OrganizationBean } from '../../../Beans/OrganizationBean';
-import { OrganizationServiceService } from '../../../services/organization-service.service';
 import swal from 'sweetalert2'
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-form-organization',
@@ -16,7 +16,7 @@ export class FormOrganizationComponent implements OnInit {
   @Output() closePopup: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
-    private organizationService: OrganizationServiceService
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +28,8 @@ export class FormOrganizationComponent implements OnInit {
 
   public saveOrganization(e: any) {
     //const swal = require('sweetalert2');
-    this.organizationService.saveOrganization({data: this.organizationBean}).subscribe(resp => {
+    this.sharedService.sendOrRecieveData('/oc/so', this.organizationBean, false)
+    .subscribe(resp => {
       if(this.organizationBean != null) {
         swal.fire(
           'Organanización registrado correctamente!',
@@ -44,7 +45,7 @@ export class FormOrganizationComponent implements OnInit {
   public getOrganzationById(organizationId: number) {
     let organizationBean = new OrganizationBean();
     organizationBean.id = organizationId;
-    this.organizationService.getOrganizationById({data: organizationBean})
+    this.sharedService.sendOrRecieveData('/oc/gobi', this.organizationBean, false)
       .subscribe(resp => {
         this.organizationBean = resp.data;
       });

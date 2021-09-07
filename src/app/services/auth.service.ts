@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ClientBean } from '../Beans/Client';
 import { UserBean } from '../Beans/UserBean';
 import { SharedService } from './shared.service';
+import { UrlProviderService } from './url-provider.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   credentials = btoa('tallerProject' + ':' + 'taller');
   //credentials = btoa('safetravel' + ':' + 'fivesolutions');
 
-  urlEndpoint: string = `${this.sharedService.url + '/oauth/token'}`;
+  urlEndpoint: string = `${this.urlProvider.url + '/oauth/token'}`;
   
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -26,7 +27,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private sharedService: SharedService
+    private urlProvider: UrlProviderService
   ) { }
 
   public login(user: any): Observable<any> {

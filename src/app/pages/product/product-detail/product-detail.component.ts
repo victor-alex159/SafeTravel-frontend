@@ -4,8 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ProductDetailBean } from 'src/app/Beans/ProductDetailBean';
 import { ServiceBean } from 'src/app/Beans/ServiceBean';
-import { ProductService } from 'src/app/services/product.service';
-import { ServiceService } from 'src/app/services/service.service';
+import { SharedService } from 'src/app/services/shared.service';
 import { SearchProductsComponent } from '../../search-products/search-products.component';
 
 
@@ -28,11 +27,10 @@ export class ProductDetailComponent implements OnInit {
   listServiceSelected: Array<any> = [];
 
   constructor(
-    private productService: ProductService,
     private router: Router,
     private sanitization: DomSanitizer,
-    private serviceService: ServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sharedService: SharedService
 
   ) { }
 
@@ -47,9 +45,9 @@ export class ProductDetailComponent implements OnInit {
 
   public getAllServices() {
     let service = new ServiceBean();
-    this.serviceService.getAllServices({data: service}).subscribe(resp => {
+    this.sharedService.sendOrRecieveData('/sc/gas', service, false)
+    .subscribe(resp => {
       this.listServices = resp.datalist;
-      console.log(this.listServices)
     });
   }
 
@@ -61,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
       });
       this.product.serviceId = servicesCodes.substring(0, servicesCodes.length-1);
     }
-    this.productService.getAllProductsByNameAndDates({data: this.product})
+    this.sharedService.sendOrRecieveData('/pc/gpbnad', this.product, true)
       .subscribe(resp => {
         this.productList = resp.data;
         this.productList.forEach(pd => {
@@ -78,7 +76,7 @@ export class ProductDetailComponent implements OnInit {
     let product = new ProductBean();
     console.log(name);
     product.name = name;
-    this.productService.getAllProductsByNameAndDates({data: product})
+    this.sharedService.sendOrRecieveData('/pc/gpbnad', product, true)
       .subscribe(resp => {
         this.productList = resp.data;
         this.productList.forEach(pd => {

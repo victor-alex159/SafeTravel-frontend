@@ -4,9 +4,9 @@ import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProfileBean } from 'src/app/Beans/ProfileBean';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
 import * as bcrypt from 'bcryptjs';
 import swal from 'sweetalert2'
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -54,19 +54,19 @@ export class UserProfileComponent implements OnInit {
   noSavedPhoto: boolean = false;
 
   constructor(
-    private userService: UserService,
     public authService: AuthService,
-    private sanitization: DomSanitizer
+    private sanitization: DomSanitizer,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
     this.user = new UserBean();
     this.userBefore = new UserBean();
-    this.userService.getUserByUserSession({}).
-    subscribe(resp => {
+    this.sharedService.sendOrRecieveData('/uc/gubus', {}, false)
+    .subscribe(resp => {
       this.user = resp.data;
       this.userBefore = JSON.parse(JSON.stringify(this.user));
-      this.userService.getImageById(this.user.id)
+      this.sharedService.getImageById('/uc/gi', this.user.id)
       .subscribe(resp => {
         if(resp.data) {
           this.getImage(resp.data);
@@ -100,7 +100,7 @@ export class UserProfileComponent implements OnInit {
     } else {
       this.currentFileUpload = new File( [''], 'None' );
     }
-    this.userService.savePhoto(this.user, this.currentFileUpload)
+    this.sharedService.sendDataWithFile('/uc/sp', this.user, 'userPhoto', this.currentFileUpload)
       .subscribe(resp => {
         swal.fire(
           'Su foto se ha actualizado',
@@ -126,7 +126,7 @@ export class UserProfileComponent implements OnInit {
   public save() {
     this.enableEdit = false;
     console.log(this.user.password)
-    this.userService.saveUser({data: this.user})
+    this.sharedService.sendOrRecieveData('/uc/su', this.user, true)
       .subscribe(resp => {
         swal.fire(
           'Se ha guardado correctamente!',
@@ -146,7 +146,7 @@ export class UserProfileComponent implements OnInit {
     if(this.password == this.passwordVerificated) {
       let salt = bcrypt.genSaltSync(10);
       this.user.password = bcrypt.hashSync(this.password, salt);
-      this.userService.changePassword({data: this.user})
+      this.sharedService.sendOrRecieveData('/uc/cp/', this.user, true)
         .subscribe(resp => {
           if(resp.data != null) {
             swal.fire('Se ha cambiado su contraseña correctamente!', '','success');

@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductBean } from 'src/app/Beans/ProductBean';
-import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { constants } from 'buffer';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-search-products',
@@ -27,10 +27,10 @@ export class SearchProductsComponent implements OnInit {
   imagenEstado: boolean = false;
 
   constructor(
-    public productService: ProductService,
     public constantsService: ConstantsService,
     public router: Router,
     private sanitization: DomSanitizer,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class SearchProductsComponent implements OnInit {
     let listProducts: Array<any> = [];
     let contHotels = 0;
     let contRestaurants = 0;
-    this.productService.getAllProducts({})
+    this.sharedService.sendOrRecieveData('/pc/gap', {}, true)
       .subscribe((resp: any) => {
         listProducts = resp.datalist;
         listProducts.forEach(prod => {

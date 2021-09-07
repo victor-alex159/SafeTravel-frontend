@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ServiceBean } from 'src/app/Beans/ServiceBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { ServiceService } from 'src/app/services/service.service';
+import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2'
 
 @Component({
@@ -16,8 +16,8 @@ export class FormServiceComponent implements OnInit {
   service: ServiceBean;
 
   constructor(
-    private serviceService: ServiceService,
-    public authService: AuthService
+    public authService: AuthService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class FormServiceComponent implements OnInit {
     if(this.serviceId) {
       let serviceBean = new ServiceBean();
       serviceBean.id = this.serviceId;
-      this.serviceService.getServiceById({data: serviceBean})
+      this.sharedService.sendOrRecieveData('/sc/gsbi', serviceBean, false)
         .subscribe(resp => {
           this.service = resp.data;
         });
@@ -35,7 +35,7 @@ export class FormServiceComponent implements OnInit {
 
   public save(e: any) {
     if(this.service != null || this.service != undefined) {
-      this.serviceService.saveService({data: this.service})
+      this.sharedService.sendOrRecieveData('/sc/ss', this.service, false)
         .subscribe(resp => {
           swal.fire(
             'Registrado correctamente!',

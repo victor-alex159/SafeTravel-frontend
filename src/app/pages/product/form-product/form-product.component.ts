@@ -2,18 +2,15 @@ import { Component, Input, OnInit, Output, EventEmitter, enableProdMode } from '
 import { DomSanitizer } from '@angular/platform-browser';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
-import { OrganizationServiceService } from 'src/app/services/organization-service.service';
-import { ProductService } from 'src/app/services/product.service';
 import swal from 'sweetalert2'
 import { element } from 'protractor';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { CatalogDetailBean } from 'src/app/Beans/CatalogDetailBean';
 import { CatalogBean } from 'src/app/Beans/CatalogBean';
-import { CatalogService } from 'src/app/services/catalog.service';
 import { Router } from '@angular/router';
-import { ServiceService } from 'src/app/services/service.service';
 import { ServiceBean } from 'src/app/Beans/ServiceBean';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-form-product',
@@ -55,14 +52,11 @@ export class FormProductComponent implements OnInit {
   disableEdit: boolean = false;
 
   constructor(
-    private productService: ProductService,
-    private organizationService: OrganizationServiceService,
     private sanitization: DomSanitizer,
     public authService: AuthService,
     public constantService: ConstantsService,
-    private catalogService: CatalogService,
-    private serviceService: ServiceService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -76,7 +70,7 @@ export class FormProductComponent implements OnInit {
     }
     if(this.productId) {
       this.getProduct(this.productId);
-      this.productService.getImageById(this.productId)
+      this.sharedService.getImageById('/pc/gi', this.productId)
         .subscribe(resp => {
           if ( resp.data) {
             this.getImage(resp.data);
@@ -125,7 +119,7 @@ export class FormProductComponent implements OnInit {
         });
         this.product.serviceId = servicesCodes.substring(0, servicesCodes.length-1);
       }
-      this.productService.save(this.product, this.currentFileUpload)
+      this.sharedService.sendDataWithFile('/pc/sv', this.product, 'product', this.currentFileUpload)
       .subscribe(resp => {
         swal.fire(
           'Registrado correctamente!',
@@ -143,7 +137,7 @@ export class FormProductComponent implements OnInit {
     let productBean = new ProductBean();
     productBean.id = productId;
     this.listServiceSelected = [];
-    this.productService.getProductById({data: productBean})
+    this.sharedService.sendOrRecieveData('/pc/gpbi', productBean, false)
     .subscribe(resp => {
       this.product = resp.data;
       //this.selecTypeProduct(this.product.type);
@@ -203,7 +197,8 @@ export class FormProductComponent implements OnInit {
 
   public getAllServices() {
     let service = new ServiceBean();
-    this.serviceService.getAllServices({data: service}).subscribe(resp => {
+    this.sharedService.sendOrRecieveData('/sc/gas', service, false)
+    .subscribe(resp => {
       this.listServices = resp.datalist;
     });
   }  

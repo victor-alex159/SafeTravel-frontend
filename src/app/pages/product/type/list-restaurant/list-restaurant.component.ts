@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { ConstantsService } from 'src/app/services/constants.service';
-import { ProductService } from 'src/app/services/product.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-list-restaurant',
@@ -18,9 +18,9 @@ export class ListRestaurantComponent implements OnInit {
 
   constructor(
     private constanService: ConstantsService,
-    private productService: ProductService,
     private sanitization: DomSanitizer,
-    public router: Router
+    public router: Router,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class ListRestaurantComponent implements OnInit {
   public getProductByRestaurant() {
     let product = new ProductBean();
     product.type = this.constanService.TYPE_PRODUCT_RESTAURANT;
-    this.productService.getProductByType({data: product})
+    this.sharedService.sendOrRecieveData('/pc/gpbt', product, true)
       .subscribe(list => {
         this.listRestaurant = list.datalist;
         this.listRestaurant.forEach(pd => {

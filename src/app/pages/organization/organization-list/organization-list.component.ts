@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { OrganizationServiceService } from 'src/app/services/organization-service.service';
+import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -18,8 +18,8 @@ export class OrganizationListComponent implements OnInit {
   showPopupOrganizationFormEdit: boolean = false;
   organizationId: number;
   constructor(
-    private organizationService: OrganizationServiceService,
-    public authService: AuthService
+    public authService: AuthService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class OrganizationListComponent implements OnInit {
   }
 
   public getAllOrganization() {
-    this.organizationService.getAllOrganization( { } )
+    this.sharedService.sendOrRecieveData('/oc/gao', {}, false)
       .subscribe((resp: any) => {
         this.organizationList = resp.datalist;
       });
@@ -78,7 +78,7 @@ export class OrganizationListComponent implements OnInit {
       cancelButtonText: 'No'
     }).then(result => {
       if(result.isConfirmed) {
-        this.organizationService.deleteOrganization({data: this.selectedOrganization})
+        this.sharedService.sendOrRecieveData('/oc/dobi', this.selectedOrganization, false)
           .subscribe(resp => {
             swal.fire(
               'Organanización eliminada correctamente!',

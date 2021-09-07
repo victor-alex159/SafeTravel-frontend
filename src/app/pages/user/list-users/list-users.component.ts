@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserBean } from 'src/app/Beans/UserBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { OrganizationServiceService } from 'src/app/services/organization-service.service';
-import { UserService } from 'src/app/services/user.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-list-users',
@@ -18,9 +17,8 @@ export class ListUsersComponent implements OnInit {
   @Output() closePopup: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
-    private userService: UserService,
     public authService: AuthService,
-    private organizationService: OrganizationServiceService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +26,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   public getAllUsers() {
-    this.userService.getAllUsers({})
+    this.sharedService.sendOrRecieveData('/uc/gau', {}, false)
       .subscribe(resp => {
         this.listUsers = resp.datalist;
       });

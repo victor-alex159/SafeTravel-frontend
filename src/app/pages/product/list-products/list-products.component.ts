@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrganizationBean } from 'src/app/Beans/OrganizationBean';
 import { ProductBean } from 'src/app/Beans/ProductBean';
 import { AuthService } from 'src/app/services/auth.service';
-import { OrganizationServiceService } from 'src/app/services/organization-service.service';
-import { ProductService } from 'src/app/services/product.service';
+import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -25,9 +24,8 @@ export class ListProductsComponent implements OnInit {
   productName: string;
 
   constructor(
-    private productService: ProductService,
-    private organizationService: OrganizationServiceService,
-    public authService: AuthService,
+    public authService: AuthService,    
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -48,15 +46,16 @@ export class ListProductsComponent implements OnInit {
 
   public getProducts() {
     if(this.authService.hasRole('Administrador')) {
-      this.productService.getAllProducts({}).subscribe(resp => {
+      this.sharedService.sendOrRecieveData('/pc/gap', {}, true)
+      .subscribe(resp => {
         this.productList = resp.datalist;
       });
     } else {
-      this.productService.getProductsByUserPrincipal({})
+      this.sharedService.sendOrRecieveData('/pc/gpbup', {}, false)
       .subscribe((resp: any) => {
         if(resp.datalist != null) {
           this.productList = resp.datalist;
-          this.organizationService.getOrganizationById({data: this.productList[0].organization})
+          this.sharedService.sendOrRecieveData('/oc/gobi', this.productList[0].organization, false)
             .subscribe(org => {
               this.organization.name = org.data.name;
             });
@@ -66,7 +65,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   public getOrganizationByUserPrincipal() {
-    this.organizationService.getOrganizationByUserPrincipal({})
+    this.sharedService.sendOrRecieveData('/oc/gobup', {}, true)
       .subscribe(resp => {
         this.organization = resp.data;
       });
@@ -102,7 +101,7 @@ export class ListProductsComponent implements OnInit {
       cancelButtonText: 'No'
     }).then(result => {
       if(result.isConfirmed) {
-        this.productService.deleteProduct({data: this.selectedProduct})
+        this.sharedService.sendOrRecieveData('/pc/dp', this.selectedProduct, false)
           .subscribe(resp => {
             swal.fire(
               'Product eliminado correctamente!',
