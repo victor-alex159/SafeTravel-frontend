@@ -118,6 +118,8 @@ export class FormProductComponent implements OnInit {
           servicesCodes = servicesCodes + service.code.concat(',');
         });
         this.product.serviceId = servicesCodes.substring(0, servicesCodes.length-1);
+      } else {
+        this.product.serviceId = null;
       }
       this.sharedService.sendDataWithFile('/pc/sv', this.product, 'product', this.currentFileUpload)
       .subscribe(resp => {
@@ -126,6 +128,8 @@ export class FormProductComponent implements OnInit {
           'Con éxito!',
           'success'
         )
+      }, error => {
+        console.log(error);
       });
       this.closePopup.emit("false");
     }

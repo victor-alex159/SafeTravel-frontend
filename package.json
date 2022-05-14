@@ -26,6 +26,7 @@
     "blueimp-md5": "^2.18.0",
     "devextreme": "^20.2.3",
     "devextreme-angular": "^20.2.3",
+    "file-saver": "^2.0.5",
     "firebase": "^8.6.3",
     "gsap": "^3.5.1",
     "ngx-pagination": "^5.0.0",
@@ -56,6 +57,6 @@
     "typescript": "~3.7.5"
   },
   "browser": {
-      "crypto": false
+    "crypto": false
   }
 }

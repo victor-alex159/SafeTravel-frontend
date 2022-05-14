@@ -2,6 +2,12 @@
     <h2 *ngIf="this.authService.hasRole('Administrador - Organizacion')">{{organization.name}}</h2>
     <h3 *ngIf=" this.authService.hasRole('Administrador - Organizacion')">MIS EMPRESAS</h3>
     <h3 *ngIf="this.authService.hasRole('Administrador')">EMPRESAS DE ORGANIZACIONES</h3>
+    <dx-button
+        icon="download"
+        text="Descargar Excel"
+        width="12%"
+        (click)="downloadExcel()"
+        ></dx-button>
     <dx-data-grid style="padding: 0;" *ngIf="productList" id="gridContainer" [allowColumnResizing]="true" [allowColumnReordering]="true"
         [dataSource]="productList"
         [columnAutoWidth]="true"

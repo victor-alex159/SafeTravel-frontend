@@ -4,6 +4,7 @@ import { ProductBean } from 'src/app/Beans/ProductBean';
 import { AuthService } from 'src/app/services/auth.service';
 import { SharedService } from 'src/app/services/shared.service';
 import swal from 'sweetalert2';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-list-products',
@@ -137,6 +138,13 @@ export class ListProductsComponent implements OnInit {
         this.getProducts();
       }, 1500);
     }
+  }
+
+  public downloadExcel() {
+    this.sharedService.getFile('/pc/grpe', {})
+    .subscribe(resp => {
+      FileSaver.saveAs(new Blob([resp], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), "reporte-productos.xlsx");
+    })
   }
   
 
