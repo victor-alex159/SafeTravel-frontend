@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { OrganizationBean } from '../../../.history/src/app/Beans/OrganizationBean_20201218012447';
 import { SharedService } from './shared.service';
 
 @Injectable({
