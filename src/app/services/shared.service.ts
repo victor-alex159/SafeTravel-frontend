@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { UrlProviderService } from './url-provider.service';
 import {catchError, map, retry} from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
+import { UrlProviderService } from './url-provider.service';
 
 
 @Injectable({
